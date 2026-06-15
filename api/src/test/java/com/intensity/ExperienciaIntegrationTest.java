@@ -177,6 +177,48 @@ class ExperienciaIntegrationTest {
 				.andExpect(status().isUnprocessableEntity());
 	}
 
+	@Test
+	@Order(8)
+	void experienceBoxSessionSeesFullPoolForDraw() throws Exception {
+		mockMvc.perform(post("/v1/caixinhas/{boxId}/experiencias", boxId)
+						.header("Authorization", "Bearer " + aliceToken)
+						.contentType(MediaType.APPLICATION_JSON)
+						.content("""
+								{
+								  "description": "Draw pool entry",
+								  "reflection": "For shared moment",
+								  "intensity": 3,
+								  "parameters": { "effort": 3, "openness": 3, "novelty": 3 }
+								}
+								"""))
+				.andExpect(status().isCreated());
+
+		String experienceBoxToken = jointLoginToken();
+
+		mockMvc.perform(get("/v1/caixinhas/{boxId}/experiencias", boxId)
+						.header("Authorization", "Bearer " + experienceBoxToken))
+				.andExpect(status().isOk())
+				.andExpect(jsonPath("$[0].description").value("Draw pool entry"))
+				.andExpect(jsonPath("$[0].summaryOnly").value(false));
+	}
+
+	private String jointLoginToken() throws Exception {
+		MvcResult result = mockMvc.perform(post("/v1/auth/grupo")
+						.contentType(MediaType.APPLICATION_JSON)
+						.content("""
+								{
+								  "credentials": [
+								    { "email": "alice@example.com", "password": "password123" },
+								    { "email": "bob@example.com", "password": "password123" }
+								  ]
+								}
+								"""))
+				.andExpect(status().isOk())
+				.andReturn();
+
+		return objectMapper.readTree(result.getResponse().getContentAsString()).get("token").asText();
+	}
+
 	private void register(String displayName, String email) throws Exception {
 		mockMvc.perform(post("/v1/participantes")
 				.contentType(MediaType.APPLICATION_JSON)

@@ -8,6 +8,7 @@ import { AuthPage } from '@presentation/auth/AuthPage';
 import { BoxSelectionPage } from '@presentation/boxes/BoxSelectionPage';
 import { BoxHomePage } from '@presentation/box-home/BoxHomePage';
 import { CreateBoxPage } from '@presentation/box-home/CreateBoxPage';
+import { SharedMomentPage } from '@presentation/shared-moment/SharedMomentPage';
 import { BootstrapPage } from '@presentation/bootstrap/BootstrapPage';
 import { ExperienceListPage } from '@presentation/experiences/ExperienceListPage';
 import { GroupSelectionPage } from '@presentation/groups/GroupSelectionPage';
@@ -34,6 +35,7 @@ export function AppRouter() {
       <Route element={<RequireExperienceBoxSessionRoute />}>
         <Route path="/box-home" element={<BoxHomePage />} />
         <Route path="/box-home/create" element={<CreateBoxPage />} />
+        <Route path="/box-home/:boxId/moment" element={<SharedMomentPage />} />
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

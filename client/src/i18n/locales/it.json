@@ -193,6 +193,27 @@
       }
     }
   },
+  "sharedMoment": {
+    "defaultBoxName": "Scatola selezionata",
+    "filtersLabel": "Filtro intensità",
+    "intensityLevel": "Livello di intensità",
+    "drawAny": "Estrai",
+    "drawExact": "Estrai livello esatto {{level}}",
+    "drawUpTo": "Estrai fino al livello {{level}}",
+    "choosing": "Scelta in corso…",
+    "emptyBox": "Non ci sono ancora esperienze. Aggiungete idee in modalità Experiences sui telefoni.",
+    "emptyFilter": "Nessuna esperienza corrisponde a questo filtro.",
+    "coverLabel": "Risultato estrazione",
+    "alignmentHint": "Prendetevi un momento insieme prima di rivelare la descrizione completa.",
+    "reveal": "Rivela",
+    "backToDraw": "Torna all'estrazione",
+    "byAuthor": "Di {{author}}",
+    "filter": {
+      "ANY": "Qualsiasi",
+      "EXACT": "Esatto",
+      "UP_TO": "Fino a"
+    }
+  },
   "boxTypes": {
     "SAIDAS_COM_AMIGOS": {
       "title": "Uscite con amici",

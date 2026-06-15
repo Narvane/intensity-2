@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ApiError, createApiClient } from '@adapters/api/ApiClient';
 import { useAppLogout } from '@app/useAppLogout';
+import { useNavigation } from '@app/NavigationProvider';
 import { useSession } from '@app/SessionProvider';
 import type { Box } from '@domain/box/boxTypes';
 import { ListBoxesUseCase } from '@domain/box/boxUseCases';
@@ -13,6 +14,7 @@ import styles from './BoxHomePage.module.css';
 export function BoxHomePage() {
   const { t } = useI18n();
   const { session } = useSession();
+  const { setNavigation } = useNavigation();
   const logout = useAppLogout();
   const navigate = useNavigate();
   const api = useMemo(() => createApiClient(), []);
@@ -77,6 +79,20 @@ export function BoxHomePage() {
               typeLabel={t(`boxTypes.${box.type}.title`)}
               typeHint={t(`boxTypes.${box.type}.hint`)}
               experienceCount={box.experienceCount}
+              onClick={() => {
+                if (!session?.groupId) {
+                  return;
+                }
+
+                void setNavigation({
+                  groupId: session.groupId,
+                  boxId: box.id,
+                  boxName: box.name,
+                  boxType: box.type,
+                }).then(() => {
+                  navigate(`/box-home/${box.id}/moment`);
+                });
+              }}
             />
           ))}
         </div>

@@ -193,6 +193,27 @@
       }
     }
   },
+  "sharedMoment": {
+    "defaultBoxName": "Selected box",
+    "filtersLabel": "Intensity filter",
+    "intensityLevel": "Intensity level",
+    "drawAny": "Draw",
+    "drawExact": "Draw exact level {{level}}",
+    "drawUpTo": "Draw up to level {{level}}",
+    "choosing": "Choosing…",
+    "emptyBox": "No experiences yet. Add ideas in Experiences mode on your phones.",
+    "emptyFilter": "No experiences match this filter.",
+    "coverLabel": "Draw result",
+    "alignmentHint": "Take a moment together before revealing the full description.",
+    "reveal": "Reveal",
+    "backToDraw": "Back to draw",
+    "byAuthor": "By {{author}}",
+    "filter": {
+      "ANY": "Any",
+      "EXACT": "Exact",
+      "UP_TO": "Up to"
+    }
+  },
   "boxTypes": {
     "SAIDAS_COM_AMIGOS": {
       "title": "Outings with friends",

@@ -2,6 +2,7 @@ package com.intensity.experiencia.service;
 
 import com.intensity.caixinha.entity.Caixinha;
 import com.intensity.caixinha.repository.CaixinhaRepository;
+import com.intensity.common.AccessMode;
 import com.intensity.common.AuthPrincipal;
 import com.intensity.common.exception.ApiException;
 import com.intensity.experiencia.dto.CreateExperienceRequest;
@@ -47,7 +48,7 @@ public class ExperienciaService {
 		ensureCanAccessBox(caixinha, principal);
 
 		return experienciaRepository.findAllByCaixinha_IdOrderByCreatedAtDesc(boxId).stream()
-				.map(experience -> toResponse(experience, principal.participantId()))
+				.map(experience -> toResponse(experience, principal.participantId(), principal))
 				.toList();
 	}
 
@@ -74,7 +75,7 @@ public class ExperienciaService {
 				seal);
 
 		experienciaRepository.save(experiencia);
-		return toResponse(experiencia, principal.participantId());
+		return toResponse(experiencia, principal.participantId(), principal);
 	}
 
 	@Transactional
@@ -94,7 +95,7 @@ public class ExperienciaService {
 				request.parameters().novelty(),
 				seal);
 
-		return toResponse(experiencia, principal.participantId());
+		return toResponse(experiencia, principal.participantId(), principal);
 	}
 
 	@Transactional
@@ -141,8 +142,10 @@ public class ExperienciaService {
 		}
 	}
 
-	private ExperienceResponse toResponse(Experiencia experiencia, UUID viewerId) {
+	private ExperienceResponse toResponse(
+			Experiencia experiencia, UUID viewerId, AuthPrincipal principal) {
 		boolean isAuthor = experiencia.getAuthor().getId().equals(viewerId);
+		boolean fullAccess = isAuthor || principal.accessMode() == AccessMode.EXPERIENCE_BOX;
 		ExperienceParametersDto parameters = new ExperienceParametersDto(
 				experiencia.getEffort(), experiencia.getOpenness(), experiencia.getNovelty());
 
@@ -151,12 +154,12 @@ public class ExperienciaService {
 				experiencia.getCaixinha().getId(),
 				experiencia.getAuthor().getId(),
 				experiencia.getAuthor().getDisplayName(),
-				isAuthor ? experiencia.getDescription() : null,
-				isAuthor ? experiencia.getReflection() : null,
+				fullAccess ? experiencia.getDescription() : null,
+				fullAccess ? experiencia.getReflection() : null,
 				experiencia.getIntensity(),
 				parameters,
 				experiencia.getSeal(),
-				!isAuthor,
+				!fullAccess,
 				experiencia.getCreatedAt(),
 				experiencia.getUpdatedAt());
 	}

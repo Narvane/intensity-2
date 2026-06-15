@@ -193,6 +193,27 @@
       }
     }
   },
+  "sharedMoment": {
+    "defaultBoxName": "Caixinha selecionada",
+    "filtersLabel": "Filtro de intensidade",
+    "intensityLevel": "Nível de intensidade",
+    "drawAny": "Sortear",
+    "drawExact": "Sortear nível exato {{level}}",
+    "drawUpTo": "Sortear até nível {{level}}",
+    "choosing": "Sorteando…",
+    "emptyBox": "Ainda não há experiências. Adicionem ideias no modo Experiences nos celulares.",
+    "emptyFilter": "Nenhuma experiência corresponde a este filtro.",
+    "coverLabel": "Resultado do sorteio",
+    "alignmentHint": "Tomem um momento juntos antes de revelar a descrição completa.",
+    "reveal": "Revelar",
+    "backToDraw": "Voltar ao sorteio",
+    "byAuthor": "Por {{author}}",
+    "filter": {
+      "ANY": "Qualquer",
+      "EXACT": "Exato",
+      "UP_TO": "Até"
+    }
+  },
   "boxTypes": {
     "SAIDAS_COM_AMIGOS": {
       "title": "Saídas com amigos",
