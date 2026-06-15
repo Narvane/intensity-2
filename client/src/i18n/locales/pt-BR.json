@@ -118,7 +118,8 @@
     "title": "Escolha um grupo",
     "empty": "Entre em um grupo via convite ou entre no Experience Box com outros.",
     "memberCount": "{{count}} membros",
-    "openBoxes": "Abrir caixinhas"
+    "openBoxes": "Abrir caixinhas",
+    "invite": "Convidar"
   },
   "boxes": {
     "title": "Escolha uma caixinha",
@@ -129,6 +130,37 @@
     "create": "Criar caixinha",
     "empty": "Ainda não há caixinhas neste grupo.",
     "createFirst": "Criar a primeira caixinha"
+  },
+  "invite": {
+    "preview": {
+      "accent": "Entrar via convite",
+      "title": "Prévia do grupo",
+      "membersTitle": "Pessoas neste grupo",
+      "expiresAt": "Válido até {{date}}",
+      "authRequired": "Entre ou crie uma conta para aceitar este convite.",
+      "accept": "Aceitar convite",
+      "signInToAccept": "Entrar para aceitar",
+      "registerToAccept": "Cadastrar para aceitar",
+      "backToAuth": "Voltar para entrar"
+    },
+    "share": {
+      "action": "Convidar",
+      "title": "Compartilhar convite",
+      "close": "Fechar",
+      "codeLabel": "Código do convite",
+      "expiresAt": "Expira em {{date}}",
+      "share": "Compartilhar convite",
+      "copyCode": "Copiar código",
+      "copied": "Copiado para a área de transferência.",
+      "message": "Entre no nosso grupo no Intensity — {{link}}. Ou digite o código: {{code}}"
+    },
+    "errors": {
+      "gone": "Este convite não está mais disponível.",
+      "notFound": "Convite não encontrado.",
+      "alreadyMember": "Você já é membro deste grupo.",
+      "invalidCode": "Informe um código de convite válido com 6 caracteres.",
+      "missingReference": "Informe um código de convite ou abra um link válido."
+    }
   },
   "createBox": {
     "title": "Criar caixinha",

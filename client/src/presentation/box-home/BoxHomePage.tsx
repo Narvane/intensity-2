@@ -7,6 +7,7 @@ import { useSession } from '@app/SessionProvider';
 import type { Box } from '@domain/box/boxTypes';
 import { ListBoxesUseCase } from '@domain/box/boxUseCases';
 import { useI18n } from '../../i18n/I18nContext';
+import { ShareInviteSheet } from '../invite/ShareInviteSheet';
 import { BoxCard } from '../components/BoxCard';
 import { Button } from '../components/Button';
 import styles from './BoxHomePage.module.css';
@@ -23,6 +24,7 @@ export function BoxHomePage() {
   const [boxes, setBoxes] = useState<Box[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [shareOpen, setShareOpen] = useState(false);
 
   useEffect(() => {
     if (!session?.token || !session.groupId) {
@@ -53,6 +55,11 @@ export function BoxHomePage() {
 
       <div className={styles.toolbar}>
         <Button onClick={() => navigate('/box-home/create')}>{t('boxHome.create')}</Button>
+        {session?.groupId && session.token && (
+          <Button variant="secondary" onClick={() => setShareOpen(true)}>
+            {t('invite.share.action')}
+          </Button>
+        )}
       </div>
 
       {loading && <p className={styles.message}>{t('common.loading')}</p>}
@@ -96,6 +103,15 @@ export function BoxHomePage() {
             />
           ))}
         </div>
+      )}
+
+      {session?.groupId && session.token && (
+        <ShareInviteSheet
+          open={shareOpen}
+          groupId={session.groupId}
+          token={session.token}
+          onClose={() => setShareOpen(false)}
+        />
       )}
     </main>
   );

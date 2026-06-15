@@ -45,6 +45,12 @@
   gap: 0.75rem;
 }
 
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 .row {
   width: 100%;
   display: flex;

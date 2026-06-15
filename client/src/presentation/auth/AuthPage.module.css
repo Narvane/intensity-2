@@ -63,6 +63,12 @@
   border-top: 3px solid var(--color-text-muted);
 }
 
+.tabActiveInvite {
+  color: #bbf7d0;
+  border-color: transparent;
+  background: rgba(34, 197, 94, 0.18);
+}
+
 .panel h1 {
   margin: 0;
   font-size: 1.35rem;

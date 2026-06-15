@@ -26,6 +26,9 @@
 }
 
 .toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
   margin-bottom: 1rem;
 }
 

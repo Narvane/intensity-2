@@ -118,7 +118,8 @@
     "title": "Choose a group",
     "empty": "Join a group via invite or sign in to Experience Box with others.",
     "memberCount": "{{count}} members",
-    "openBoxes": "Open boxes"
+    "openBoxes": "Open boxes",
+    "invite": "Invite"
   },
   "boxes": {
     "title": "Choose a box",
@@ -129,6 +130,37 @@
     "create": "Create box",
     "empty": "No boxes yet in this group.",
     "createFirst": "Create the first box"
+  },
+  "invite": {
+    "preview": {
+      "accent": "Join via invite",
+      "title": "Group preview",
+      "membersTitle": "People in this group",
+      "expiresAt": "Valid until {{date}}",
+      "authRequired": "Sign in or create an account to accept this invite.",
+      "accept": "Accept invite",
+      "signInToAccept": "Sign in to accept",
+      "registerToAccept": "Create account to accept",
+      "backToAuth": "Back to sign in"
+    },
+    "share": {
+      "action": "Invite",
+      "title": "Share invite",
+      "close": "Close",
+      "codeLabel": "Invite code",
+      "expiresAt": "Expires on {{date}}",
+      "share": "Share invite",
+      "copyCode": "Copy code",
+      "copied": "Copied to clipboard.",
+      "message": "Join our group on Intensity — {{link}}. Or enter the code: {{code}}"
+    },
+    "errors": {
+      "gone": "This invite is no longer available.",
+      "notFound": "Invite not found.",
+      "alreadyMember": "You are already a member of this group.",
+      "invalidCode": "Enter a valid 6-character invite code.",
+      "missingReference": "Enter an invite code or open a valid invite link."
+    }
   },
   "createBox": {
     "title": "Create box",

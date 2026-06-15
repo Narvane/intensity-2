@@ -118,7 +118,8 @@
     "title": "Scegli un gruppo",
     "empty": "Unisciti a un gruppo via invito o accedi a Experience Box con altri.",
     "memberCount": "{{count}} membri",
-    "openBoxes": "Apri scatole"
+    "openBoxes": "Apri scatole",
+    "invite": "Invita"
   },
   "boxes": {
     "title": "Scegli una scatola",
@@ -129,6 +130,37 @@
     "create": "Crea scatola",
     "empty": "Non ci sono ancora scatole in questo gruppo.",
     "createFirst": "Crea la prima scatola"
+  },
+  "invite": {
+    "preview": {
+      "accent": "Entra via invito",
+      "title": "Anteprima del gruppo",
+      "membersTitle": "Persone in questo gruppo",
+      "expiresAt": "Valido fino al {{date}}",
+      "authRequired": "Accedi o crea un account per accettare questo invito.",
+      "accept": "Accetta invito",
+      "signInToAccept": "Accedi per accettare",
+      "registerToAccept": "Registrati per accettare",
+      "backToAuth": "Torna all'accesso"
+    },
+    "share": {
+      "action": "Invita",
+      "title": "Condividi invito",
+      "close": "Chiudi",
+      "codeLabel": "Codice invito",
+      "expiresAt": "Scade il {{date}}",
+      "share": "Condividi invito",
+      "copyCode": "Copia codice",
+      "copied": "Copiato negli appunti.",
+      "message": "Unisciti al nostro gruppo su Intensity — {{link}}. Oppure inserisci il codice: {{code}}"
+    },
+    "errors": {
+      "gone": "Questo invito non è più disponibile.",
+      "notFound": "Invito non trovato.",
+      "alreadyMember": "Sei già membro di questo gruppo.",
+      "invalidCode": "Inserisci un codice invito valido di 6 caratteri.",
+      "missingReference": "Inserisci un codice invito o apri un link valido."
+    }
   },
   "createBox": {
     "title": "Crea scatola",

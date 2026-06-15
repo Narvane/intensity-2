@@ -1,5 +1,5 @@
-import { useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useMemo, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { ApiError } from '@adapters/api/ApiClient';
 import { createApiClient, createDefaultSessionAdapter, useSession } from '@app/SessionProvider';
 import {
@@ -16,6 +16,11 @@ import styles from './AuthPage.module.css';
 
 type AuthPanel = 'experiences' | 'experienceBox' | 'register' | 'invite';
 
+interface AuthLocationState {
+  returnTo?: string;
+  panel?: AuthPanel;
+}
+
 interface CredentialForm {
   email: string;
   password: string;
@@ -26,6 +31,8 @@ const emptyCredential = (): CredentialForm => ({ email: '', password: '' });
 export function AuthPage() {
   const { t } = useI18n();
   const navigate = useNavigate();
+  const location = useLocation();
+  const authState = (location.state as AuthLocationState | null) ?? {};
   const { refresh } = useSession();
   const api = useMemo(() => createApiClient(), []);
   const sessionPort = useMemo(() => createDefaultSessionAdapter(), []);
@@ -44,7 +51,7 @@ export function AuthPage() {
   );
   const validateInviteCode = useMemo(() => new ValidateInviteCodeFormatUseCase(), []);
 
-  const [panel, setPanel] = useState<AuthPanel>('experiences');
+  const [panel, setPanel] = useState<AuthPanel>(authState.panel ?? 'experiences');
   const [quickGuideOpen, setQuickGuideOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -57,6 +64,20 @@ export function AuthPage() {
     password: '',
   });
   const [inviteCode, setInviteCode] = useState('');
+
+  useEffect(() => {
+    if (authState.panel) {
+      setPanel(authState.panel);
+    }
+  }, [authState.panel]);
+
+  const afterAuthNavigate = () => {
+    if (authState.returnTo) {
+      navigate(authState.returnTo, { replace: true });
+      return;
+    }
+    navigate('/groups', { replace: true });
+  };
 
   const handleError = (err: unknown) => {
     if (err instanceof ApiError) {
@@ -76,6 +97,10 @@ export function AuthPage() {
     try {
       await loginExperiencesUseCase.execute(experiencesForm);
       await refresh();
+      if (authState.returnTo) {
+        navigate(authState.returnTo, { replace: true });
+        return;
+      }
       navigate('/groups');
     } catch (err) {
       handleError(err);
@@ -104,7 +129,7 @@ export function AuthPage() {
     try {
       await registerUseCase.execute(registerForm);
       await refresh();
-      navigate('/groups');
+      afterAuthNavigate();
     } catch (err) {
       handleError(err);
     } finally {
@@ -118,7 +143,7 @@ export function AuthPage() {
       setError(t('auth.errors.invalidInviteCode'));
       return;
     }
-    setError(t('auth.inviteComingSoon'));
+    navigate(`/join?code=${encodeURIComponent(inviteCode.trim().toUpperCase())}`);
   };
 
   const panelClass =
@@ -149,7 +174,13 @@ export function AuthPage() {
             <button
               key={tab}
               type="button"
-              className={panel === tab ? styles.tabActive : styles.tab}
+              className={
+                panel === tab
+                  ? tab === 'invite'
+                    ? `${styles.tabActive} ${styles.tabActiveInvite}`
+                    : styles.tabActive
+                  : styles.tab
+              }
               onClick={() => {
                 setPanel(tab);
                 setError(null);

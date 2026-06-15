@@ -8,6 +8,7 @@ import { useSession } from '@app/SessionProvider';
 import type { Group } from '@domain/box/boxTypes';
 import { ListGroupsUseCase } from '@domain/box/boxUseCases';
 import { useI18n } from '../../i18n/I18nContext';
+import { ShareInviteSheet } from '../invite/ShareInviteSheet';
 import { Button } from '../components/Button';
 import styles from './GroupSelectionPage.module.css';
 
@@ -23,6 +24,7 @@ export function GroupSelectionPage() {
   const [groups, setGroups] = useState<Group[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [shareGroupId, setShareGroupId] = useState<string | null>(null);
 
   useEffect(() => {
     if (!session?.token) {
@@ -68,7 +70,7 @@ export function GroupSelectionPage() {
       {!loading && !error && groups.length > 0 && (
         <ul className={styles.list}>
           {groups.map((group) => (
-            <li key={group.id}>
+            <li key={group.id} className={styles.item}>
               <button
                 type="button"
                 className={styles.row}
@@ -83,9 +85,21 @@ export function GroupSelectionPage() {
                 </span>
                 <span className={styles.rowMeta}>{t('groups.openBoxes')}</span>
               </button>
+              <Button variant="secondary" onClick={() => setShareGroupId(group.id)}>
+                {t('groups.invite')}
+              </Button>
             </li>
           ))}
         </ul>
+      )}
+
+      {session?.token && shareGroupId && (
+        <ShareInviteSheet
+          open={Boolean(shareGroupId)}
+          groupId={shareGroupId}
+          token={session.token}
+          onClose={() => setShareGroupId(null)}
+        />
       )}
     </main>
   );
