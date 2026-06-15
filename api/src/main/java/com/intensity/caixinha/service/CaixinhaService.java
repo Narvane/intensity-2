@@ -59,6 +59,24 @@ public class CaixinhaService {
 		return toResponse(caixinha);
 	}
 
+	@Transactional
+	public void delete(UUID boxId, AuthPrincipal principal) {
+		if (principal.accessMode() != AccessMode.EXPERIENCE_BOX) {
+			throw forbidden();
+		}
+
+		Caixinha caixinha = caixinhaRepository
+				.findById(boxId)
+				.orElseThrow(() -> new ApiException(
+						HttpStatus.NOT_FOUND, "BOX_NOT_FOUND", "Box not found."));
+
+		if (!caixinha.getGrupo().getId().equals(principal.groupId())) {
+			throw forbidden();
+		}
+
+		caixinhaRepository.delete(caixinha);
+	}
+
 	private Grupo ensureGroupExists(UUID groupId) {
 		return grupoRepository
 				.findById(groupId)

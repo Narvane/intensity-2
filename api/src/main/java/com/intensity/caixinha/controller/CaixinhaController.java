@@ -6,6 +6,7 @@ import com.intensity.caixinha.service.CaixinhaService;
 import com.intensity.common.AuthPrincipal;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,5 +37,11 @@ public class CaixinhaController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public BoxResponse createBox(@Valid @RequestBody CreateBoxRequest request) {
 		return caixinhaService.create(request, AuthPrincipal.requireCurrent());
+	}
+
+	@DeleteMapping("/caixinhas/{boxId}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void deleteBox(@PathVariable UUID boxId) {
+		caixinhaService.delete(boxId, AuthPrincipal.requireCurrent());
 	}
 }

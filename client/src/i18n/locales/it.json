@@ -129,7 +129,17 @@
     "title": "Box home",
     "create": "Crea scatola",
     "empty": "Non ci sono ancora scatole in questo gruppo.",
-    "createFirst": "Crea la prima scatola"
+    "createFirst": "Crea la prima scatola",
+    "open": "Apri",
+    "delete": "Elimina scatola",
+    "menuLabel": "Azioni scatola",
+    "deleteSuccess": "\"{{name}}\" è stata eliminata.",
+    "deleteDialog": {
+      "title": "Eliminare \"{{name}}\"?",
+      "message": "Questo rimuove permanentemente {{count}} esperienze in questa scatola.",
+      "confirm": "Elimina scatola",
+      "cancel": "Annulla"
+    }
   },
   "invite": {
     "preview": {

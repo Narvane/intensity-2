@@ -43,6 +43,11 @@
   color: #fca5a5;
 }
 
+.success {
+  margin: 0 0 1rem;
+  color: #86efac;
+}
+
 .empty {
   display: flex;
   flex-direction: column;

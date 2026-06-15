@@ -129,7 +129,17 @@
     "title": "Box home",
     "create": "Create box",
     "empty": "No boxes yet in this group.",
-    "createFirst": "Create the first box"
+    "createFirst": "Create the first box",
+    "open": "Open",
+    "delete": "Delete box",
+    "menuLabel": "Box actions",
+    "deleteSuccess": "\"{{name}}\" was deleted.",
+    "deleteDialog": {
+      "title": "Delete \"{{name}}\"?",
+      "message": "This permanently removes {{count}} experiences in this box.",
+      "confirm": "Delete box",
+      "cancel": "Cancel"
+    }
   },
   "invite": {
     "preview": {

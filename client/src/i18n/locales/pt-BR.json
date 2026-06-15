@@ -129,7 +129,17 @@
     "title": "Box home",
     "create": "Criar caixinha",
     "empty": "Ainda não há caixinhas neste grupo.",
-    "createFirst": "Criar a primeira caixinha"
+    "createFirst": "Criar a primeira caixinha",
+    "open": "Abrir",
+    "delete": "Excluir caixinha",
+    "menuLabel": "Ações da caixinha",
+    "deleteSuccess": "\"{{name}}\" foi excluída.",
+    "deleteDialog": {
+      "title": "Excluir \"{{name}}\"?",
+      "message": "Isso remove permanentemente {{count}} experiências nesta caixinha.",
+      "confirm": "Excluir caixinha",
+      "cancel": "Cancelar"
+    }
   },
   "invite": {
     "preview": {

@@ -41,6 +41,14 @@ export class CreateBoxUseCase {
   }
 }
 
+export class DeleteBoxUseCase {
+  constructor(private readonly api: ApiClient) {}
+
+  execute(boxId: string, token: string): Promise<void> {
+    return this.api.delete(`/v1/caixinhas/${boxId}`, token);
+  }
+}
+
 export class SelectGroupUseCase {
   constructor(private readonly navigation: NavigationPort) {}
 

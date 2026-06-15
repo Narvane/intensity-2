@@ -80,7 +80,7 @@ export function BoxSelectionPage() {
               typeLabel={t(`boxTypes.${box.type}.title`)}
               typeHint={t(`boxTypes.${box.type}.hint`)}
               experienceCount={box.experienceCount}
-              onClick={() => {
+              onOpen={() => {
                 void setNavigation({
                   groupId,
                   boxId: box.id,
