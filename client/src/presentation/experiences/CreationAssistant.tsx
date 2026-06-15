@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { ApiError, createApiClient } from '@adapters/api/ApiClient';
+import { createApiClient } from '@adapters/api/ApiClient';
 import type { BoxType } from '@domain/box/boxTypes';
 import type { Experience, ExperienceInput } from '@domain/experience/experienceTypes';
 import {
@@ -10,6 +10,7 @@ import {
   isValidIntensity,
   validateExperienceParameters,
 } from '@domain/experience/intensityTokens';
+import { resolveExperienceError } from '@domain/experience/experienceErrors';
 import {
   CreateExperienceUseCase,
   UpdateExperienceUseCase,
@@ -120,6 +121,7 @@ export function CreationAssistant({
     const parameterError = validateExperienceParameters(parameters);
     if (parameterError || !isValidIntensity(intensity)) {
       setError(t('experiences.validationError'));
+      setLoading(false);
       return;
     }
 
@@ -137,7 +139,7 @@ export function CreationAssistant({
 
       onSaved(saved, createAnother);
     } catch (err) {
-      setError(err instanceof ApiError ? err.message : t('common.error'));
+      setError(resolveExperienceError(err, t));
     } finally {
       setLoading(false);
     }
@@ -300,7 +302,8 @@ export function CreationAssistant({
                 <dt>{t('assistant.fields.intensity')}</dt>
                 <dd>{intensity}</dd>
               </div>
-              {editing?.seal ? (
+              {editing?.seal &&
+              description.trim() === (editing.description ?? '').trim() ? (
                 <div>
                   <dt>{t('seal.label')}</dt>
                   <dd>

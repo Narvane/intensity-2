@@ -140,7 +140,10 @@ public class ExperienciaService {
 
 	private void ensureAuthor(Experiencia experiencia, UUID participantId) {
 		if (!experiencia.getAuthor().getId().equals(participantId)) {
-			throw forbidden();
+			throw new ApiException(
+					HttpStatus.FORBIDDEN,
+					"NOT_AUTHOR",
+					"Only the author can change this experience.");
 		}
 	}
 

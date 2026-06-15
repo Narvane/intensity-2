@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ApiError, createApiClient } from '@adapters/api/ApiClient';
+import { createApiClient } from '@adapters/api/ApiClient';
 import { useAppLogout } from '@app/useAppLogout';
 import { useNavigation } from '@app/NavigationProvider';
 import { useSession } from '@app/SessionProvider';
 import { DEFAULT_BOX_TYPE } from '@domain/box/boxTypes';
 import type { Experience } from '@domain/experience/experienceTypes';
+import { resolveExperienceError } from '@domain/experience/experienceErrors';
 import {
   DeleteExperienceUseCase,
   ListExperiencesUseCase,
@@ -48,7 +49,7 @@ export function ExperienceListPage() {
       const items = await listExperiences.execute(boxId, session.token);
       setExperiences(items);
     } catch (err) {
-      setError(err instanceof ApiError ? err.message : t('common.error'));
+      setError(resolveExperienceError(err, t));
     } finally {
       setLoading(false);
     }
@@ -67,7 +68,7 @@ export function ExperienceListPage() {
       await deleteExperience.execute(experience.id, session.token);
       setExperiences((current) => current.filter((item) => item.id !== experience.id));
     } catch (err) {
-      setError(err instanceof ApiError ? err.message : t('common.error'));
+      setError(resolveExperienceError(err, t));
     }
   };
 

@@ -163,14 +163,33 @@ class ExperienciaIntegrationTest {
 
 	@Test
 	@Order(5)
-	void nonAuthorCannotDeleteExperience() throws Exception {
-		mockMvc.perform(delete("/v1/experiencias/{experienceId}", experienceId)
-						.header("Authorization", "Bearer " + bobToken))
-				.andExpect(status().isForbidden());
+	void nonAuthorCannotUpdateExperience() throws Exception {
+		mockMvc.perform(put("/v1/experiencias/{experienceId}", experienceId)
+						.header("Authorization", "Bearer " + bobToken)
+						.contentType(MediaType.APPLICATION_JSON)
+						.content("""
+								{
+								  "description": "Bob tries to rewrite Alice",
+								  "reflection": "Not allowed",
+								  "intensity": 2,
+								  "parameters": { "effort": 2, "openness": 2, "novelty": 2 }
+								}
+								"""))
+				.andExpect(status().isForbidden())
+				.andExpect(jsonPath("$.code").value("NOT_AUTHOR"));
 	}
 
 	@Test
 	@Order(6)
+	void nonAuthorCannotDeleteExperience() throws Exception {
+		mockMvc.perform(delete("/v1/experiencias/{experienceId}", experienceId)
+						.header("Authorization", "Bearer " + bobToken))
+				.andExpect(status().isForbidden())
+				.andExpect(jsonPath("$.code").value("NOT_AUTHOR"));
+	}
+
+	@Test
+	@Order(7)
 	void authorCanDeleteExperience() throws Exception {
 		mockMvc.perform(delete("/v1/experiencias/{experienceId}", experienceId)
 						.header("Authorization", "Bearer " + aliceToken))
@@ -183,7 +202,7 @@ class ExperienciaIntegrationTest {
 	}
 
 	@Test
-	@Order(7)
+	@Order(8)
 	void invalidIntensityReturns422() throws Exception {
 		mockMvc.perform(post("/v1/caixinhas/{boxId}/experiencias", boxId)
 						.header("Authorization", "Bearer " + aliceToken)
@@ -200,7 +219,7 @@ class ExperienciaIntegrationTest {
 	}
 
 	@Test
-	@Order(8)
+	@Order(9)
 	void experienceBoxSessionSeesFullPoolForDraw() throws Exception {
 		mockMvc.perform(post("/v1/caixinhas/{boxId}/experiencias", boxId)
 						.header("Authorization", "Bearer " + aliceToken)
