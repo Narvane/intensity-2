@@ -108,13 +108,83 @@
     "experienceBoxMode": "Modo Experience Box",
     "logout": "Sair"
   },
+  "common": {
+    "loading": "Carregando…",
+    "error": "Algo deu errado. Tente novamente.",
+    "back": "Voltar"
+  },
   "groups": {
     "title": "Escolha um grupo",
-    "placeholder": "Seleção de grupo e contribuição chegam no próximo slice.",
-    "signedInAs": "Conectado como {{name}}"
+    "empty": "Entre em um grupo via convite ou entre no Experience Box com outros.",
+    "memberCount": "{{count}} membros",
+    "openBoxes": "Abrir caixinhas"
+  },
+  "boxes": {
+    "title": "Escolha uma caixinha",
+    "empty": "Criem uma caixinha juntos no modo Experience Box."
   },
   "boxHome": {
     "title": "Box home",
-    "placeholder": "Lista e criação de caixinhas chegam no próximo slice. A sessão de grupo está ativa."
+    "create": "Criar caixinha",
+    "empty": "Ainda não há caixinhas neste grupo.",
+    "createFirst": "Criar a primeira caixinha"
+  },
+  "createBox": {
+    "title": "Criar caixinha",
+    "nameLabel": "Nome da caixinha",
+    "typeLabel": "Tipo de caixinha",
+    "submit": "Criar"
+  },
+  "experiences": {
+    "title": "Experiências",
+    "empty": "Ainda não há experiências nesta caixinha.",
+    "comingNext": "Contribuições chegam no próximo slice.",
+    "defaultBoxName": "Caixinha selecionada"
+  },
+  "boxTypes": {
+    "SAIDAS_COM_AMIGOS": {
+      "title": "Saídas com amigos",
+      "hint": "Programas sociais fora da rotina"
+    },
+    "SAIDAS_EM_CASAL": {
+      "title": "Saídas em casal",
+      "hint": "Encontros e aventuras a dois"
+    },
+    "VIAGENS_EM_CASAL": {
+      "title": "Viagens em casal",
+      "hint": "Escapadas para dois"
+    },
+    "INTIMO_EM_CASAL": {
+      "title": "Íntimo em casal",
+      "hint": "Proximidade e confiança"
+    },
+    "VIAGENS_COM_AMIGOS": {
+      "title": "Viagens com amigos",
+      "hint": "Memórias de viagem juntos"
+    },
+    "EXPERIENCIAS_COM_AMIGOS": {
+      "title": "Experiências com amigos",
+      "hint": "Coisas incomuns para tentar juntos"
+    },
+    "SAIR_DA_ROTINA": {
+      "title": "Sair da rotina",
+      "hint": "Pequenas fugas do piloto automático"
+    },
+    "PRIMEIRAS_VEZES": {
+      "title": "Primeiras vezes",
+      "hint": "Coisas novas que vocês nunca fizeram"
+    },
+    "DESCONFORTO_LEVE": {
+      "title": "Desconforto leve",
+      "hint": "Empurrões gentis fora da zona de conforto"
+    },
+    "MOMENTOS_DE_CONEXAO": {
+      "title": "Momentos de conexão",
+      "hint": "Presença e compartilhamento honesto"
+    },
+    "EXPERIENCIAS_DIFERENTES": {
+      "title": "Experiências diferentes",
+      "hint": "Ideias surpreendentes e fora do comum"
+    }
   }
 }

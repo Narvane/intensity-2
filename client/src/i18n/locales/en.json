@@ -108,13 +108,83 @@
     "experienceBoxMode": "Experience Box mode",
     "logout": "Sign out"
   },
+  "common": {
+    "loading": "Loading…",
+    "error": "Something went wrong. Try again.",
+    "back": "Back"
+  },
   "groups": {
     "title": "Choose a group",
-    "placeholder": "Group selection and contribution flows arrive in the next slice.",
-    "signedInAs": "Signed in as {{name}}"
+    "empty": "Join a group via invite or sign in to Experience Box with others.",
+    "memberCount": "{{count}} members",
+    "openBoxes": "Open boxes"
+  },
+  "boxes": {
+    "title": "Choose a box",
+    "empty": "Create a box together in Experience Box mode."
   },
   "boxHome": {
     "title": "Box home",
-    "placeholder": "Box list and creation arrive in the next slice. Your group session is active."
+    "create": "Create box",
+    "empty": "No boxes yet in this group.",
+    "createFirst": "Create the first box"
+  },
+  "createBox": {
+    "title": "Create box",
+    "nameLabel": "Box name",
+    "typeLabel": "Box type",
+    "submit": "Create"
+  },
+  "experiences": {
+    "title": "Experiences",
+    "empty": "No experiences in this box yet.",
+    "comingNext": "Contributions arrive in the next slice.",
+    "defaultBoxName": "Selected box"
+  },
+  "boxTypes": {
+    "SAIDAS_COM_AMIGOS": {
+      "title": "Outings with friends",
+      "hint": "Social plans outside the routine"
+    },
+    "SAIDAS_EM_CASAL": {
+      "title": "Outings as a couple",
+      "hint": "Dates and shared adventures"
+    },
+    "VIAGENS_EM_CASAL": {
+      "title": "Couple trips",
+      "hint": "Getaways for two"
+    },
+    "INTIMO_EM_CASAL": {
+      "title": "Intimate as a couple",
+      "hint": "Closeness and trust"
+    },
+    "VIAGENS_COM_AMIGOS": {
+      "title": "Trips with friends",
+      "hint": "Travel memories together"
+    },
+    "EXPERIENCIAS_COM_AMIGOS": {
+      "title": "Experiences with friends",
+      "hint": "Unusual things to try together"
+    },
+    "SAIR_DA_ROTINA": {
+      "title": "Break the routine",
+      "hint": "Small escapes from autopilot"
+    },
+    "PRIMEIRAS_VEZES": {
+      "title": "First times",
+      "hint": "New things you have never tried"
+    },
+    "DESCONFORTO_LEVE": {
+      "title": "Light discomfort",
+      "hint": "Gentle pushes outside comfort zone"
+    },
+    "MOMENTOS_DE_CONEXAO": {
+      "title": "Connection moments",
+      "hint": "Presence and honest sharing"
+    },
+    "EXPERIENCIAS_DIFERENTES": {
+      "title": "Different experiences",
+      "hint": "Surprising and offbeat ideas"
+    }
   }
 }

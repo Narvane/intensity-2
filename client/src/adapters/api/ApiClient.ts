@@ -17,7 +17,20 @@ export interface ApiErrorBody {
 export class ApiClient {
   constructor(private readonly baseUrl: string) {}
 
+  async get<T>(path: string, token?: string): Promise<T> {
+    return this.request<T>('GET', path, undefined, token);
+  }
+
   async post<T>(path: string, body: unknown, token?: string): Promise<T> {
+    return this.request<T>('POST', path, body, token);
+  }
+
+  private async request<T>(
+    method: 'GET' | 'POST',
+    path: string,
+    body: unknown | undefined,
+    token?: string,
+  ): Promise<T> {
     const headers: Record<string, string> = {
       'Content-Type': 'application/json',
     };
@@ -27,9 +40,9 @@ export class ApiClient {
     }
 
     const response = await fetch(`${this.baseUrl}${path}`, {
-      method: 'POST',
+      method,
       headers,
-      body: JSON.stringify(body),
+      body: body === undefined ? undefined : JSON.stringify(body),
     });
 
     if (!response.ok) {

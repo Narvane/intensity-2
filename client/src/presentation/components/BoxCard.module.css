@@ -1,0 +1,74 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+  min-height: 9rem;
+  padding: 1rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-elevated);
+  color: var(--color-text);
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+}
+
+.card[data-type='SAIDAS_COM_AMIGOS'] {
+  border-top: 3px solid #14b8a6;
+}
+
+.card[data-type='SAIDAS_EM_CASAL'],
+.card[data-type='VIAGENS_EM_CASAL'],
+.card[data-type='INTIMO_EM_CASAL'] {
+  border-top: 3px solid #f97316;
+}
+
+.card[data-type='VIAGENS_COM_AMIGOS'],
+.card[data-type='EXPERIENCIAS_COM_AMIGOS'] {
+  border-top: 3px solid #2563eb;
+}
+
+.card[data-type='SAIR_DA_ROTINA'],
+.card[data-type='PRIMEIRAS_VEZES'] {
+  border-top: 3px solid #a855f7;
+}
+
+.card[data-type='DESCONFORTO_LEVE'],
+.card[data-type='MOMENTOS_DE_CONEXAO'],
+.card[data-type='EXPERIENCIAS_DIFERENTES'] {
+  border-top: 3px solid #ec4899;
+}
+
+.seal {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.08);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.name {
+  font-size: 1rem;
+  line-height: 1.3;
+}
+
+.type {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.hint {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  line-height: 1.4;
+}
+
+.count {
+  margin-top: auto;
+  font-size: 0.75rem;
+  color: var(--color-teal);
+}

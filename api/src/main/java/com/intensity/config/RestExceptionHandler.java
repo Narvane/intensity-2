@@ -4,6 +4,8 @@ import com.intensity.common.dto.ErrorResponse;
 import com.intensity.common.exception.ApiException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -19,6 +21,20 @@ public class RestExceptionHandler {
 		return ResponseEntity
 				.status(exception.getStatus())
 				.body(new ErrorResponse(exception.getCode(), exception.getMessage()));
+	}
+
+	@ExceptionHandler(AuthenticationException.class)
+	ResponseEntity<ErrorResponse> handleAuthentication(AuthenticationException exception) {
+		return ResponseEntity
+				.status(HttpStatus.UNAUTHORIZED)
+				.body(new ErrorResponse("INVALID_TOKEN", "Invalid or expired token."));
+	}
+
+	@ExceptionHandler(AccessDeniedException.class)
+	ResponseEntity<ErrorResponse> handleAccessDenied(AccessDeniedException exception) {
+		return ResponseEntity
+				.status(HttpStatus.FORBIDDEN)
+				.body(new ErrorResponse("FORBIDDEN", "Not allowed for current session."));
 	}
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)

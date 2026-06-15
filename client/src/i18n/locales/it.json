@@ -108,13 +108,83 @@
     "experienceBoxMode": "Modalità Experience Box",
     "logout": "Esci"
   },
+  "common": {
+    "loading": "Caricamento…",
+    "error": "Qualcosa è andato storto. Riprova.",
+    "back": "Indietro"
+  },
   "groups": {
     "title": "Scegli un gruppo",
-    "placeholder": "Selezione gruppo e contributi arriveranno nel prossimo slice.",
-    "signedInAs": "Connesso come {{name}}"
+    "empty": "Unisciti a un gruppo via invito o accedi a Experience Box con altri.",
+    "memberCount": "{{count}} membri",
+    "openBoxes": "Apri scatole"
+  },
+  "boxes": {
+    "title": "Scegli una scatola",
+    "empty": "Create una scatola insieme in modalità Experience Box."
   },
   "boxHome": {
     "title": "Box home",
-    "placeholder": "Lista e creazione scatole arriveranno nel prossimo slice. La sessione di gruppo è attiva."
+    "create": "Crea scatola",
+    "empty": "Non ci sono ancora scatole in questo gruppo.",
+    "createFirst": "Crea la prima scatola"
+  },
+  "createBox": {
+    "title": "Crea scatola",
+    "nameLabel": "Nome della scatola",
+    "typeLabel": "Tipo di scatola",
+    "submit": "Crea"
+  },
+  "experiences": {
+    "title": "Esperienze",
+    "empty": "Non ci sono ancora esperienze in questa scatola.",
+    "comingNext": "I contributi arriveranno nel prossimo slice.",
+    "defaultBoxName": "Scatola selezionata"
+  },
+  "boxTypes": {
+    "SAIDAS_COM_AMIGOS": {
+      "title": "Uscite con amici",
+      "hint": "Programmi sociali fuori dalla routine"
+    },
+    "SAIDAS_EM_CASAL": {
+      "title": "Uscite di coppia",
+      "hint": "Appuntamenti e avventure insieme"
+    },
+    "VIAGENS_EM_CASAL": {
+      "title": "Viaggi di coppia",
+      "hint": "Fughe per due"
+    },
+    "INTIMO_EM_CASAL": {
+      "title": "Intimo di coppia",
+      "hint": "Vicinanza e fiducia"
+    },
+    "VIAGENS_COM_AMIGOS": {
+      "title": "Viaggi con amici",
+      "hint": "Ricordi di viaggio insieme"
+    },
+    "EXPERIENCIAS_COM_AMIGOS": {
+      "title": "Esperienze con amici",
+      "hint": "Cose insolite da provare insieme"
+    },
+    "SAIR_DA_ROTINA": {
+      "title": "Uscire dalla routine",
+      "hint": "Piccole fughe dal pilota automatico"
+    },
+    "PRIMEIRAS_VEZES": {
+      "title": "Prime volte",
+      "hint": "Cose nuove che non avete mai fatto"
+    },
+    "DESCONFORTO_LEVE": {
+      "title": "Disagio leggero",
+      "hint": "Spinte gentili fuori dalla zona di comfort"
+    },
+    "MOMENTOS_DE_CONEXAO": {
+      "title": "Momenti di connessione",
+      "hint": "Presenza e condivisione onesta"
+    },
+    "EXPERIENCIAS_DIFERENTES": {
+      "title": "Esperienze diverse",
+      "hint": "Idee sorprendenti e fuori dagli schemi"
+    }
   }
 }

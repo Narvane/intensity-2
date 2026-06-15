@@ -1,9 +1,12 @@
 package com.intensity.config;
 
 import com.intensity.common.AccessMode;
+import com.intensity.common.exception.ApiException;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
@@ -51,10 +54,18 @@ public class JwtService {
 	}
 
 	public Claims parse(String token) {
-		return Jwts.parser()
-				.verifyWith(secretKey)
-				.build()
-				.parseSignedClaims(token)
-				.getPayload();
+		try {
+			return Jwts.parser()
+					.verifyWith(secretKey)
+					.build()
+					.parseSignedClaims(token)
+					.getPayload();
+		} catch (JwtException | IllegalArgumentException exception) {
+			throw unauthorized();
+		}
+	}
+
+	public static ApiException unauthorized() {
+		return new ApiException(HttpStatus.UNAUTHORIZED, "INVALID_TOKEN", "Invalid or expired token.");
 	}
 }
