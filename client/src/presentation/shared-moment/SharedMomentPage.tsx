@@ -41,11 +41,12 @@ export function SharedMomentPage() {
   const boxName = navigation.boxName ?? t('sharedMoment.defaultBoxName');
 
   const drawButtonLabel = () => {
+    const name = t(`intensity.levels.${filter.level}`);
     if (filter.mode === 'EXACT') {
-      return t('sharedMoment.drawExact', { level: filter.level });
+      return t('sharedMoment.drawExact', { level: filter.level, name });
     }
     if (filter.mode === 'UP_TO') {
-      return t('sharedMoment.drawUpTo', { level: filter.level });
+      return t('sharedMoment.drawUpTo', { level: filter.level, name });
     }
     return t('sharedMoment.drawAny');
   };
@@ -124,6 +125,7 @@ export function SharedMomentPage() {
           <RatingScale
             label={t('sharedMoment.intensityLevel')}
             value={filter.level}
+            tone="intensity"
             onChange={(level) => {
               setFilter((current) => ({ ...current, level }));
               setDrawSession(orchestrator.backToDraw());

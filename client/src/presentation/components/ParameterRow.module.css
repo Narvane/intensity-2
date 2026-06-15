@@ -1,0 +1,32 @@
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+.item[data-param='effort'] .dot {
+  background: var(--param-effort);
+}
+
+.item[data-param='openness'] .dot {
+  background: var(--param-openness);
+}
+
+.item[data-param='novelty'] .dot {
+  background: var(--param-novelty);
+}

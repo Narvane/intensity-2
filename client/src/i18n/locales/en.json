@@ -151,7 +151,8 @@
     "delete": "Delete",
     "previewToggle": "Preview as others see",
     "showFull": "Show full text",
-    "previewAsOthers": "Others see intensity and seal only — like this."
+    "previewAsOthers": "Others see intensity and seal only — like this.",
+    "validationError": "Check intensity and parameters (levels 1–5)."
   },
   "assistant": {
     "title": "Creation assistant",
@@ -161,7 +162,7 @@
     "descriptionCard": "Your idea",
     "descriptionEmpty": "Describe the experience you want to suggest.",
     "suggestionItem": "{{type}} — idea {{number}}",
-    "suggestedIntensity": "Suggested level: {{level}}",
+    "suggestedIntensity": "Suggested: level {{level}} — {{name}}",
     "saveFinish": "Save and finish",
     "saveAnother": "Save and create another",
     "saveChanges": "Save changes",
@@ -196,13 +197,24 @@
       }
     }
   },
+  "intensity": {
+    "levels": {
+      "1": "Light",
+      "2": "Uncomfortable",
+      "3": "Courage",
+      "4": "Bold",
+      "5": "Adrenaline"
+    },
+    "levelNamed": "Level {{level}} — {{name}}",
+    "parametersLabel": "Experience parameters"
+  },
   "sharedMoment": {
     "defaultBoxName": "Selected box",
     "filtersLabel": "Intensity filter",
     "intensityLevel": "Intensity level",
     "drawAny": "Draw",
-    "drawExact": "Draw exact level {{level}}",
-    "drawUpTo": "Draw up to level {{level}}",
+    "drawExact": "Draw {{name}} (level {{level}})",
+    "drawUpTo": "Draw up to {{name}} (level {{level}})",
     "choosing": "Choosing…",
     "emptyBox": "No experiences yet. Add ideas in Experiences mode on your phones.",
     "emptyFilter": "No experiences match this filter.",

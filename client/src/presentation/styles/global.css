@@ -17,7 +17,17 @@
   --color-blue: #2563eb;
   --color-blue-soft: rgba(37, 99, 235, 0.2);
   --color-teal: #14b8a6;
+  --color-lime: #84cc16;
+  --color-pink: #ec4899;
   --color-danger: #ef4444;
+  --intensity-1: #22c55e;
+  --intensity-2: #3b82f6;
+  --intensity-3: #eab308;
+  --intensity-4: #f97316;
+  --intensity-5: #ef4444;
+  --param-effort: var(--color-teal);
+  --param-openness: var(--color-lime);
+  --param-novelty: var(--color-pink);
   --color-border: rgba(148, 163, 184, 0.2);
   --radius-lg: 1rem;
   --radius-md: 0.75rem;
@@ -57,4 +67,24 @@ button {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+[data-intensity='1'] {
+  --intensity-accent: var(--intensity-1);
+}
+
+[data-intensity='2'] {
+  --intensity-accent: var(--intensity-2);
+}
+
+[data-intensity='3'] {
+  --intensity-accent: var(--intensity-3);
+}
+
+[data-intensity='4'] {
+  --intensity-accent: var(--intensity-4);
+}
+
+[data-intensity='5'] {
+  --intensity-accent: var(--intensity-5);
 }

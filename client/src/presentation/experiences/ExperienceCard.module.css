@@ -2,27 +2,8 @@
   padding: 1rem;
   border-radius: var(--radius-lg);
   border: 1px solid var(--color-border);
+  border-left: 3px solid var(--intensity-accent);
   background: var(--color-bg-elevated);
-}
-
-.card[data-intensity='1'] {
-  border-left: 3px solid #22c55e;
-}
-
-.card[data-intensity='2'] {
-  border-left: 3px solid #84cc16;
-}
-
-.card[data-intensity='3'] {
-  border-left: 3px solid #eab308;
-}
-
-.card[data-intensity='4'] {
-  border-left: 3px solid #f97316;
-}
-
-.card[data-intensity='5'] {
-  border-left: 3px solid #ef4444;
 }
 
 .summary {

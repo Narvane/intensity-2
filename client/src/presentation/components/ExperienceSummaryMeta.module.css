@@ -1,44 +1,13 @@
 .meta {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: 0.5rem;
 }
 
 .compact {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-}
-
-.intensity {
-  font-size: 0.95rem;
-  font-weight: 700;
-}
-
-.intensity[data-intensity='1'] {
-  color: #22c55e;
-}
-
-.intensity[data-intensity='2'] {
-  color: #84cc16;
-}
-
-.intensity[data-intensity='3'] {
-  color: #eab308;
-}
-
-.intensity[data-intensity='4'] {
-  color: #f97316;
-}
-
-.intensity[data-intensity='5'] {
-  color: #ef4444;
-}
-
-.params {
-  color: var(--color-text-muted);
-  font-size: 0.85rem;
-  line-height: 1.4;
+  gap: 0.65rem;
 }
 
 .seal {

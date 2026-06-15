@@ -7,6 +7,10 @@ import {
   suggestIntensity,
 } from '@domain/experience/experienceTypes';
 import {
+  isValidIntensity,
+  validateExperienceParameters,
+} from '@domain/experience/intensityTokens';
+import {
   CreateExperienceUseCase,
   UpdateExperienceUseCase,
 } from '@domain/experience/experienceUseCases';
@@ -111,6 +115,12 @@ export function CreationAssistant({
   const save = async (createAnother: boolean) => {
     setLoading(true);
     setError(null);
+
+    const parameterError = validateExperienceParameters(parameters);
+    if (parameterError || !isValidIntensity(intensity)) {
+      setError(t('experiences.validationError'));
+      return;
+    }
 
     try {
       const input = buildInput();
@@ -219,6 +229,7 @@ export function CreationAssistant({
             <RatingScale
               label={t('assistant.fields.effort')}
               value={parameters.effort}
+              tone="effort"
               onChange={(effort) => {
                 const next = { ...parameters, effort };
                 setParameters(next);
@@ -228,6 +239,7 @@ export function CreationAssistant({
             <RatingScale
               label={t('assistant.fields.openness')}
               value={parameters.openness}
+              tone="openness"
               onChange={(openness) => {
                 const next = { ...parameters, openness };
                 setParameters(next);
@@ -237,6 +249,7 @@ export function CreationAssistant({
             <RatingScale
               label={t('assistant.fields.novelty')}
               value={parameters.novelty}
+              tone="novelty"
               onChange={(novelty) => {
                 const next = { ...parameters, novelty };
                 setParameters(next);
@@ -252,12 +265,16 @@ export function CreationAssistant({
             <p>{t('assistant.steps.classification.body')}</p>
             {!intensityTouched && (
               <p className={styles.hint}>
-                {t('assistant.suggestedIntensity', { level: suggestIntensity(parameters) })}
+                {t('assistant.suggestedIntensity', {
+                  level: suggestIntensity(parameters),
+                  name: t(`intensity.levels.${suggestIntensity(parameters)}`),
+                })}
               </p>
             )}
             <RatingScale
               label={t('assistant.fields.intensity')}
               value={intensity}
+              tone="intensity"
               onChange={(value) => {
                 setIntensity(value);
                 setIntensityTouched(true);

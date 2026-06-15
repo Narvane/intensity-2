@@ -151,7 +151,8 @@
     "delete": "Excluir",
     "previewToggle": "Prévia como os outros veem",
     "showFull": "Mostrar texto completo",
-    "previewAsOthers": "Os outros veem só intensidade e selo — assim."
+    "previewAsOthers": "Os outros veem só intensidade e selo — assim.",
+    "validationError": "Verifique intensidade e parâmetros (níveis 1–5)."
   },
   "assistant": {
     "title": "Assistente de criação",
@@ -161,7 +162,7 @@
     "descriptionCard": "Sua ideia",
     "descriptionEmpty": "Descreva a experiência que você quer sugerir.",
     "suggestionItem": "{{type}} — ideia {{number}}",
-    "suggestedIntensity": "Nível sugerido: {{level}}",
+    "suggestedIntensity": "Sugerido: nível {{level}} — {{name}}",
     "saveFinish": "Salvar e concluir",
     "saveAnother": "Salvar e criar outra",
     "saveChanges": "Salvar alterações",
@@ -196,13 +197,24 @@
       }
     }
   },
+  "intensity": {
+    "levels": {
+      "1": "Leve",
+      "2": "Desconfortável",
+      "3": "Coragem",
+      "4": "Ousado",
+      "5": "Adrenalina"
+    },
+    "levelNamed": "Nível {{level}} — {{name}}",
+    "parametersLabel": "Parâmetros da experiência"
+  },
   "sharedMoment": {
     "defaultBoxName": "Caixinha selecionada",
     "filtersLabel": "Filtro de intensidade",
     "intensityLevel": "Nível de intensidade",
     "drawAny": "Sortear",
-    "drawExact": "Sortear nível exato {{level}}",
-    "drawUpTo": "Sortear até nível {{level}}",
+    "drawExact": "Sortear {{name}} (nível {{level}})",
+    "drawUpTo": "Sortear até {{name}} (nível {{level}})",
     "choosing": "Sorteando…",
     "emptyBox": "Ainda não há experiências. Adicionem ideias no modo Experiences nos celulares.",
     "emptyFilter": "Nenhuma experiência corresponde a este filtro.",

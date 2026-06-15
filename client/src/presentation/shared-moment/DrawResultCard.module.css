@@ -26,28 +26,9 @@
   backface-visibility: hidden;
   border-radius: var(--radius-lg);
   border: 1px solid var(--color-border);
+  border-top: 3px solid var(--intensity-accent);
   background: var(--color-bg-elevated);
   padding: 1.25rem;
-}
-
-.cover[data-intensity='1'] {
-  border-top: 3px solid #22c55e;
-}
-
-.cover[data-intensity='2'] {
-  border-top: 3px solid #84cc16;
-}
-
-.cover[data-intensity='3'] {
-  border-top: 3px solid #eab308;
-}
-
-.cover[data-intensity='4'] {
-  border-top: 3px solid #f97316;
-}
-
-.cover[data-intensity='5'] {
-  border-top: 3px solid #ef4444;
 }
 
 .face {

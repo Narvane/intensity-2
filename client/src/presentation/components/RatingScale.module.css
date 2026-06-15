@@ -34,3 +34,31 @@
 .inactive {
   opacity: 0.85;
 }
+
+.intensityButton.active {
+  background: color-mix(in srgb, var(--intensity-accent) 25%, transparent);
+  border-color: var(--intensity-accent);
+  color: var(--intensity-accent);
+}
+
+.intensityButton.inactive {
+  opacity: 0.75;
+}
+
+.paramEffort.active {
+  background: color-mix(in srgb, var(--param-effort) 25%, transparent);
+  border-color: var(--param-effort);
+  color: var(--param-effort);
+}
+
+.paramOpenness.active {
+  background: color-mix(in srgb, var(--param-openness) 25%, transparent);
+  border-color: var(--param-openness);
+  color: var(--param-openness);
+}
+
+.paramNovelty.active {
+  background: color-mix(in srgb, var(--param-novelty) 25%, transparent);
+  border-color: var(--param-novelty);
+  color: var(--param-novelty);
+}

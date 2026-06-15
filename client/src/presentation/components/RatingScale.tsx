@@ -4,9 +4,10 @@ interface RatingScaleProps {
   label: string;
   value: number;
   onChange: (value: number) => void;
+  tone?: 'default' | 'intensity' | 'effort' | 'openness' | 'novelty';
 }
 
-export function RatingScale({ label, value, onChange }: RatingScaleProps) {
+export function RatingScale({ label, value, onChange, tone = 'default' }: RatingScaleProps) {
   return (
     <div className={styles.field}>
       <span className={styles.label}>{label}</span>
@@ -15,7 +16,16 @@ export function RatingScale({ label, value, onChange }: RatingScaleProps) {
           <button
             key={level}
             type="button"
-            className={level === value ? styles.active : styles.inactive}
+            data-intensity={tone === 'intensity' ? level : undefined}
+            className={[
+              level === value ? styles.active : styles.inactive,
+              tone === 'intensity' ? styles.intensityButton : '',
+              tone === 'effort' ? styles.paramEffort : '',
+              tone === 'openness' ? styles.paramOpenness : '',
+              tone === 'novelty' ? styles.paramNovelty : '',
+            ]
+              .filter(Boolean)
+              .join(' ')}
             aria-pressed={level === value}
             onClick={() => onChange(level)}
           >
