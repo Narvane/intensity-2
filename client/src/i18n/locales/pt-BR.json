@@ -112,7 +112,9 @@
   "common": {
     "loading": "Carregando…",
     "error": "Algo deu errado. Tente novamente.",
-    "back": "Voltar"
+    "back": "Voltar",
+    "offlineBanner": "Você está offline. Ações destrutivas ficam desativadas até a conexão voltar.",
+    "offlineDestructiveBlocked": "Reconecte-se para confirmar esta ação."
   },
   "groups": {
     "title": "Escolha um grupo",
@@ -206,7 +208,14 @@
     "showFull": "Mostrar texto completo",
     "previewAsOthers": "Os outros veem só intensidade e selo — assim.",
     "validationError": "Verifique intensidade e parâmetros (níveis 1–5).",
-    "notAuthor": "Somente o autor pode editar ou excluir esta experiência."
+    "notAuthor": "Somente o autor pode editar ou excluir esta experiência.",
+    "deleteSuccess": "Experiência excluída.",
+    "deleteDialog": {
+      "title": "Excluir esta experiência?",
+      "message": "Isso remove permanentemente sua contribuição da caixinha.",
+      "confirm": "Excluir experiência",
+      "cancel": "Cancelar"
+    }
   },
   "assistant": {
     "title": "Assistente de criação",
@@ -275,6 +284,9 @@
     "drawExact": "Sortear {{name}} (nível {{level}})",
     "drawUpTo": "Sortear até {{name}} (nível {{level}})",
     "choosing": "Sorteando…",
+    "statusChoosing": "Sorteando uma experiência.",
+    "statusDrawn": "Experiência sorteada. Revise a intensidade antes de revelar.",
+    "statusRevealed": "Experiência revelada.",
     "emptyBox": "Ainda não há experiências. Adicionem ideias no modo Experiences nos celulares.",
     "emptyFilter": "Nenhuma experiência corresponde a este filtro.",
     "coverLabel": "Resultado do sorteio",

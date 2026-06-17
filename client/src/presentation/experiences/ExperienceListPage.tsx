@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { createApiClient } from '@adapters/api/ApiClient';
 import { useAppLogout } from '@app/useAppLogout';
+import { useToast } from '@app/ToastProvider';
 import { useNavigation } from '@app/NavigationProvider';
 import { useSession } from '@app/SessionProvider';
 import { DEFAULT_BOX_TYPE } from '@domain/box/boxTypes';
@@ -14,6 +15,7 @@ import {
 import { useI18n } from '../../i18n/I18nContext';
 import { Button } from '../components/Button';
 import { CreationAssistant } from './CreationAssistant';
+import { DeleteExperienceDialog } from './DeleteExperienceDialog';
 import { ExperienceCard } from './ExperienceCard';
 import styles from './ExperienceListPage.module.css';
 
@@ -22,6 +24,7 @@ export function ExperienceListPage() {
   const { t } = useI18n();
   const { session } = useSession();
   const { navigation } = useNavigation();
+  const { showToast } = useToast();
   const logout = useAppLogout();
   const navigate = useNavigate();
   const api = useMemo(() => createApiClient(), []);
@@ -33,6 +36,9 @@ export function ExperienceListPage() {
   const [error, setError] = useState<string | null>(null);
   const [assistantOpen, setAssistantOpen] = useState(false);
   const [editing, setEditing] = useState<Experience | null>(null);
+  const [experienceToDelete, setExperienceToDelete] = useState<Experience | null>(null);
+  const [deleting, setDeleting] = useState(false);
+  const [deleteError, setDeleteError] = useState<string | null>(null);
 
   const boxName = navigation.boxName ?? t('experiences.defaultBoxName');
   const boxType = navigation.boxType ?? DEFAULT_BOX_TYPE;
@@ -59,16 +65,23 @@ export function ExperienceListPage() {
     void loadExperiences();
   }, [loadExperiences]);
 
-  const handleDelete = async (experience: Experience) => {
-    if (!session?.token) {
+  const handleDelete = async () => {
+    if (!experienceToDelete || !session?.token) {
       return;
     }
 
+    setDeleting(true);
+    setDeleteError(null);
+
     try {
-      await deleteExperience.execute(experience.id, session.token);
-      setExperiences((current) => current.filter((item) => item.id !== experience.id));
+      await deleteExperience.execute(experienceToDelete.id, session.token);
+      setExperiences((current) => current.filter((item) => item.id !== experienceToDelete.id));
+      setExperienceToDelete(null);
+      showToast(t('experiences.deleteSuccess'));
     } catch (err) {
-      setError(resolveExperienceError(err, t));
+      setDeleteError(resolveExperienceError(err, t));
+    } finally {
+      setDeleting(false);
     }
   };
 
@@ -128,7 +141,10 @@ export function ExperienceListPage() {
               experience={experience}
               participantId={session?.participantId}
               onEdit={() => openEditAssistant(experience)}
-              onDelete={() => void handleDelete(experience)}
+              onDelete={() => {
+                setDeleteError(null);
+                setExperienceToDelete(experience);
+              }}
             />
           ))}
         </div>
@@ -156,6 +172,19 @@ export function ExperienceListPage() {
           }}
         />
       )}
+
+      <DeleteExperienceDialog
+        experience={experienceToDelete}
+        deleting={deleting}
+        error={deleteError}
+        onConfirm={() => void handleDelete()}
+        onCancel={() => {
+          if (!deleting) {
+            setExperienceToDelete(null);
+            setDeleteError(null);
+          }
+        }}
+      />
     </main>
   );
 }

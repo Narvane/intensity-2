@@ -1,7 +1,6 @@
-import { useEffect, useRef } from 'react';
 import { useI18n } from '../../i18n/I18nContext';
-import { Button } from '../components/Button';
-import styles from './LeaveGroupDialog.module.css';
+import { useOnlineStatus } from '@presentation/hooks/useOnlineStatus';
+import { DestructiveConfirmDialog } from '../components/DestructiveConfirmDialog';
 
 interface LeaveGroupDialogProps {
   open: boolean;
@@ -23,34 +22,8 @@ export function LeaveGroupDialog({
   onCancel,
 }: LeaveGroupDialogProps) {
   const { t } = useI18n();
-  const cancelButtonRef = useRef<HTMLButtonElement>(null);
+  const online = useOnlineStatus();
   const deletesGroup = memberCount <= leavingCount;
-
-  useEffect(() => {
-    if (!open) {
-      return;
-    }
-
-    cancelButtonRef.current?.focus();
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' && !leaving) {
-        onCancel();
-      }
-    };
-
-    window.addEventListener('keydown', onKeyDown);
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      window.removeEventListener('keydown', onKeyDown);
-    };
-  }, [leaving, onCancel, open]);
-
-  if (!open) {
-    return null;
-  }
 
   const messageKey = deletesGroup
     ? 'groups.leaveDialog.lastMemberMessage'
@@ -59,32 +32,19 @@ export function LeaveGroupDialog({
       : 'groups.leaveDialog.message';
 
   return (
-    <div className={styles.backdrop} role="presentation" onClick={leaving ? undefined : onCancel}>
-      <section
-        className={styles.dialog}
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="leave-group-title"
-        onClick={(event) => event.stopPropagation()}
-      >
-        <h2 id="leave-group-title">{t('groups.leaveDialog.title')}</h2>
-        <p className={styles.message}>{t(messageKey)}</p>
-
-        {error && (
-          <p className={styles.error} role="alert">
-            {error}
-          </p>
-        )}
-
-        <div className={styles.actions}>
-          <Button ref={cancelButtonRef} variant="secondary" fullWidth disabled={leaving} onClick={onCancel}>
-            {t('groups.leaveDialog.cancel')}
-          </Button>
-          <Button fullWidth disabled={leaving} className={styles.danger} onClick={onConfirm}>
-            {leaving ? t('common.loading') : t('groups.leaveDialog.confirm')}
-          </Button>
-        </div>
-      </section>
-    </div>
+    <DestructiveConfirmDialog
+      open={open}
+      titleId="leave-group-title"
+      title={t('groups.leaveDialog.title')}
+      message={t(messageKey)}
+      confirmLabel={t('groups.leaveDialog.confirm')}
+      cancelLabel={t('groups.leaveDialog.cancel')}
+      confirming={leaving}
+      error={error}
+      offlineBlocked={!online}
+      offlineMessage={t('common.offlineDestructiveBlocked')}
+      onConfirm={onConfirm}
+      onCancel={onCancel}
+    />
   );
 }

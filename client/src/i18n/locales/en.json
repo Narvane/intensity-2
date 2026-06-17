@@ -112,7 +112,9 @@
   "common": {
     "loading": "Loading…",
     "error": "Something went wrong. Try again.",
-    "back": "Back"
+    "back": "Back",
+    "offlineBanner": "You are offline. Destructive actions stay disabled until the connection returns.",
+    "offlineDestructiveBlocked": "Reconnect to confirm this action."
   },
   "groups": {
     "title": "Choose a group",
@@ -206,7 +208,14 @@
     "showFull": "Show full text",
     "previewAsOthers": "Others see intensity and seal only — like this.",
     "validationError": "Check intensity and parameters (levels 1–5).",
-    "notAuthor": "Only the author can edit or delete this experience."
+    "notAuthor": "Only the author can edit or delete this experience.",
+    "deleteSuccess": "Experience deleted.",
+    "deleteDialog": {
+      "title": "Delete this experience?",
+      "message": "This permanently removes your contribution from the box.",
+      "confirm": "Delete experience",
+      "cancel": "Cancel"
+    }
   },
   "assistant": {
     "title": "Creation assistant",
@@ -275,6 +284,9 @@
     "drawExact": "Draw {{name}} (level {{level}})",
     "drawUpTo": "Draw up to {{name}} (level {{level}})",
     "choosing": "Choosing…",
+    "statusChoosing": "Choosing an experience.",
+    "statusDrawn": "Experience drawn. Review intensity before revealing.",
+    "statusRevealed": "Experience revealed.",
     "emptyBox": "No experiences yet. Add ideas in Experiences mode on your phones.",
     "emptyFilter": "No experiences match this filter.",
     "coverLabel": "Draw result",

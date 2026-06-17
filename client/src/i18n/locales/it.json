@@ -112,7 +112,9 @@
   "common": {
     "loading": "Caricamento…",
     "error": "Qualcosa è andato storto. Riprova.",
-    "back": "Indietro"
+    "back": "Indietro",
+    "offlineBanner": "Sei offline. Le azioni distruttive restano disabilitate finché la connessione non torna.",
+    "offlineDestructiveBlocked": "Riconnettiti per confermare questa azione."
   },
   "groups": {
     "title": "Scegli un gruppo",
@@ -206,7 +208,14 @@
     "showFull": "Mostra testo completo",
     "previewAsOthers": "Gli altri vedono solo intensità e sigillo — così.",
     "validationError": "Controlla intensità e parametri (livelli 1–5).",
-    "notAuthor": "Solo l'autore può modificare o eliminare questa esperienza."
+    "notAuthor": "Solo l'autore può modificare o eliminare questa esperienza.",
+    "deleteSuccess": "Esperienza eliminata.",
+    "deleteDialog": {
+      "title": "Eliminare questa esperienza?",
+      "message": "Questo rimuove permanentemente il tuo contributo dalla scatola.",
+      "confirm": "Elimina esperienza",
+      "cancel": "Annulla"
+    }
   },
   "assistant": {
     "title": "Assistente di creazione",
@@ -275,6 +284,9 @@
     "drawExact": "Estrai {{name}} (livello {{level}})",
     "drawUpTo": "Estrai fino a {{name}} (livello {{level}})",
     "choosing": "Scelta in corso…",
+    "statusChoosing": "Scelta di un'esperienza in corso.",
+    "statusDrawn": "Esperienza estratta. Rivedete l'intensità prima di rivelare.",
+    "statusRevealed": "Esperienza rivelata.",
     "emptyBox": "Non ci sono ancora esperienze. Aggiungete idee in modalità Experiences sui telefoni.",
     "emptyFilter": "Nessuna esperienza corrisponde a questo filtro.",
     "coverLabel": "Risultato estrazione",

@@ -37,6 +37,7 @@ export function SharedMomentPage() {
   const [error, setError] = useState<string | null>(null);
   const [poolSize, setPoolSize] = useState<number | null>(null);
   const [emptyFilter, setEmptyFilter] = useState(false);
+  const [statusMessage, setStatusMessage] = useState('');
 
   const boxName = navigation.boxName ?? t('sharedMoment.defaultBoxName');
 
@@ -66,6 +67,7 @@ export function SharedMomentPage() {
     setError(null);
     setEmptyFilter(false);
     setDrawSession(orchestrator.backToDraw());
+    setStatusMessage(t('sharedMoment.statusChoosing'));
 
     try {
       const pool = await listExperiences.execute(boxId, session.token);
@@ -82,6 +84,7 @@ export function SharedMomentPage() {
       }
 
       setDrawSession(orchestrator.applyDraw(orchestrator.createIdleSession(), result));
+      setStatusMessage(t('sharedMoment.statusDrawn'));
     } catch (err) {
       setError(err instanceof ApiError ? err.message : t('common.error'));
     } finally {
@@ -91,6 +94,9 @@ export function SharedMomentPage() {
 
   return (
     <main className={styles.page}>
+      <p className="srOnly" aria-live="polite" aria-atomic="true">
+        {statusMessage}
+      </p>
       <header className={styles.header}>
         <div>
           <p className={styles.mode}>{t('session.experienceBoxMode')}</p>
@@ -172,7 +178,10 @@ export function SharedMomentPage() {
             {drawSession.phase === 'drawn' && (
               <Button
                 fullWidth
-                onClick={() => setDrawSession(orchestrator.reveal(drawSession))}
+                onClick={() => {
+                  setDrawSession(orchestrator.reveal(drawSession));
+                  setStatusMessage(t('sharedMoment.statusRevealed'));
+                }}
               >
                 {t('sharedMoment.reveal')}
               </Button>
@@ -181,7 +190,10 @@ export function SharedMomentPage() {
             <Button
               fullWidth
               variant="secondary"
-              onClick={() => setDrawSession(orchestrator.backToDraw())}
+              onClick={() => {
+                setDrawSession(orchestrator.backToDraw());
+                setStatusMessage('');
+              }}
             >
               {t('sharedMoment.backToDraw')}
             </Button>

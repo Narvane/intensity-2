@@ -1,7 +1,7 @@
 import { forwardRef, type ButtonHTMLAttributes, type PropsWithChildren } from 'react';
 import styles from './Button.module.css';
 
-type ButtonVariant = 'primary' | 'secondary' | 'ghost';
+type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger';
 
 interface ButtonProps
   extends PropsWithChildren,

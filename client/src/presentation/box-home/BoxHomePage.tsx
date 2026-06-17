@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ApiError, createApiClient } from '@adapters/api/ApiClient';
 import { useAppLogout } from '@app/useAppLogout';
+import { useToast } from '@app/ToastProvider';
 import { useNavigation } from '@app/NavigationProvider';
 import { useSession } from '@app/SessionProvider';
 import type { Box } from '@domain/box/boxTypes';
@@ -18,6 +19,7 @@ export function BoxHomePage() {
   const { t } = useI18n();
   const { session } = useSession();
   const { navigation, setNavigation, clearNavigation } = useNavigation();
+  const { showToast } = useToast();
   const logout = useAppLogout();
   const navigate = useNavigate();
   const api = useMemo(() => createApiClient(), []);
@@ -30,7 +32,6 @@ export function BoxHomePage() {
   const [groupMemberCount, setGroupMemberCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<string | null>(null);
   const [shareOpen, setShareOpen] = useState(false);
   const [leaveOpen, setLeaveOpen] = useState(false);
   const [leaving, setLeaving] = useState(false);
@@ -97,7 +98,7 @@ export function BoxHomePage() {
       }
 
       setBoxToDelete(null);
-      setSuccess(t('boxHome.deleteSuccess', { name: boxToDelete.name }));
+      showToast(t('boxHome.deleteSuccess', { name: boxToDelete.name }));
     } catch (err) {
       setDeleteError(err instanceof ApiError ? err.message : t('common.error'));
     } finally {
@@ -164,11 +165,6 @@ export function BoxHomePage() {
       {error && (
         <p className={styles.error} role="alert">
           {error}
-        </p>
-      )}
-      {success && (
-        <p className={styles.success} role="status">
-          {success}
         </p>
       )}
 

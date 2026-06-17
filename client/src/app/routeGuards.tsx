@@ -1,4 +1,5 @@
 import { Navigate, Outlet } from 'react-router-dom';
+import { OfflineBanner } from '@presentation/components/OfflineBanner';
 import { useSession } from './SessionProvider';
 
 export function RequireGuestRoute() {
@@ -34,7 +35,12 @@ export function RequireExperiencesSessionRoute() {
     return <Navigate to="/auth" replace />;
   }
 
-  return <Outlet />;
+  return (
+    <>
+      <OfflineBanner />
+      <Outlet />
+    </>
+  );
 }
 
 export function RequireExperienceBoxSessionRoute() {
@@ -52,5 +58,10 @@ export function RequireExperienceBoxSessionRoute() {
     return <Navigate to="/auth" replace />;
   }
 
-  return <Outlet />;
+  return (
+    <>
+      <OfflineBanner />
+      <Outlet />
+    </>
+  );
 }

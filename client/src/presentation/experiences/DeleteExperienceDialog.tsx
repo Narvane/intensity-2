@@ -1,40 +1,34 @@
-import type { Box } from '@domain/box/boxTypes';
+import type { Experience } from '@domain/experience/experienceTypes';
 import { useI18n } from '../../i18n/I18nContext';
 import { useOnlineStatus } from '@presentation/hooks/useOnlineStatus';
 import { DestructiveConfirmDialog } from '../components/DestructiveConfirmDialog';
 
-interface DeleteBoxDialogProps {
-  box: Box | null;
+interface DeleteExperienceDialogProps {
+  experience: Experience | null;
   deleting: boolean;
   error: string | null;
   onConfirm: () => void;
   onCancel: () => void;
 }
 
-export function DeleteBoxDialog({
-  box,
+export function DeleteExperienceDialog({
+  experience,
   deleting,
   error,
   onConfirm,
   onCancel,
-}: DeleteBoxDialogProps) {
+}: DeleteExperienceDialogProps) {
   const { t } = useI18n();
   const online = useOnlineStatus();
 
   return (
     <DestructiveConfirmDialog
-      open={Boolean(box)}
-      titleId="delete-box-title"
-      title={box ? t('boxHome.deleteDialog.title', { name: box.name }) : ''}
-      message={
-        box
-          ? t('boxHome.deleteDialog.message', {
-              count: String(box.experienceCount),
-            })
-          : ''
-      }
-      confirmLabel={t('boxHome.deleteDialog.confirm')}
-      cancelLabel={t('boxHome.deleteDialog.cancel')}
+      open={Boolean(experience)}
+      titleId="delete-experience-title"
+      title={t('experiences.deleteDialog.title')}
+      message={t('experiences.deleteDialog.message')}
+      confirmLabel={t('experiences.deleteDialog.confirm')}
+      cancelLabel={t('experiences.deleteDialog.cancel')}
       confirming={deleting}
       error={error}
       offlineBlocked={!online}

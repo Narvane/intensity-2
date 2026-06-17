@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ApiError, createApiClient } from '@adapters/api/ApiClient';
 import { useAppLogout } from '@app/useAppLogout';
+import { useToast } from '@app/ToastProvider';
 import { useNavigation } from '@app/NavigationProvider';
 import { useSession } from '@app/SessionProvider';
 import type { Group } from '@domain/box/boxTypes';
@@ -15,6 +16,7 @@ import styles from './GroupSelectionPage.module.css';
 export function GroupSelectionPage() {
   const { t } = useI18n();
   const { session } = useSession();
+  const { showToast } = useToast();
   const logout = useAppLogout();
   const navigate = useNavigate();
   const { navigation, setNavigation, clearNavigation } = useNavigation();
@@ -25,7 +27,6 @@ export function GroupSelectionPage() {
   const [groups, setGroups] = useState<Group[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<string | null>(null);
   const [shareGroupId, setShareGroupId] = useState<string | null>(null);
   const [groupToLeave, setGroupToLeave] = useState<Group | null>(null);
   const [leaving, setLeaving] = useState(false);
@@ -70,7 +71,7 @@ export function GroupSelectionPage() {
       }
 
       setGroupToLeave(null);
-      setSuccess(t('groups.leaveSuccess'));
+      showToast(t('groups.leaveSuccess'));
     } catch (err) {
       setLeaveError(err instanceof ApiError ? err.message : t('common.error'));
     } finally {
@@ -95,12 +96,6 @@ export function GroupSelectionPage() {
       {error && (
         <p className={styles.error} role="alert">
           {error}
-        </p>
-      )}
-
-      {success && (
-        <p className={styles.success} role="status">
-          {success}
         </p>
       )}
 
