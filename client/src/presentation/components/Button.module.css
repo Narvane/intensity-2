@@ -1,10 +1,12 @@
 .button {
   min-height: var(--touch-min);
-  padding: 0.75rem 1.25rem;
-  border-radius: var(--radius-md);
+  padding: 0.85rem 1.35rem;
+  border-radius: var(--radius-button);
   border: 1px solid transparent;
   cursor: pointer;
-  transition: transform 0.15s ease, opacity 0.15s ease;
+  font-weight: 800;
+  box-shadow: none;
+  transition: transform 0.16s ease, opacity 0.16s ease, box-shadow 0.16s ease;
 }
 
 .button:disabled {
@@ -13,19 +15,25 @@
 }
 
 .button:not(:disabled):active {
-  transform: scale(0.98);
+  transform: scale(0.96);
 }
 
 .primary {
-  background: linear-gradient(135deg, #14b8a6, #0d9488);
-  color: #042f2e;
-  font-weight: 600;
+  background: var(--coral);
+  color: #fff;
+  box-shadow: var(--shadow-soft);
+}
+
+.primary:not(:disabled):hover {
+  background: var(--coral-strong);
+  transform: translateY(-1px);
 }
 
 .secondary {
-  background: var(--color-bg-elevated);
-  color: var(--color-text);
-  border-color: var(--color-border);
+  background: var(--surface);
+  color: var(--coral);
+  border-color: rgba(255, 107, 61, 0.28);
+  box-shadow: var(--shadow-soft);
 }
 
 .ghost {
@@ -34,10 +42,10 @@
 }
 
 .danger {
-  background: #dc2626;
+  background: var(--danger);
   color: #fff;
-  border-color: #dc2626;
-  font-weight: 600;
+  border-color: var(--danger);
+  box-shadow: var(--shadow-soft);
 }
 
 .fullWidth {

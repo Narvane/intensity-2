@@ -99,8 +99,8 @@
     }
   },
   "unknownSession": {
-    "title": "Sessão desconhecida",
-    "body": "Não foi possível restaurar sua sessão salva. Você pode sair completamente ou entrar novamente no Experience Box.",
+    "title": "Ops, perdemos sua sessão",
+    "body": "Não conseguimos abrir sua caixinha salva. Você pode entrar de novo e continuar de onde pararam.",
     "logout": "Sair",
     "enterExperienceBox": "Entrar no Experience Box"
   },
@@ -117,8 +117,8 @@
     "offlineDestructiveBlocked": "Reconecte-se para confirmar esta ação."
   },
   "groups": {
-    "title": "Escolha um grupo",
-    "empty": "Entre em um grupo via convite ou entre no Experience Box com outros.",
+    "title": "Escolha sua turma",
+    "empty": "Entre por convite ou reúna a turma no Experience Box.",
     "memberCount": "{{count}} membros",
     "openBoxes": "Abrir caixinhas",
     "invite": "Convidar",
@@ -138,7 +138,7 @@
     "empty": "Criem uma caixinha juntos no modo Experience Box."
   },
   "boxHome": {
-    "title": "Box home",
+    "title": "Suas caixinhas",
     "create": "Criar caixinha",
     "empty": "Ainda não há caixinhas neste grupo.",
     "createFirst": "Criar a primeira caixinha",
@@ -155,8 +155,8 @@
   },
   "invite": {
     "preview": {
-      "accent": "Entrar via convite",
-      "title": "Prévia do grupo",
+      "accent": "Você foi convidado",
+      "title": "Uma turma te espera",
       "membersTitle": "Pessoas neste grupo",
       "expiresAt": "Válido até {{date}}",
       "authRequired": "Entre ou crie uma conta para aceitar este convite.",
@@ -194,13 +194,13 @@
     "title": "Experiências",
     "empty": "Ainda não há experiências nesta caixinha.",
     "defaultBoxName": "Caixinha selecionada",
-    "create": "Adicionar experiência",
-    "createFirst": "Criar a primeira experiência",
-    "transparency": "Experiências não são criptografadas. Todos no grupo podem ver as contribuições — a honestidade faz parte do acordo social.",
+    "create": "Guardar uma ideia",
+    "createFirst": "Guardar a primeira ideia",
+    "transparency": "Acordo entre amigos: todos no grupo podem ver as contribuições. A honestidade faz parte da aventura.",
     "intensityLabel": "Nível {{level}}",
     "sealLabel": "Selo de integridade",
     "paramsSummary": "Esforço {{effort}} · Abertura {{openness}} · Novidade {{novelty}}",
-    "otherSummary": "Contribuição de {{author}} — apenas intensidade e selo até a revelação.",
+    "otherSummary": "Carta guardada por {{author}} — intensidade e selo ficam visíveis até a revelação.",
     "anonymous": "Membro do grupo",
     "edit": "Editar",
     "delete": "Excluir",
@@ -218,7 +218,7 @@
     }
   },
   "assistant": {
-    "title": "Assistente de criação",
+    "title": "Monte sua ideia",
     "editTitle": "Editar experiência",
     "stepIndicator": "Passo {{current}} de {{total}}",
     "next": "Próximo",
@@ -226,8 +226,8 @@
     "descriptionEmpty": "Descreva a experiência que você quer sugerir.",
     "suggestionItem": "{{type}} — ideia {{number}}",
     "suggestedIntensity": "Sugerido: nível {{level}} — {{name}}",
-    "saveFinish": "Salvar e concluir",
-    "saveAnother": "Salvar e criar outra",
+    "saveFinish": "Guardar ideia",
+    "saveAnother": "Guardar e criar outra",
     "saveChanges": "Salvar alterações",
     "fields": {
       "description": "Descrição",
@@ -247,8 +247,8 @@
         "body": "Por que o grupo aceitaria essa ideia juntos?"
       },
       "parameters": {
-        "title": "Parâmetros",
-        "body": "Avalie esforço, abertura e novidade de 1 a 5."
+        "title": "O tempero",
+        "body": "Dê notas para esforço, abertura e novidade."
       },
       "classification": {
         "title": "Classificação",
@@ -261,9 +261,9 @@
     }
   },
   "seal": {
-    "label": "Selo",
-    "hint": "Derivado da descrição. Indica que o texto não foi alterado silenciosamente.",
-    "reviewNote": "O Selo é gerado a partir da descrição ao salvar."
+    "label": "Selo da ideia",
+    "hint": "A carta mantém este selo quando a ideia não muda.",
+    "reviewNote": "O selo da ideia aparece ao guardar a carta."
   },
   "intensity": {
     "levels": {
@@ -278,7 +278,7 @@
   },
   "sharedMoment": {
     "defaultBoxName": "Caixinha selecionada",
-    "filtersLabel": "Filtro de intensidade",
+    "filtersLabel": "Ajustar intensidade",
     "intensityLevel": "Nível de intensidade",
     "drawAny": "Sortear",
     "drawExact": "Sortear {{name}} (nível {{level}})",
@@ -289,10 +289,11 @@
     "statusRevealed": "Experiência revelada.",
     "emptyBox": "Ainda não há experiências. Adicionem ideias no modo Experiences nos celulares.",
     "emptyFilter": "Nenhuma experiência corresponde a este filtro.",
-    "coverLabel": "Resultado do sorteio",
-    "alignmentHint": "Tomem um momento juntos antes de revelar a descrição completa.",
-    "reveal": "Revelar",
-    "backToDraw": "Voltar ao sorteio",
+    "coverLabel": "Sua carta saiu!",
+    "ritualHint": "Toquem juntos quando estiverem prontos para abrir a próxima surpresa.",
+    "alignmentHint": "Respirem juntos antes de abrir a carta completa.",
+    "reveal": "Abrir carta",
+    "backToDraw": "Sortear outra carta",
     "byAuthor": "Por {{author}}",
     "filter": {
       "ANY": "Qualquer",

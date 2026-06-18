@@ -8,6 +8,7 @@ import {
   RegisterParticipantUseCase,
   ValidateInviteCodeFormatUseCase,
 } from '@domain/auth/authUseCases';
+import { HelpCircle } from 'lucide-react';
 import { useI18n } from '../../i18n/I18nContext';
 import { BrandMark } from '../components/BrandMark';
 import { Button } from '../components/Button';
@@ -165,7 +166,7 @@ export function AuthPage() {
             aria-label={t('auth.helpLabel')}
             onClick={() => setQuickGuideOpen(true)}
           >
-            ?
+            <HelpCircle aria-hidden="true" />
           </Button>
         </header>
 

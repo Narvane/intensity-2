@@ -6,13 +6,16 @@
   justify-content: center;
   gap: 1.5rem;
   padding: var(--space-page);
-  background: radial-gradient(circle at top, #1b2a41 0%, var(--color-bg) 60%);
+  background:
+    radial-gradient(circle at 50% 18%, rgba(255, 201, 77, 0.38), transparent 32%),
+    var(--bg);
 }
 
 .message {
   margin: 0;
   color: var(--color-text-muted);
   text-align: center;
+  font-weight: 700;
 }
 
 .errorBlock {

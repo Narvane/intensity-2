@@ -2,11 +2,11 @@ export const INTENSITY_MIN = 1;
 export const INTENSITY_MAX = 5;
 
 export const INTENSITY_COLORS: Record<number, string> = {
-  1: '#22c55e',
-  2: '#3b82f6',
-  3: '#eab308',
-  4: '#f97316',
-  5: '#ef4444',
+  1: '#2DBD9A',
+  2: '#5BC8B0',
+  3: '#FFC94D',
+  4: '#FF9A4D',
+  5: '#FF6B3D',
 };
 
 export const PARAMETER_KEYS = ['effort', 'openness', 'novelty'] as const;
@@ -14,9 +14,9 @@ export const PARAMETER_KEYS = ['effort', 'openness', 'novelty'] as const;
 export type ParameterKey = (typeof PARAMETER_KEYS)[number];
 
 export const PARAMETER_COLORS: Record<ParameterKey, string> = {
-  effort: '#14b8a6',
-  openness: '#84cc16',
-  novelty: '#ec4899',
+  effort: '#2DBD9A',
+  openness: '#FFC94D',
+  novelty: '#7B5CF6',
 };
 
 export function isValidIntensity(value: number): boolean {

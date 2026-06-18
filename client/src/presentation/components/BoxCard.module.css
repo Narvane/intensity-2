@@ -2,37 +2,30 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: 9rem;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--color-border);
-  background: var(--color-bg-elevated);
-  color: var(--color-text);
+  min-height: 11.5rem;
+  border-radius: var(--radius-card);
+  border: none;
+  background: var(--box-color, var(--teal));
+  color: #fff;
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
 }
 
-.card[data-type='SAIDAS_COM_AMIGOS'] {
-  border-top: 3px solid #14b8a6;
+.card[data-family='friends'] {
+  --box-color: var(--teal);
 }
 
-.card[data-type='SAIDAS_EM_CASAL'],
-.card[data-type='VIAGENS_EM_CASAL'],
-.card[data-type='INTIMO_EM_CASAL'] {
-  border-top: 3px solid #f97316;
+.card[data-family='couple'] {
+  --box-color: var(--coral);
 }
 
-.card[data-type='VIAGENS_COM_AMIGOS'],
-.card[data-type='EXPERIENCIAS_COM_AMIGOS'] {
-  border-top: 3px solid #2563eb;
+.card[data-family='growth'] {
+  --box-color: var(--purple);
 }
 
-.card[data-type='SAIR_DA_ROTINA'],
-.card[data-type='PRIMEIRAS_VEZES'] {
-  border-top: 3px solid #a855f7;
-}
-
-.card[data-type='DESCONFORTO_LEVE'],
-.card[data-type='MOMENTOS_DE_CONEXAO'],
-.card[data-type='EXPERIENCIAS_DIFERENTES'] {
-  border-top: 3px solid #ec4899;
+.card[data-family='connection'] {
+  --box-color: var(--yellow);
+  color: var(--text);
 }
 
 .open {
@@ -40,49 +33,70 @@
   flex: 1;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.35rem;
+  gap: 0.45rem;
   width: 100%;
-  min-height: 9rem;
-  padding: 1rem 2.5rem 1rem 1rem;
+  min-height: 11.5rem;
+  padding: 1rem 2.75rem 1rem 1rem;
   border: none;
   background: transparent;
   color: inherit;
   cursor: pointer;
   text-align: left;
   font: inherit;
+  transition: transform 0.16s ease;
 }
 
-.seal {
-  width: 2rem;
-  height: 2rem;
-  border-radius: 999px;
+.open:active {
+  transform: scale(0.98);
+}
+
+.iconWrap {
+  width: 3.65rem;
+  height: 3.65rem;
+  border-radius: 1.35rem;
   display: grid;
   place-items: center;
-  background: rgba(255, 255, 255, 0.08);
-  font-size: 0.85rem;
-  font-weight: 700;
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.iconWrap svg {
+  width: 2.2rem;
+  height: 2.2rem;
+  stroke-width: 2.4;
 }
 
 .name {
-  font-size: 1rem;
-  line-height: 1.3;
+  margin-top: auto;
+  font-size: 1.2rem;
+  line-height: 1.12;
 }
 
 .type {
-  font-size: 0.8rem;
-  color: var(--color-text-muted);
+  display: none;
 }
 
 .hint {
-  font-size: 0.75rem;
-  color: var(--color-text-muted);
+  font-size: 0.82rem;
+  color: currentColor;
+  opacity: 0.86;
   line-height: 1.4;
 }
 
 .count {
-  margin-top: auto;
-  font-size: 0.75rem;
-  color: var(--color-teal);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.35rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: var(--radius-chip);
+  background: rgba(255, 255, 255, 0.24);
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.count svg {
+  width: 1rem;
+  height: 1rem;
 }
 
 .menuWrap {
@@ -95,12 +109,17 @@
   width: 2rem;
   height: 2rem;
   border-radius: 999px;
-  border: 1px solid var(--color-border);
-  background: rgba(15, 23, 42, 0.65);
-  color: var(--color-text);
+  border: none;
+  background: rgba(255, 255, 255, 0.28);
+  color: currentColor;
   cursor: pointer;
-  font-size: 1.1rem;
-  line-height: 1;
+  display: grid;
+  place-items: center;
+}
+
+.menuButton svg {
+  width: 1.1rem;
+  height: 1.1rem;
 }
 
 .menu {
@@ -110,10 +129,10 @@
   z-index: 2;
   min-width: 9rem;
   padding: 0.35rem;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-card);
   border: 1px solid var(--color-border);
-  background: var(--color-bg-elevated);
-  box-shadow: 0 12px 30px rgba(2, 6, 23, 0.35);
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
 }
 
 .menuItem,
@@ -122,7 +141,7 @@
   width: 100%;
   padding: 0.55rem 0.75rem;
   border: none;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-input);
   background: transparent;
   color: var(--color-text);
   text-align: left;
@@ -132,9 +151,9 @@
 
 .menuItem:hover,
 .menuItemDanger:hover {
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--surface-sunken);
 }
 
 .menuItemDanger {
-  color: #fca5a5;
+  color: var(--danger);
 }

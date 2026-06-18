@@ -1,7 +1,8 @@
 .backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(2, 6, 23, 0.72);
+  background: rgba(31, 31, 31, 0.22);
+  backdrop-filter: blur(6px);
   display: grid;
   place-items: end center;
   padding: 1rem;
@@ -12,10 +13,11 @@
   width: min(100%, 28rem);
   max-height: min(85dvh, 40rem);
   overflow: auto;
-  background: var(--color-bg-elevated);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
+  background: var(--surface);
+  border: none;
+  border-radius: var(--radius-card);
   padding: 1.25rem;
+  box-shadow: var(--shadow-soft);
 }
 
 .header {
@@ -40,7 +42,7 @@
 .section h3 {
   margin: 0 0 0.35rem;
   font-size: 1rem;
-  color: var(--color-teal);
+  color: var(--coral);
 }
 
 .section p,

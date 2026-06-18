@@ -1,17 +1,27 @@
 .mark {
   width: 3.5rem;
   height: 3.5rem;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-card);
   display: grid;
   place-items: center;
-  font-size: 1.75rem;
-  font-weight: 700;
-  background: linear-gradient(135deg, #2dd4bf, #14b8a6 55%, #f97316);
-  color: #042f2e;
+  background: var(--coral);
+  color: #fff;
+  box-shadow: var(--shadow-soft);
+}
+
+.mark svg {
+  width: 1.85rem;
+  height: 1.85rem;
+  stroke-width: 2.5;
 }
 
 .large {
   width: 4.5rem;
   height: 4.5rem;
-  font-size: 2.25rem;
+  border-radius: 1.65rem;
+}
+
+.large svg {
+  width: 2.35rem;
+  height: 2.35rem;
 }

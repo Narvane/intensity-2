@@ -12,6 +12,7 @@ import {
   type IntensityFilterMode,
 } from '@domain/sorteio/FiltroIntensidadePolicy';
 import { RevelacaoOrchestrator } from '@domain/sorteio/RevelacaoOrchestrator';
+import { SlidersHorizontal, Sparkles } from 'lucide-react';
 import { useI18n } from '../../i18n/I18nContext';
 import { Button } from '../components/Button';
 import { RatingScale } from '../components/RatingScale';
@@ -38,6 +39,7 @@ export function SharedMomentPage() {
   const [poolSize, setPoolSize] = useState<number | null>(null);
   const [emptyFilter, setEmptyFilter] = useState(false);
   const [statusMessage, setStatusMessage] = useState('');
+  const [filtersOpen, setFiltersOpen] = useState(false);
 
   const boxName = navigation.boxName ?? t('sharedMoment.defaultBoxName');
 
@@ -112,32 +114,52 @@ export function SharedMomentPage() {
         </div>
       </header>
 
-      <section className={styles.filters}>
-        <p className={styles.filtersLabel}>{t('sharedMoment.filtersLabel')}</p>
-        <div className={styles.chips}>
-          {(['ANY', 'EXACT', 'UP_TO'] as IntensityFilterMode[]).map((mode) => (
-            <button
-              key={mode}
-              type="button"
-              className={filter.mode === mode ? styles.chipActive : styles.chip}
-              onClick={() => setFilterMode(mode)}
-            >
-              {t(`sharedMoment.filter.${mode}`)}
-            </button>
-          ))}
+      <section className={styles.ritual}>
+        <div className={styles.envelope} aria-hidden="true">
+          <Sparkles />
         </div>
+        <p>{t('sharedMoment.ritualHint')}</p>
+      </section>
 
-        {filter.mode !== 'ANY' && (
-          <RatingScale
-            label={t('sharedMoment.intensityLevel')}
-            value={filter.level}
-            tone="intensity"
-            onChange={(level) => {
-              setFilter((current) => ({ ...current, level }));
-              setDrawSession(orchestrator.backToDraw());
-              setEmptyFilter(false);
-            }}
-          />
+      <section className={styles.filters}>
+        <button
+          type="button"
+          className={styles.filtersToggle}
+          onClick={() => setFiltersOpen((current) => !current)}
+          aria-expanded={filtersOpen}
+        >
+          <SlidersHorizontal aria-hidden="true" />
+          {t('sharedMoment.filtersLabel')}
+        </button>
+
+        {filtersOpen && (
+          <div className={styles.filtersPanel}>
+            <div className={styles.chips}>
+              {(['ANY', 'EXACT', 'UP_TO'] as IntensityFilterMode[]).map((mode) => (
+                <button
+                  key={mode}
+                  type="button"
+                  className={filter.mode === mode ? styles.chipActive : styles.chip}
+                  onClick={() => setFilterMode(mode)}
+                >
+                  {t(`sharedMoment.filter.${mode}`)}
+                </button>
+              ))}
+            </div>
+
+            {filter.mode !== 'ANY' && (
+              <RatingScale
+                label={t('sharedMoment.intensityLevel')}
+                value={filter.level}
+                tone="intensity"
+                onChange={(level) => {
+                  setFilter((current) => ({ ...current, level }));
+                  setDrawSession(orchestrator.backToDraw());
+                  setEmptyFilter(false);
+                }}
+              />
+            )}
+          </div>
         )}
       </section>
 

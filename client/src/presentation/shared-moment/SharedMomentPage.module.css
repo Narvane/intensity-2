@@ -1,7 +1,9 @@
 .page {
   min-height: 100dvh;
   padding: var(--space-page);
-  background: radial-gradient(circle at top, #1b2a41 0%, var(--color-bg) 60%);
+  background:
+    radial-gradient(circle at top, rgba(255, 201, 77, 0.35), transparent 32%),
+    var(--bg);
 }
 
 .header {
@@ -20,31 +22,89 @@
 .mode {
   margin: 0 0 0.25rem;
   color: var(--color-blue);
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  font-size: 0.9rem;
+  font-weight: 800;
 }
 
 .header h1 {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: clamp(1.9rem, 7vw, 2.5rem);
+  line-height: 1.05;
+}
+
+.ritual {
+  display: grid;
+  place-items: center;
+  gap: 0.8rem;
+  margin: 0.5rem 0 1rem;
+  text-align: center;
+}
+
+.ritual p {
+  max-width: 24rem;
+  margin: 0;
+  color: var(--color-text-muted);
+  font-weight: 700;
+}
+
+.envelope {
+  width: min(82vw, 18rem);
+  aspect-ratio: 1.35;
+  display: grid;
+  place-items: center;
+  border-radius: 2rem;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.34), transparent 50%),
+    var(--coral);
+  color: #fff;
+  box-shadow: var(--shadow-soft);
+  transform: rotate(-2deg);
+}
+
+.envelope svg {
+  width: 4.8rem;
+  height: 4.8rem;
+  stroke-width: 2.4;
 }
 
 .filters {
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
-  margin-bottom: 1.25rem;
-  padding: 1rem;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--color-border);
-  background: var(--color-bg-elevated);
+  gap: 0.65rem;
+  margin-bottom: 1rem;
 }
 
-.filtersLabel {
-  margin: 0;
+.filtersToggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  width: fit-content;
+  min-height: 2.75rem;
+  border: 0;
+  border-radius: var(--radius-chip);
+  background: var(--surface);
   color: var(--color-text-muted);
-  font-size: 0.9rem;
+  padding: 0 0.9rem;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+}
+
+.filtersToggle svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.filtersPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding: 1rem;
+  border-radius: var(--radius-card);
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
 }
 
 .chips {
@@ -56,7 +116,7 @@
 .chip,
 .chipActive {
   border-radius: 999px;
-  border: 1px solid var(--color-border);
+  border: 0;
   padding: 0.45rem 0.85rem;
   font: inherit;
   cursor: pointer;
@@ -68,10 +128,9 @@
 }
 
 .chipActive {
-  background: rgba(37, 99, 235, 0.18);
-  border-color: var(--color-blue);
-  color: var(--color-text);
-  font-weight: 600;
+  background: var(--purple);
+  color: #fff;
+  font-weight: 800;
 }
 
 .drawArea {
@@ -84,19 +143,19 @@
 .hintCard {
   margin: 0;
   padding: 1rem;
-  border-radius: var(--radius-md);
-  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-card);
+  background: var(--surface);
   color: var(--color-text-muted);
+  box-shadow: var(--shadow-soft);
   line-height: 1.55;
 }
 
 .alignmentHint {
   margin: 1rem 0;
   padding: 0.85rem 1rem;
-  border-radius: var(--radius-md);
-  border: 1px dashed #f59e0b;
-  background: rgba(245, 158, 11, 0.08);
-  color: #fcd34d;
+  border-radius: var(--radius-card);
+  background: color-mix(in srgb, var(--yellow) 38%, white);
+  color: var(--text);
   line-height: 1.55;
 }
 
@@ -109,5 +168,5 @@
 
 .error {
   margin: 0 0 1rem;
-  color: #fca5a5;
+  color: var(--danger);
 }

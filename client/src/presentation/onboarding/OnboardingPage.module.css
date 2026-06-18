@@ -6,7 +6,9 @@
   padding: calc(var(--space-page) + env(safe-area-inset-top, 0))
     var(--space-page)
     calc(var(--space-page) + env(safe-area-inset-bottom, 0));
-  background: radial-gradient(circle at top, #1b2a41 0%, var(--color-bg) 55%);
+  background:
+    radial-gradient(circle at top right, rgba(255, 201, 77, 0.35), transparent 28%),
+    var(--bg);
 }
 
 .loading {
@@ -20,6 +22,7 @@
   text-align: center;
   color: var(--color-text-muted);
   font-size: 0.9rem;
+  font-weight: 800;
 }
 
 .progress {
@@ -31,11 +34,11 @@
 .progress span {
   height: 0.25rem;
   border-radius: 999px;
-  background: rgba(148, 163, 184, 0.25);
+  background: rgba(31, 31, 31, 0.08);
 }
 
 .progressActive {
-  background: linear-gradient(90deg, #14b8a6, #f97316);
+  background: var(--coral);
 }
 
 .copy {
@@ -49,8 +52,8 @@
 
 .copy h1 {
   margin: 0;
-  font-size: 1.5rem;
-  line-height: 1.25;
+  font-size: clamp(2rem, 8vw, 2.75rem);
+  line-height: 1.05;
 }
 
 .copy p {

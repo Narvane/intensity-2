@@ -4,13 +4,13 @@
 
 .card {
   width: 100%;
-  min-height: 14rem;
+  min-height: 16rem;
 }
 
 .inner {
   position: relative;
   width: 100%;
-  min-height: 14rem;
+  min-height: 16rem;
   transform-style: preserve-3d;
   transition: transform 0.65s ease;
 }
@@ -24,11 +24,21 @@
   position: absolute;
   inset: 0;
   backface-visibility: hidden;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--color-border);
-  border-top: 3px solid var(--intensity-accent);
-  background: var(--color-bg-elevated);
+  border-radius: var(--radius-card);
+  border: none;
+  background: var(--surface);
   padding: 1.25rem;
+  box-shadow: var(--shadow-soft);
+  overflow: auto;
+}
+
+.cover {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background:
+    radial-gradient(circle at 80% 10%, rgba(255, 201, 77, 0.5), transparent 30%),
+    color-mix(in srgb, var(--intensity-accent) 22%, white);
 }
 
 .face {
@@ -37,8 +47,7 @@
 
 .coverLabel {
   margin: 0 0 0.75rem;
-  color: var(--color-blue);
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  color: var(--color-text);
+  font-size: 1.35rem;
+  font-weight: 800;
 }

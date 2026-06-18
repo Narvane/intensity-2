@@ -1,7 +1,9 @@
 .page {
   min-height: 100dvh;
   padding: var(--space-page);
-  background: radial-gradient(circle at top, #1b2a41 0%, var(--color-bg) 60%);
+  background:
+    radial-gradient(circle at top left, rgba(255, 107, 61, 0.16), transparent 30%),
+    var(--bg);
 }
 
 .header {
@@ -13,7 +15,8 @@
 
 .header h1 {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: clamp(1.9rem, 7vw, 2.5rem);
+  line-height: 1.05;
 }
 
 .form {
@@ -36,31 +39,59 @@
 
 .field input {
   min-height: var(--touch-min);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-input);
   border: 1px solid var(--color-border);
-  background: var(--color-bg-elevated);
+  background: var(--surface-sunken);
   color: var(--color-text);
   padding: 0.65rem 0.85rem;
   font: inherit;
 }
 
 .types {
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
+  border: none;
+  border-radius: var(--radius-card);
   padding: 0.75rem;
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.65rem;
-  max-height: 18rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  max-height: 24rem;
   overflow: auto;
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
 }
 
 .typeOption {
+  position: relative;
   display: flex;
+  flex-direction: column;
+  min-height: 7rem;
+  padding: 0.85rem;
+  border-radius: var(--radius-card);
   gap: 0.65rem;
   align-items: flex-start;
   cursor: pointer;
+  background: var(--surface-sunken);
+  transition: transform 0.16s ease, background 0.16s ease;
+}
+
+.typeOption:has(input:checked) {
+  background: var(--coral);
+  color: #fff;
+  transform: scale(1.02);
+}
+
+.typeOption input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  accent-color: var(--coral);
+}
+
+.typeIcon {
+  width: 2rem;
+  height: 2rem;
+  stroke-width: 2.4;
 }
 
 .typeOption strong {
@@ -74,7 +105,11 @@
   line-height: 1.4;
 }
 
+.typeOption:has(input:checked) small {
+  color: rgba(255, 255, 255, 0.86);
+}
+
 .error {
   margin: 0;
-  color: #fca5a5;
+  color: var(--danger);
 }

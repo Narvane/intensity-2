@@ -3,9 +3,10 @@
   top: 0;
   z-index: 30;
   padding: 0.65rem var(--space-page);
-  background: rgba(180, 83, 9, 0.92);
-  color: #fff7ed;
+  background: var(--yellow);
+  color: var(--text);
   text-align: center;
   font-size: 0.9rem;
   line-height: 1.4;
+  font-weight: 800;
 }

@@ -138,7 +138,7 @@
     "empty": "Create a box together in Experience Box mode."
   },
   "boxHome": {
-    "title": "Box home",
+    "title": "Your boxes",
     "create": "Create box",
     "empty": "No boxes yet in this group.",
     "createFirst": "Create the first box",
@@ -278,7 +278,7 @@
   },
   "sharedMoment": {
     "defaultBoxName": "Selected box",
-    "filtersLabel": "Intensity filter",
+    "filtersLabel": "Adjust intensity",
     "intensityLevel": "Intensity level",
     "drawAny": "Draw",
     "drawExact": "Draw {{name}} (level {{level}})",
@@ -289,10 +289,11 @@
     "statusRevealed": "Experience revealed.",
     "emptyBox": "No experiences yet. Add ideas in Experiences mode on your phones.",
     "emptyFilter": "No experiences match this filter.",
-    "coverLabel": "Draw result",
-    "alignmentHint": "Take a moment together before revealing the full description.",
-    "reveal": "Reveal",
-    "backToDraw": "Back to draw",
+    "coverLabel": "Your card is here!",
+    "ritualHint": "Tap together when you are ready to open the next surprise.",
+    "alignmentHint": "Take a breath together before opening the full card.",
+    "reveal": "Open card",
+    "backToDraw": "Draw another card",
     "byAuthor": "By {{author}}",
     "filter": {
       "ANY": "Any",

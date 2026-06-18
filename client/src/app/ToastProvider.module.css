@@ -6,11 +6,12 @@
   width: min(calc(100% - 2rem), 24rem);
   transform: translateX(-50%);
   padding: 0.85rem 1rem;
-  border-radius: var(--radius-md);
-  border: 1px solid rgba(134, 239, 172, 0.35);
-  background: rgba(6, 78, 59, 0.95);
-  color: #ecfdf5;
+  border-radius: var(--radius-card);
+  border: none;
+  background: var(--teal);
+  color: #fff;
   text-align: center;
   line-height: 1.4;
-  box-shadow: 0 12px 30px rgba(2, 6, 23, 0.35);
+  font-weight: 800;
+  box-shadow: var(--shadow-soft);
 }

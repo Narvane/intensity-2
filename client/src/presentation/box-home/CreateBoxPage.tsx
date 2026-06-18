@@ -6,6 +6,7 @@ import { BOX_TYPES, DEFAULT_BOX_TYPE, type BoxType } from '@domain/box/boxTypes'
 import { CreateBoxUseCase } from '@domain/box/boxUseCases';
 import { useI18n } from '../../i18n/I18nContext';
 import { Button } from '../components/Button';
+import { getBoxVisual } from '../components/boxVisuals';
 import styles from './CreateBoxPage.module.css';
 
 export function CreateBoxPage() {
@@ -64,20 +65,24 @@ export function CreateBoxPage() {
 
         <fieldset className={styles.types}>
           <legend>{t('createBox.typeLabel')}</legend>
-          {BOX_TYPES.map((boxType) => (
-            <label key={boxType} className={styles.typeOption}>
-              <input
-                type="radio"
-                name="boxType"
-                checked={type === boxType}
-                onChange={() => setType(boxType)}
-              />
-              <span>
-                <strong>{t(`boxTypes.${boxType}.title`)}</strong>
-                <small>{t(`boxTypes.${boxType}.hint`)}</small>
-              </span>
-            </label>
-          ))}
+          {BOX_TYPES.map((boxType) => {
+            const { Icon } = getBoxVisual(boxType);
+            return (
+              <label key={boxType} className={styles.typeOption}>
+                <input
+                  type="radio"
+                  name="boxType"
+                  checked={type === boxType}
+                  onChange={() => setType(boxType)}
+                />
+                <Icon className={styles.typeIcon} aria-hidden="true" />
+                <span>
+                  <strong>{t(`boxTypes.${boxType}.title`)}</strong>
+                  <small>{t(`boxTypes.${boxType}.hint`)}</small>
+                </span>
+              </label>
+            );
+          })}
         </fieldset>
 
         {error && (

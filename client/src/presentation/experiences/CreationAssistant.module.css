@@ -5,22 +5,25 @@
   display: grid;
   place-items: end center;
   padding: 0.75rem;
-  background: rgba(3, 7, 18, 0.72);
+  background: rgba(31, 31, 31, 0.22);
+  backdrop-filter: blur(6px);
 }
 
 .panel {
   width: min(100%, 32rem);
   max-height: calc(100dvh - 1.5rem);
   overflow: auto;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--color-border);
-  background: var(--color-bg);
+  border-radius: var(--radius-card);
+  border: none;
+  background: var(--surface);
   padding: 1rem;
+  box-shadow: var(--shadow-soft);
 }
 
 .header h2 {
   margin: 0.35rem 0 0;
-  font-size: 1.25rem;
+  font-size: 1.6rem;
+  line-height: 1.1;
 }
 
 .stepLabel {
@@ -43,27 +46,26 @@
 }
 
 .progressActive {
-  background: var(--color-brown);
+  background: var(--coral);
 }
 
 .progressIdle {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(31, 31, 31, 0.08);
 }
 
 .descriptionCard {
   margin-bottom: 1rem;
   padding: 0.85rem;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--color-border);
-  background: var(--color-bg-elevated);
+  border-radius: var(--radius-card);
+  border: none;
+  background: var(--surface-sunken);
 }
 
 .cardLabel {
   margin: 0 0 0.35rem;
   color: var(--color-brown);
   font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  font-weight: 800;
 }
 
 .cardText {
@@ -74,7 +76,7 @@
 
 .step h3 {
   margin: 0 0 0.35rem;
-  font-size: 1rem;
+  font-size: 1.25rem;
 }
 
 .step p {
@@ -96,9 +98,9 @@
 }
 
 .field textarea {
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-input);
   border: 1px solid var(--color-border);
-  background: var(--color-bg-elevated);
+  background: var(--surface-sunken);
   color: var(--color-text);
   padding: 0.65rem 0.85rem;
   font: inherit;
@@ -112,9 +114,9 @@
 }
 
 .suggestionChip {
-  border-radius: 999px;
-  border: 1px solid var(--color-border);
-  background: rgba(180, 83, 9, 0.12);
+  border-radius: var(--radius-chip);
+  border: none;
+  background: color-mix(in srgb, var(--yellow) 34%, white);
   color: var(--color-text);
   padding: 0.45rem 0.75rem;
   font: inherit;
@@ -132,6 +134,9 @@
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  padding: 1rem;
+  border-radius: var(--radius-card);
+  background: var(--surface-sunken);
 }
 
 .summary dt {
@@ -147,7 +152,7 @@
 
 .error {
   margin: 0.75rem 0 0;
-  color: #fca5a5;
+  color: var(--danger);
 }
 
 .footer {

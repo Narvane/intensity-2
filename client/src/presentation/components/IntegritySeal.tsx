@@ -1,4 +1,5 @@
 import { useI18n } from '../../i18n/I18nContext';
+import { BadgeCheck } from 'lucide-react';
 import styles from './IntegritySeal.module.css';
 
 interface IntegritySealProps {
@@ -15,8 +16,9 @@ export function IntegritySeal({ seal, compact = false }: IntegritySealProps) {
       title={t('seal.hint')}
       aria-label={`${t('seal.label')}: ${seal}`}
     >
+      <BadgeCheck className={styles.icon} aria-hidden="true" />
       <span className={styles.label}>{t('seal.label')}</span>
-      <code className={styles.value}>{seal}</code>
+      <span className={styles.value}>{seal}</span>
     </div>
   );
 }

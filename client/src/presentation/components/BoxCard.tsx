@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import type { BoxType } from '@domain/box/boxTypes';
+import { ChevronRight, MoreHorizontal } from 'lucide-react';
+import { getBoxVisual } from './boxVisuals';
 import styles from './BoxCard.module.css';
 
 interface BoxCardProps {
@@ -29,6 +31,7 @@ export function BoxCard({
 }: BoxCardProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const { family, Icon } = getBoxVisual(type);
 
   useEffect(() => {
     if (!menuOpen) {
@@ -56,16 +59,18 @@ export function BoxCard({
   };
 
   return (
-    <article className={styles.card} data-type={type}>
+    <article className={styles.card} data-type={type} data-family={family}>
       <button type="button" className={styles.open} onClick={handleOpen}>
-        <span className={styles.seal} aria-hidden="true">
-          {typeLabel.slice(0, 1)}
+        <span className={styles.iconWrap} aria-hidden="true">
+          <Icon />
         </span>
         <strong className={styles.name}>{name}</strong>
         <span className={styles.type}>{typeLabel}</span>
         <span className={styles.hint}>{typeHint}</span>
         {experienceCount !== undefined && (
-          <span className={styles.count}>{experienceCount}</span>
+          <span className={styles.count}>
+            {experienceCount} ideias <ChevronRight aria-hidden="true" />
+          </span>
         )}
       </button>
 
@@ -79,7 +84,7 @@ export function BoxCard({
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((current) => !current)}
           >
-            ⋯
+            <MoreHorizontal aria-hidden="true" />
           </button>
 
           {menuOpen && (

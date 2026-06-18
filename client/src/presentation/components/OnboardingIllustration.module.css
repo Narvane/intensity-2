@@ -1,39 +1,78 @@
 .frame {
   width: min(100%, 18rem);
   aspect-ratio: 4 / 3;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-card);
   position: relative;
   overflow: hidden;
   margin-inline: auto;
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
 }
 
-.orbit {
+.sun {
   position: absolute;
-  inset: 18% 12%;
+  top: 1rem;
+  right: 1.2rem;
+  width: 3.4rem;
+  height: 3.4rem;
   border-radius: 999px;
-  border: 2px dashed rgba(255, 255, 255, 0.25);
+  background: var(--yellow);
+  opacity: 0.85;
 }
 
-.core {
+.card {
   position: absolute;
-  inset: 32% 28%;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.85);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+  left: 50%;
+  top: 50%;
+  width: 7.25rem;
+  height: 6.25rem;
+  border-radius: 1.75rem;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--text);
+  transform: translate(-50%, -45%) rotate(-4deg);
+  box-shadow: var(--shadow-soft);
+}
+
+.card svg {
+  width: 3.1rem;
+  height: 3.1rem;
+  stroke-width: 2.2;
+}
+
+.friendA,
+.friendB {
+  position: absolute;
+  bottom: 1rem;
+  width: 3.1rem;
+  height: 3.1rem;
+  border-radius: 999px 999px 1.1rem 1.1rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.friendA {
+  left: 2rem;
+  background: var(--coral);
+}
+
+.friendB {
+  right: 2.2rem;
+  background: var(--teal);
 }
 
 .step1 {
-  background: radial-gradient(circle at top, #334155, #0f172a);
+  background: #ffe4d8;
 }
 
 .step2 {
-  background: radial-gradient(circle at top, #7c2d12, #1c1917);
+  background: #fff0bd;
 }
 
 .step3 {
-  background: radial-gradient(circle at top, #312e81, #0f172a);
+  background: #e9e2ff;
 }
 
 .step4 {
-  background: radial-gradient(circle at top, #115e59, #0f172a);
+  background: #d7f4ed;
 }

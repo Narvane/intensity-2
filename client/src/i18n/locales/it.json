@@ -138,7 +138,7 @@
     "empty": "Create una scatola insieme in modalità Experience Box."
   },
   "boxHome": {
-    "title": "Box home",
+    "title": "Le tue scatole",
     "create": "Crea scatola",
     "empty": "Non ci sono ancora scatole in questo gruppo.",
     "createFirst": "Crea la prima scatola",
@@ -278,7 +278,7 @@
   },
   "sharedMoment": {
     "defaultBoxName": "Scatola selezionata",
-    "filtersLabel": "Filtro intensità",
+    "filtersLabel": "Regola intensità",
     "intensityLevel": "Livello di intensità",
     "drawAny": "Estrai",
     "drawExact": "Estrai {{name}} (livello {{level}})",
@@ -289,10 +289,11 @@
     "statusRevealed": "Esperienza rivelata.",
     "emptyBox": "Non ci sono ancora esperienze. Aggiungete idee in modalità Experiences sui telefoni.",
     "emptyFilter": "Nessuna esperienza corrisponde a questo filtro.",
-    "coverLabel": "Risultato estrazione",
-    "alignmentHint": "Prendetevi un momento insieme prima di rivelare la descrizione completa.",
-    "reveal": "Rivela",
-    "backToDraw": "Torna all'estrazione",
+    "coverLabel": "La vostra carta è uscita!",
+    "ritualHint": "Toccate insieme quando siete pronti ad aprire la prossima sorpresa.",
+    "alignmentHint": "Respirate insieme prima di aprire la carta completa.",
+    "reveal": "Apri carta",
+    "backToDraw": "Estrai un'altra carta",
     "byAuthor": "Di {{author}}",
     "filter": {
       "ANY": "Qualsiasi",

@@ -5,12 +5,15 @@
   justify-content: center;
   gap: 1rem;
   padding: var(--space-page);
-  background: radial-gradient(circle at top, #1b2a41 0%, var(--color-bg) 60%);
+  background:
+    radial-gradient(circle at top, rgba(255, 201, 77, 0.25), transparent 30%),
+    var(--bg);
 }
 
 .page h1 {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: clamp(1.9rem, 7vw, 2.5rem);
+  line-height: 1.05;
 }
 
 .page p {

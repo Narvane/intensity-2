@@ -1,7 +1,9 @@
 .page {
   min-height: 100dvh;
   padding: var(--space-page);
-  background: radial-gradient(circle at top, #1b2a41 0%, var(--color-bg) 60%);
+  background:
+    radial-gradient(circle at top right, rgba(255, 201, 77, 0.26), transparent 28%),
+    var(--bg);
 }
 
 .header {
@@ -20,14 +22,14 @@
 .mode {
   margin: 0 0 0.25rem;
   color: var(--color-brown);
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  font-size: 0.9rem;
+  font-weight: 800;
 }
 
 .header h1 {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: clamp(1.9rem, 7vw, 2.5rem);
+  line-height: 1.05;
 }
 
 .message,
@@ -38,17 +40,18 @@
 }
 
 .error {
-  color: #fca5a5;
+  color: var(--danger);
 }
 
 .empty {
   padding: 1.25rem;
-  border-radius: var(--radius-lg);
-  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-card);
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.85rem;
+  gap: 1rem;
 }
