@@ -1,0 +1,19 @@
+[
+  {
+    "id": "intensity-api-deploy",
+    "execute-command": "/opt/intensity/deploy/webhook/receive.sh",
+    "command-working-directory": "/opt/intensity/deploy",
+    "pass-arguments-to-command": [
+      { "source": "header", "name": "X-Deploy-Secret" },
+      { "source": "payload", "name": "sha" }
+    ],
+    "trigger-rule": {
+      "match": {
+        "type": "value",
+        "value": "POST",
+        "parameter": { "source": "request", "name": "method" }
+      }
+    },
+    "include-command-output-in-response": true
+  }
+]

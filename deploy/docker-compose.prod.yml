@@ -1,0 +1,67 @@
+# Production stack (DT-07): Caddy TLS + API + PostgreSQL
+# Usage: copy .env.example → .env, then ./deploy.sh
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: intensity-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-intensity}
+      POSTGRES_USER: ${POSTGRES_USER:-intensity}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+    volumes:
+      - intensity_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ${POSTGRES_USER:-intensity} -d ${POSTGRES_DB:-intensity}']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - intensity
+
+  api:
+    image: ${API_IMAGE:?Set API_IMAGE in .env}
+    container_name: intensity-api
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB:-intensity}
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER:-intensity}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+      INTENSITY_JWT_SECRET: ${INTENSITY_JWT_SECRET:?Set INTENSITY_JWT_SECRET in .env}
+    networks:
+      - intensity
+
+  proxy:
+    image: caddy:2-alpine
+    container_name: intensity-proxy
+    restart: unless-stopped
+    depends_on:
+      - api
+    ports:
+      - '80:80'
+      - '443:443'
+    environment:
+      API_DOMAIN: ${API_DOMAIN:?Set API_DOMAIN in .env}
+      APP_DOMAIN: ${APP_DOMAIN:?Set APP_DOMAIN in .env}
+      ACME_EMAIL: ${ACME_EMAIL:?Set ACME_EMAIL in .env}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ../client/deep-link:/srv/deep-link:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - intensity
+
+networks:
+  intensity:
+    driver: bridge
+
+volumes:
+  intensity_postgres_data:
+  caddy_data:
+  caddy_config:

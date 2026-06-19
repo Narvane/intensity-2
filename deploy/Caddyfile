@@ -1,0 +1,17 @@
+{
+	email {$ACME_EMAIL}
+}
+
+{$API_DOMAIN} {
+	reverse_proxy api:8080
+}
+
+{$APP_DOMAIN} {
+	@wellknown path /.well-known/*
+	handle @wellknown {
+		root * /srv/deep-link
+		file_server
+	}
+
+	respond "Intensity invite links open in the mobile app." 404
+}
