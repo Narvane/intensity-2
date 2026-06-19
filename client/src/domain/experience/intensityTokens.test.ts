@@ -9,7 +9,7 @@ import {
 describe('intensityTokens', () => {
   it('defines five intensity colors', () => {
     expect(Object.keys(INTENSITY_COLORS)).toHaveLength(5);
-    expect(INTENSITY_COLORS[2]).toBe('#3b82f6');
+    expect(INTENSITY_COLORS[2]).toBe('#5BC8B0');
   });
 
   it('validates intensity range', () => {

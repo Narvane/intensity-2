@@ -19,6 +19,7 @@ Mobile app for collecting experiences and running shared draw rituals in groups.
 ```
 ├── api/          Spring Boot REST API (Java 21)
 ├── client/       React + Capacitor mobile app
+├── deploy/       Production VPS stack (Compose + Caddy + webhook)
 ├── openapi/      Contract-first OpenAPI v1
 └── newdocs/      Product and engineering documentation
 ```
@@ -58,7 +59,9 @@ npx cap sync
 Open the native project in Android Studio or Xcode for emulator/device runs.  
 Android emulator API host: `10.0.2.2:8080`; physical device: your machine LAN IP.
 
-## CI / deploy (API)
+## Production deploy
+
+### API (automated CI → VPS)
 
 GitHub Actions runs `./mvnw test`, builds the Docker image, and pushes to GHCR on push to `master`.
 
@@ -66,16 +69,27 @@ GitHub Actions runs `./mvnw test`, builds the Docker image, and pushes to GHCR o
 
 | Secret | Purpose |
 |--------|---------|
-| `GHCR_TOKEN` | Push container image to GitHub Container Registry |
 | `DEPLOY_WEBHOOK_URL` | POST URL on VPS to pull and restart API after image push |
-| `DEPLOY_WEBHOOK_SECRET` | Optional shared secret for webhook authentication |
+| `DEPLOY_WEBHOOK_SECRET` | Shared secret sent as `X-Deploy-Secret` header |
 
-Production deploy is triggered by the CI webhook; VPS runs `docker compose pull && up -d` (manual setup documented in `newdocs/en/engineering-and-operations/development-process.md`).
+GHCR push uses the built-in `GITHUB_TOKEN` (no extra PAT required for public repos).
+
+**VPS setup:** see [`deploy/README.md`](deploy/README.md) — copy `deploy/.env.example` → `.env`, run `./deploy.sh`.
+
+Order: **deploy API first**, then store client release.
+
+### Client (manual store release)
+
+1. Set `client/.env.production` → `VITE_API_URL=https://api.your-domain`
+2. `npm run build:store` (production Vite build + Capacitor sync with HTTPS scheme)
+3. Sign and upload in Android Studio / Xcode
+
+Full checklist: [`client/STORE_RELEASE.md`](client/STORE_RELEASE.md)
 
 ## Stack
 
 - **API:** Java 21, Spring Boot 3.5, Maven, Hibernate, Flyway, PostgreSQL 16
 - **Client:** Node 22, TypeScript 5.7, React 19, Vite 6, Capacitor 7
-- **Infra:** Docker Compose, GitHub Actions → GHCR → VPS webhook
+- **Infra:** Docker Compose, GitHub Actions → GHCR → VPS webhook, Caddy TLS
 
 See [`newdocs/en/engineering-and-operations/tools.md`](newdocs/en/engineering-and-operations/tools.md) for the full inventory.

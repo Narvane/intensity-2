@@ -18,6 +18,8 @@ management:
       show-details: never
 
 intensity:
+  jwt:
+    secret: ${INTENSITY_JWT_SECRET}
   cors:
     allowed-origin-patterns:
       - https://localhost

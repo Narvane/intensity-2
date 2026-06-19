@@ -25,6 +25,7 @@ Thumbs.db
 .env.local
 .env.production.local
 api/.env
+deploy/.env
 
 # Logs
 *.log
