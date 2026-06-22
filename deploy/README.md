@@ -54,7 +54,7 @@ Production stack per **DT-07** and **DT-08**: Caddy (TLS) + Spring Boot API + Po
 On push to `master`, GitHub Actions builds the Docker image, pushes to GHCR, and POSTs to `DEPLOY_WEBHOOK_URL`:
 
 ```json
-{ "image": "ghcr.io/owner/intesity-2/api", "sha": "<commit-sha>" }
+{ "image": "ghcr.io/owner/intensity/api", "sha": "<commit-sha>" }
 ```
 
 ### Option A — Manual pull (simplest)
@@ -69,7 +69,7 @@ cd /opt/intensity/deploy
 Or pin a specific SHA:
 
 ```bash
-./deploy.sh ghcr.io/owner/intesity-2/api abc123def456
+./deploy.sh ghcr.io/owner/intensity/api abc123def456
 ```
 
 ### Option B — Webhook listener
@@ -101,7 +101,7 @@ Restrict port 9000 to GitHub Actions egress or protect with a reverse proxy + se
 Pin the previous image tag in `.env`:
 
 ```env
-API_IMAGE=ghcr.io/owner/intesity-2/api:PREVIOUS_SHA
+API_IMAGE=ghcr.io/owner/intensity/api:PREVIOUS_SHA
 ```
 
 Then run `./deploy.sh`.
