@@ -1,0 +1,378 @@
+# Intensity — Central reference map
+#
+# Convention
+# ----------
+# - Stable identifier: `id` (kebab-case). Only `path` changes when files move.
+# - Cite in Markdown prose: `@ref:<id>` (backticks optional).
+# - Human-clickable links: keep standard `[label](path)` where the path matches
+#   the `path` field below (resolve from this file when moving artifacts).
+# - Agents: consult this map before citing repo documents (`agents/write-task.md`,
+#   `agents/order-backlog.md`).
+#
+# Validation
+# ----------
+#   python3 scripts/validate-refs.py
+#
+# Registers every English spec document plus pt-br/it equivalents, entry points,
+# and folders used by the development plan and agents.
+
+version: 1
+
+validate:
+  scan_files:
+    - README.md
+    - plano-desenvolvimento-ia.md
+    - plano-desenvolvimento-unificado.md
+    - backlog.md
+    - client/STORE_RELEASE.md
+    - openapi/openapi.yaml
+    - agents/write-task.md
+    - agents/order-backlog.md
+    - docs/en/engineering-and-operations/tools.md
+
+entries:
+  # --- Entry points & meta ---
+  - id: readme
+    path: README.md
+    label: Repository README
+    role: entrypoint
+
+  - id: backlog
+    path: backlog.md
+    label: Product backlog
+    role: backlog
+
+  - id: plano-desenvolvimento-ia
+    path: plano-desenvolvimento-ia.md
+    label: AI development plan (MVP slices)
+    role: operational-plan
+
+  - id: plano-desenvolvimento-unificado
+    path: plano-desenvolvimento-unificado.md
+    label: Unified post-MVP development plan
+    role: operational-plan
+
+  - id: refs
+    path: docs/refs.yaml
+    label: This reference map
+    role: metadata
+
+  - id: agents-write-task
+    path: agents/write-task.md
+    label: Agent — write backlog tasks
+    role: agent
+
+  - id: agents-order-backlog
+    path: agents/order-backlog.md
+    label: Agent — order backlog
+    role: agent
+
+  - id: store-release
+    path: client/STORE_RELEASE.md
+    label: Store release checklist
+    role: engineering
+
+  - id: openapi
+    path: openapi/openapi.yaml
+    label: OpenAPI REST v1 contract
+    role: contract
+
+  - id: deploy-readme
+    path: deploy/README.md
+    label: VPS production deploy guide
+    role: engineering
+
+  # --- Logical folders ---
+  - id: docs-en
+    path: docs/en
+    label: Canonical product & engineering spec (English)
+    role: spec-canonical
+    locale: en
+
+  - id: docs-pt-br
+    path: docs/pt-br
+    label: Product spec (Portuguese Brazil)
+    role: spec-translation
+    locale: pt-br
+
+  - id: docs-it
+    path: docs/it
+    label: Product spec (Italian)
+    role: spec-translation
+    locale: it
+
+  # --- Layer 1: Product conception (en) ---
+  - id: en-overview-what-is-it
+    path: docs/en/product-conception/overview-what-is-it.md
+    label: Overview — what is Intensity
+    locale: en
+    layer: product-conception
+
+  - id: en-how-it-works
+    path: docs/en/product-conception/how-it-works.md
+    label: How it works
+    locale: en
+    layer: product-conception
+
+  - id: en-principles-why-it-works-this-way
+    path: docs/en/product-conception/principles-why-it-works-this-way.md
+    label: Principles — why it works this way
+    locale: en
+    layer: product-conception
+
+  # --- Layer 2: Solution specification (en) ---
+  - id: en-data-model
+    path: docs/en/solution-specification/data-model.md
+    label: Data model
+    locale: en
+    layer: solution-specification
+
+  - id: en-experience-and-identity
+    path: docs/en/solution-specification/experience-and-identity.md
+    label: Experience and identity
+    locale: en
+    layer: solution-specification
+
+  - id: en-functional-components
+    path: docs/en/solution-specification/functional-components.md
+    label: Functional components
+    locale: en
+    layer: solution-specification
+
+  - id: en-design-system
+    path: docs/en/solution-specification/design-system.md
+    label: Design system
+    locale: en
+    layer: solution-specification
+
+  # --- Layer 3: Solution architecture (en) ---
+  - id: en-architectural-decisions
+    path: docs/en/solution-architecture/architectural-decisions.md
+    label: Architectural decisions (ADRs)
+    locale: en
+    layer: solution-architecture
+
+  - id: en-artifacts
+    path: docs/en/solution-architecture/artifacts.md
+    label: Artifacts
+    locale: en
+    layer: solution-architecture
+
+  - id: en-integrations-and-communication
+    path: docs/en/solution-architecture/integrations-and-communication.md
+    label: Integrations and communication
+    locale: en
+    layer: solution-architecture
+
+  - id: en-platforms-and-environments
+    path: docs/en/solution-architecture/platforms-and-environments.md
+    label: Platforms and environments
+    locale: en
+    layer: solution-architecture
+
+  # --- Layer 4: Engineering and operations (en) ---
+  - id: en-development-process
+    path: docs/en/engineering-and-operations/development-process.md
+    label: Development process
+    locale: en
+    layer: engineering-and-operations
+
+  - id: en-technical-decisions
+    path: docs/en/engineering-and-operations/technical-decisions.md
+    label: Technical decisions (DTs)
+    locale: en
+    layer: engineering-and-operations
+
+  - id: en-team-and-responsibilities
+    path: docs/en/engineering-and-operations/team-and-responsibilities.md
+    label: Team and responsibilities
+    locale: en
+    layer: engineering-and-operations
+
+  - id: en-tools
+    path: docs/en/engineering-and-operations/tools.md
+    label: Tools inventory
+    locale: en
+    layer: engineering-and-operations
+
+  # --- pt-br (structural parity) ---
+  - id: pt-br-overview-what-is-it
+    path: docs/pt-br/product-conception/overview-what-is-it.md
+    label: Visão geral — o que é o Intensity
+    locale: pt-br
+    layer: product-conception
+
+  - id: pt-br-how-it-works
+    path: docs/pt-br/product-conception/how-it-works.md
+    label: Como funciona
+    locale: pt-br
+    layer: product-conception
+
+  - id: pt-br-principles-why-it-works-this-way
+    path: docs/pt-br/product-conception/principles-why-it-works-this-way.md
+    label: Princípios — por que funciona assim
+    locale: pt-br
+    layer: product-conception
+
+  - id: pt-br-data-model
+    path: docs/pt-br/solution-specification/data-model.md
+    label: Modelo de dados
+    locale: pt-br
+    layer: solution-specification
+
+  - id: pt-br-experience-and-identity
+    path: docs/pt-br/solution-specification/experience-and-identity.md
+    label: Experiência e identidade
+    locale: pt-br
+    layer: solution-specification
+
+  - id: pt-br-functional-components
+    path: docs/pt-br/solution-specification/functional-components.md
+    label: Componentes funcionais
+    locale: pt-br
+    layer: solution-specification
+
+  - id: pt-br-design-system
+    path: docs/pt-br/solution-specification/design-system.md
+    label: Design system
+    locale: pt-br
+    layer: solution-specification
+
+  - id: pt-br-architectural-decisions
+    path: docs/pt-br/solution-architecture/architectural-decisions.md
+    label: Decisões arquiteturais
+    locale: pt-br
+    layer: solution-architecture
+
+  - id: pt-br-artifacts
+    path: docs/pt-br/solution-architecture/artifacts.md
+    label: Artefatos
+    locale: pt-br
+    layer: solution-architecture
+
+  - id: pt-br-integrations-and-communication
+    path: docs/pt-br/solution-architecture/integrations-and-communication.md
+    label: Integrações e comunicação
+    locale: pt-br
+    layer: solution-architecture
+
+  - id: pt-br-platforms-and-environments
+    path: docs/pt-br/solution-architecture/platforms-and-environments.md
+    label: Plataformas e ambientes
+    locale: pt-br
+    layer: solution-architecture
+
+  - id: pt-br-development-process
+    path: docs/pt-br/engineering-and-operations/development-process.md
+    label: Processo de desenvolvimento
+    locale: pt-br
+    layer: engineering-and-operations
+
+  - id: pt-br-technical-decisions
+    path: docs/pt-br/engineering-and-operations/technical-decisions.md
+    label: Decisões técnicas
+    locale: pt-br
+    layer: engineering-and-operations
+
+  - id: pt-br-team-and-responsibilities
+    path: docs/pt-br/engineering-and-operations/team-and-responsibilities.md
+    label: Equipe e responsabilidades
+    locale: pt-br
+    layer: engineering-and-operations
+
+  - id: pt-br-tools
+    path: docs/pt-br/engineering-and-operations/tools.md
+    label: Inventário de ferramentas
+    locale: pt-br
+    layer: engineering-and-operations
+
+  # --- it (structural parity) ---
+  - id: it-overview-what-is-it
+    path: docs/it/product-conception/overview-what-is-it.md
+    label: Panoramica — cos'è Intensity
+    locale: it
+    layer: product-conception
+
+  - id: it-how-it-works
+    path: docs/it/product-conception/how-it-works.md
+    label: Come funziona
+    locale: it
+    layer: product-conception
+
+  - id: it-principles-why-it-works-this-way
+    path: docs/it/product-conception/principles-why-it-works-this-way.md
+    label: Principi — perché funziona così
+    locale: it
+    layer: product-conception
+
+  - id: it-data-model
+    path: docs/it/solution-specification/data-model.md
+    label: Modello dati
+    locale: it
+    layer: solution-specification
+
+  - id: it-experience-and-identity
+    path: docs/it/solution-specification/experience-and-identity.md
+    label: Esperienza e identità
+    locale: it
+    layer: solution-specification
+
+  - id: it-functional-components
+    path: docs/it/solution-specification/functional-components.md
+    label: Componenti funzionali
+    locale: it
+    layer: solution-specification
+
+  - id: it-design-system
+    path: docs/it/solution-specification/design-system.md
+    label: Design system
+    locale: it
+    layer: solution-specification
+
+  - id: it-architectural-decisions
+    path: docs/it/solution-architecture/architectural-decisions.md
+    label: Decisioni architetturali
+    locale: it
+    layer: solution-architecture
+
+  - id: it-artifacts
+    path: docs/it/solution-architecture/artifacts.md
+    label: Artefatti
+    locale: it
+    layer: solution-architecture
+
+  - id: it-integrations-and-communication
+    path: docs/it/solution-architecture/integrations-and-communication.md
+    label: Integrazioni e comunicazione
+    locale: it
+    layer: solution-architecture
+
+  - id: it-platforms-and-environments
+    path: docs/it/solution-architecture/platforms-and-environments.md
+    label: Piattaforme e ambienti
+    locale: it
+    layer: solution-architecture
+
+  - id: it-development-process
+    path: docs/it/engineering-and-operations/development-process.md
+    label: Processo di sviluppo
+    locale: it
+    layer: engineering-and-operations
+
+  - id: it-technical-decisions
+    path: docs/it/engineering-and-operations/technical-decisions.md
+    label: Decisioni tecniche
+    locale: it
+    layer: engineering-and-operations
+
+  - id: it-team-and-responsibilities
+    path: docs/it/engineering-and-operations/team-and-responsibilities.md
+    label: Team e responsabilità
+    locale: it
+    layer: engineering-and-operations
+
+  - id: it-tools
+    path: docs/it/engineering-and-operations/tools.md
+    label: Inventario strumenti
+    locale: it
+    layer: engineering-and-operations

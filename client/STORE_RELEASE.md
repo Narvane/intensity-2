@@ -2,7 +2,7 @@
 
 Manual release path for Google Play (AAB) and Apple App Store (IPA). Run **after** the production API is deployed.
 
-Ref: `newdocs/en/engineering-and-operations/development-process.md` · manual BDD in `newdocs/plano-desenvolvimento-ia.md` §8.
+Ref: @ref:en-development-process · manual BDD in @ref:plano-desenvolvimento-ia §8.
 
 ## 1. Pre-release configuration
 
@@ -64,4 +64,4 @@ Run on **production API** with test allowlist accounts:
 ## Rollback
 
 - **Client:** halt staged rollout in Play Console / App Store Connect; previous build remains available
-- **API:** pin previous GHCR SHA in `deploy/.env` and run `./deploy.sh` (see `deploy/README.md`)
+- **API:** pin previous GHCR SHA in `deploy/.env` and run `./deploy.sh` (see @ref:deploy-readme)

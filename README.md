@@ -2,8 +2,9 @@
 
 Mobile app for collecting experiences and running shared draw rituals in groups.
 
-**Canonical specification:** [`newdocs/en/`](newdocs/en/)  
-**Development plan (slices, DoR/DoD):** [`newdocs/plano-desenvolvimento-ia.md`](newdocs/plano-desenvolvimento-ia.md)
+**Canonical specification:** @ref:docs-en — [docs/en/](docs/en/)  
+**Development plan (slices, DoR/DoD):** @ref:plano-desenvolvimento-ia — [plano-desenvolvimento-ia.md](plano-desenvolvimento-ia.md)  
+**Reference map:** @ref:refs (`docs/refs.yaml`)
 
 ## Prerequisites
 
@@ -21,7 +22,8 @@ Mobile app for collecting experiences and running shared draw rituals in groups.
 ├── client/       React + Capacitor mobile app
 ├── deploy/       Production VPS stack (Compose + Caddy + webhook)
 ├── openapi/      Contract-first OpenAPI v1
-└── newdocs/      Product and engineering documentation
+├── docs/         Product and engineering documentation (@ref:docs-en)
+└── plano-desenvolvimento-ia.md  AI development plan (@ref:plano-desenvolvimento-ia)
 ```
 
 ## Local development
@@ -74,7 +76,7 @@ GitHub Actions runs `./mvnw test`, builds the Docker image, and pushes to GHCR o
 
 GHCR push uses the built-in `GITHUB_TOKEN` (no extra PAT required for public repos).
 
-**VPS setup:** see [`deploy/README.md`](deploy/README.md) — copy `deploy/.env.example` → `.env`, run `./deploy.sh`.
+**VPS setup:** see @ref:deploy-readme — [deploy/README.md](deploy/README.md) — copy `deploy/.env.example` → `.env`, run `./deploy.sh`.
 
 Order: **deploy API first**, then store client release.
 
@@ -84,7 +86,7 @@ Order: **deploy API first**, then store client release.
 2. `npm run build:store` (production Vite build + Capacitor sync with HTTPS scheme)
 3. Sign and upload in Android Studio / Xcode
 
-Full checklist: [`client/STORE_RELEASE.md`](client/STORE_RELEASE.md)
+Full checklist: @ref:store-release — [client/STORE_RELEASE.md](client/STORE_RELEASE.md)
 
 ## Stack
 
@@ -92,4 +94,6 @@ Full checklist: [`client/STORE_RELEASE.md`](client/STORE_RELEASE.md)
 - **Client:** Node 22, TypeScript 5.7, React 19, Vite 6, Capacitor 7
 - **Infra:** Docker Compose, GitHub Actions → GHCR → VPS webhook, Caddy TLS
 
-See [`newdocs/en/engineering-and-operations/tools.md`](newdocs/en/engineering-and-operations/tools.md) for the full inventory.
+See @ref:en-tools — [tools inventory](docs/en/engineering-and-operations/tools.md) for the full stack.
+
+Validate doc references: `python3 scripts/validate-refs.py`

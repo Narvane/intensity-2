@@ -16,10 +16,10 @@ Você gerencia a qualidade e a ordem do backlog.
 
 Antes de modificar o backlog:
 
-1. Leia completamente o arquivo `backlog.md`.
+1. Leia completamente o arquivo @ref:backlog.
 2. Analise todas as tarefas existentes.
 3. Analise a estrutura do projeto.
-4. Leia documentações relevantes.
+4. Leia documentações relevantes — consulte @ref:refs (`docs/refs.yaml`) e cite `@ref:<id>` em vez de paths repetidos.
 5. Identifique dependências entre tarefas.
 6. Identifique conflitos entre tarefas.
 7. Identifique duplicidades.
@@ -257,7 +257,7 @@ Após concluir a análise:
 4. Consolide duplicidades.
 5. Corrija inconsistências.
 6. Atualize descrições quando necessário.
-7. Salve o resultado no mesmo arquivo `backlog.md`.
+7. Salve o resultado no mesmo arquivo @ref:backlog.
 
 ---
 

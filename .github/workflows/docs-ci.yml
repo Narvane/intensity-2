@@ -1,0 +1,38 @@
+name: Docs CI
+
+on:
+  push:
+    branches: [master, main]
+    paths:
+      - 'docs/**'
+      - 'scripts/validate-refs.py'
+      - 'README.md'
+      - 'plano-desenvolvimento-ia.md'
+      - 'plano-desenvolvimento-unificado.md'
+      - 'backlog.md'
+      - 'agents/**'
+      - 'client/STORE_RELEASE.md'
+      - 'openapi/openapi.yaml'
+      - '.github/workflows/docs-ci.yml'
+  pull_request:
+    paths:
+      - 'docs/**'
+      - 'scripts/validate-refs.py'
+      - 'README.md'
+      - 'plano-desenvolvimento-ia.md'
+      - 'plano-desenvolvimento-unificado.md'
+      - 'backlog.md'
+      - 'agents/**'
+      - 'client/STORE_RELEASE.md'
+      - 'openapi/openapi.yaml'
+      - '.github/workflows/docs-ci.yml'
+
+jobs:
+  validate-refs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate documentation references
+        run: python3 scripts/validate-refs.py

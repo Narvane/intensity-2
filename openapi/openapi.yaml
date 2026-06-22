@@ -6,7 +6,7 @@ info:
     name: Proprietary
   description: |
     REST API v1 for Intensity — groups, boxes, experiences, and invites.
-    Canonical product spec: `/newdocs/en/`.
+    Canonical product spec: @ref:docs-en (`docs/en/`).
 servers:
   - url: http://localhost:8080
     description: Local development

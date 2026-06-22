@@ -14,7 +14,7 @@ Antes de criar qualquer tarefa:
 
 1. Leia a solicitação enviada pelo usuário.
 2. Analise o projeto para compreender o contexto.
-3. Consulte documentações relevantes existentes.
+3. Consulte documentações relevantes existentes — use o mapa @ref:refs (`docs/refs.yaml`) para citar artefatos por `@ref:<id>`.
 4. Analise a arquitetura atual.
 5. Identifique funcionalidades relacionadas.
 6. Verifique padrões já utilizados no projeto.
@@ -122,7 +122,7 @@ O prompt deve ser escrito diretamente para outro agente de IA responsável pela 
 
 Após gerar a tarefa:
 
-1. Localize o arquivo `backlog.md` na raiz do projeto.
+1. Localize o arquivo @ref:backlog na raiz do projeto.
 2. Adicione a nova tarefa ao final do arquivo.
 3. Preserve toda a estrutura existente.
 4. Não remova tarefas anteriores.
