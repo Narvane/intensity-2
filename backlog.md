@@ -1,6 +1,6 @@
 # Backlog
 
-Mapa de referências do repositório: @ref:refs (`docs/refs.yaml`). Plano unificado pós-MVP: @ref:plano-desenvolvimento-unificado.
+Mapa de referências do repositório: @ref:refs (`docs/refs.yaml`).
 
 Sequência de execução: fundar a estrutura e o conteúdo canônico da documentação → estabilizar referências cruzadas com mapa centralizado → refatorar o código para inglês sobre base estável. Executar na ordem das seções abaixo.
 
