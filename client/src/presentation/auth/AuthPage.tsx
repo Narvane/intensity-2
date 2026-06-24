@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ApiError } from '@adapters/api/ApiClient';
+import { createDefaultPendingInviteAdapter } from '@adapters/invite/PendingInvitePreferencesAdapter';
 import { createApiClient, createDefaultSessionAdapter, useSession } from '@app/SessionProvider';
 import {
   LoginExperienceBoxUseCase,
@@ -8,6 +9,11 @@ import {
   RegisterParticipantUseCase,
   ValidateInviteCodeFormatUseCase,
 } from '@domain/auth/authUseCases';
+import {
+  getMemoryPendingReturnPath,
+  hydratePendingInvite,
+  resolvePostAuthDestination,
+} from '@domain/invite/pendingInvite';
 import { HelpCircle } from 'lucide-react';
 import { useI18n } from '../../i18n/I18nContext';
 import { BrandMark } from '../components/BrandMark';
@@ -37,6 +43,7 @@ export function AuthPage() {
   const { refresh } = useSession();
   const api = useMemo(() => createApiClient(), []);
   const sessionPort = useMemo(() => createDefaultSessionAdapter(), []);
+  const pendingInvitePort = useMemo(() => createDefaultPendingInviteAdapter(), []);
 
   const registerUseCase = useMemo(
     () => new RegisterParticipantUseCase(api, sessionPort),
@@ -65,6 +72,7 @@ export function AuthPage() {
     password: '',
   });
   const [inviteCode, setInviteCode] = useState('');
+  const [pendingReturnPath, setPendingReturnPath] = useState<string | null>(null);
 
   useEffect(() => {
     if (authState.panel) {
@@ -72,12 +80,24 @@ export function AuthPage() {
     }
   }, [authState.panel]);
 
-  const afterAuthNavigate = () => {
+  useEffect(() => {
     if (authState.returnTo) {
-      navigate(authState.returnTo, { replace: true });
+      setPendingReturnPath(authState.returnTo);
       return;
     }
-    navigate('/groups', { replace: true });
+
+    void hydratePendingInvite(pendingInvitePort).then((pending) => {
+      if (pending?.returnPath) {
+        setPendingReturnPath(pending.returnPath);
+      }
+    });
+  }, [authState.returnTo, pendingInvitePort]);
+
+  const resolveExperiencesDestination = () =>
+    resolvePostAuthDestination(authState.returnTo, pendingReturnPath ?? getMemoryPendingReturnPath());
+
+  const afterAuthNavigate = () => {
+    navigate(resolveExperiencesDestination(), { replace: true });
   };
 
   const handleError = (err: unknown) => {
@@ -98,11 +118,7 @@ export function AuthPage() {
     try {
       await loginExperiencesUseCase.execute(experiencesForm);
       await refresh();
-      if (authState.returnTo) {
-        navigate(authState.returnTo, { replace: true });
-        return;
-      }
-      navigate('/groups');
+      navigate(resolveExperiencesDestination(), { replace: true });
     } catch (err) {
       handleError(err);
     } finally {
