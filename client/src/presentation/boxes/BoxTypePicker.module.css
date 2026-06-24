@@ -1,0 +1,110 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.45rem;
+  min-height: 8.5rem;
+  padding: 0.85rem;
+  border: 3px solid transparent;
+  border-radius: var(--radius-card);
+  background: var(--surface);
+  color: var(--color-text);
+  box-shadow: var(--shadow-soft);
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  transition: transform 0.16s ease, border-color 0.16s ease, background 0.16s ease;
+}
+
+.card:active {
+  transform: scale(0.98);
+}
+
+.card[data-selected='true'] {
+  transform: scale(1.02);
+  border-color: color-mix(in srgb, var(--box-color) 55%, white);
+  background: var(--box-color);
+  color: var(--box-ink, #fff);
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--box-color) 35%, transparent);
+}
+
+.card[data-family='friends'] {
+  --box-color: var(--teal);
+}
+
+.card[data-family='couple'] {
+  --box-color: var(--coral);
+}
+
+.card[data-family='growth'] {
+  --box-color: var(--purple);
+}
+
+.card[data-family='connection'] {
+  --box-color: var(--yellow);
+  --box-ink: var(--text);
+}
+
+.familyBadge {
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-chip);
+  background: color-mix(in srgb, var(--box-color) 18%, white);
+  color: var(--box-color);
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.card[data-selected='true'] .familyBadge {
+  background: rgba(255, 255, 255, 0.28);
+  color: inherit;
+}
+
+.iconWrap {
+  width: 2.65rem;
+  height: 2.65rem;
+  border-radius: 1rem;
+  display: grid;
+  place-items: center;
+  background: color-mix(in srgb, var(--box-color) 16%, white);
+  color: var(--box-color);
+}
+
+.card[data-selected='true'] .iconWrap {
+  background: rgba(255, 255, 255, 0.28);
+  color: inherit;
+}
+
+.iconWrap svg {
+  width: 1.45rem;
+  height: 1.45rem;
+  stroke-width: 2.35;
+}
+
+.title {
+  font-size: 0.92rem;
+  line-height: 1.2;
+}
+
+.hint {
+  font-size: 0.78rem;
+  line-height: 1.35;
+  color: var(--color-text-muted);
+}
+
+.card[data-selected='true'] .hint {
+  color: inherit;
+  opacity: 0.9;
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--box-color);
+  outline-offset: 2px;
+}
