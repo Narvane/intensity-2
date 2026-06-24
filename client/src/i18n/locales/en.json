@@ -61,8 +61,8 @@
     "tabsLabel": "Authentication modes",
     "loading": "Signing in…",
     "tabs": {
-      "experiences": "Experiences",
-      "experienceBox": "Experience Box",
+      "experiences": "Create experiences",
+      "experienceBox": "Draw",
       "register": "Register",
       "invite": "Invite code"
     },

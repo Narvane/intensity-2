@@ -61,8 +61,8 @@
     "tabsLabel": "Modalità di autenticazione",
     "loading": "Accesso…",
     "tabs": {
-      "experiences": "Experiences",
-      "experienceBox": "Experience Box",
+      "experiences": "Crea esperienze",
+      "experienceBox": "Sorteggio",
       "register": "Registrazione",
       "invite": "Codice invito"
     },
