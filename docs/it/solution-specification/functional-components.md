@@ -185,7 +185,7 @@ Elenca scatole nel gruppo selezionato. Stato vuoto: "Crea una scatola insieme in
 
 ### Elenco esperienze
 
-Mostra contributi nella scatola attiva. Propri elementi: testo completo, modifica, elimina. Elementi altrui: solo riepilogo intensità + sigillo (nessuna descrizione). Azioni: crea (+), toggle anteprima rivelazione per propri elementi, logout, indietro.
+Mostra contributi nella scatola attiva. Propri elementi: intensità, parametri e sigillo sempre visibili; descrizione e riflessione rivelabili dall'autore tramite icona occhio; modifica ed elimina nel piè di pagina della carta. Elementi altrui: solo riepilogo intensità + sigillo (nessuna descrizione). Azioni pagina: crea (+), logout, indietro.
 
 **Modifica esperienza:** l'autore apre modifica dal menu elemento → stessi campi dell'assistente (pre-compilati) → salva.
 

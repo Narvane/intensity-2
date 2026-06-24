@@ -11,6 +11,7 @@ import {
 import { CreateInviteUseCase } from '@domain/invite/inviteUseCases';
 import { useI18n } from '../../i18n/I18nContext';
 import { Button } from '../components/Button';
+import { NavButton } from '../components/NavButton';
 import styles from './ShareInviteSheet.module.css';
 
 interface ShareInviteSheetProps {
@@ -109,9 +110,7 @@ export function ShareInviteSheet({ open, groupId, token, onClose }: ShareInviteS
       >
         <header className={styles.header}>
           <h2 id="share-invite-title">{t('invite.share.title')}</h2>
-          <Button ref={closeButtonRef} variant="ghost" onClick={onClose}>
-            {t('invite.share.close')}
-          </Button>
+          <NavButton ref={closeButtonRef} action="close" onClick={onClose} />
         </header>
 
         {loading && <p>{t('common.loading')}</p>}

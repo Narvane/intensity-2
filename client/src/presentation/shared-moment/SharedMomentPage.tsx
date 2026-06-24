@@ -22,6 +22,8 @@ import {
 import { SlidersHorizontal, Sparkles } from 'lucide-react';
 import { useI18n } from '../../i18n/I18nContext';
 import { Button } from '../components/Button';
+import { NavButton } from '../components/NavButton';
+import { ScreenHeader } from '../components/ScreenHeader';
 import { SessionModeChrome } from '../components/SessionModeChrome';
 import { RatingScale } from '../components/RatingScale';
 import { DrawResultCard } from './DrawResultCard';
@@ -138,21 +140,16 @@ export function SharedMomentPage() {
       <p className="srOnly" aria-live="polite" aria-atomic="true">
         {statusMessage}
       </p>
-      <header className={styles.header}>
+      <ScreenHeader
+        leading={<NavButton action="back" onClick={() => navigate('/box-home')} />}
+        trailing={<NavButton action="logout" onClick={() => void logout()} />}
+      >
         <SessionModeChrome
           mode="EXPERIENCE_BOX"
           title={boxName}
           members={session?.members}
         />
-        <div className={styles.headerActions}>
-          <Button variant="ghost" onClick={() => navigate('/box-home')}>
-            {t('common.back')}
-          </Button>
-          <Button variant="ghost" onClick={() => void logout()}>
-            {t('session.logout')}
-          </Button>
-        </div>
-      </header>
+      </ScreenHeader>
 
       <p className={styles.drawsRemaining}>
         {t('session.drawsRemaining', { count: drawsLeft })}

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useI18n } from '../../i18n/I18nContext';
-import { Button } from '../components/Button';
+import { NavButton } from '../components/NavButton';
 import styles from './QuickGuideOverlay.module.css';
 
 interface QuickGuideOverlayProps {
@@ -51,14 +51,7 @@ export function QuickGuideOverlay({ open, onClose }: QuickGuideOverlayProps) {
       >
         <header className={styles.header}>
           <h2 id="quick-guide-title">{t('quickGuide.title')}</h2>
-          <Button
-            ref={closeButtonRef}
-            variant="ghost"
-            onClick={onClose}
-            aria-label={t('quickGuide.close')}
-          >
-            {t('quickGuide.close')}
-          </Button>
+          <NavButton ref={closeButtonRef} action="close" onClick={onClose} />
         </header>
 
         <div className={styles.content}>

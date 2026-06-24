@@ -18,6 +18,8 @@ import {
 import type { ExperienceSuggestion } from '../../content/suggestion-packs';
 import { useI18n } from '../../i18n/I18nContext';
 import { Button } from '../components/Button';
+import { NavButton } from '../components/NavButton';
+import { ScreenHeader } from '../components/ScreenHeader';
 import { IntegritySeal } from '../components/IntegritySeal';
 import { ParameterStarField } from '../components/ParameterStarField';
 import { RatingScale } from '../components/RatingScale';
@@ -160,15 +162,16 @@ export function CreationAssistant({
   return (
     <div className={styles.backdrop} role="dialog" aria-modal="true">
       <section className={styles.panel}>
-        <header className={styles.header}>
-          <Button variant="ghost" onClick={onClose}>
-            {t('common.back')}
-          </Button>
-          <h2>{editing ? t('assistant.editTitle') : t('assistant.title')}</h2>
-          <p className={styles.stepLabel}>
-            {t('assistant.stepIndicator', { current: step, total: STEP_COUNT })}
-          </p>
-        </header>
+        <ScreenHeader
+          trailing={<NavButton action="close" onClick={onClose} />}
+        >
+          <div className={styles.headerBody}>
+            <h2>{editing ? t('assistant.editTitle') : t('assistant.title')}</h2>
+            <p className={styles.stepLabel}>
+              {t('assistant.stepIndicator', { current: step, total: STEP_COUNT })}
+            </p>
+          </div>
+        </ScreenHeader>
 
         <div className={styles.progress} aria-hidden="true">
           {Array.from({ length: STEP_COUNT }, (_, index) => (
@@ -325,9 +328,7 @@ export function CreationAssistant({
 
         <footer className={styles.footer}>
           {step > 1 && (
-            <Button variant="ghost" onClick={() => setStep((current) => current - 1)}>
-              {t('common.back')}
-            </Button>
+            <NavButton action="back" onClick={() => setStep((current) => current - 1)} />
           )}
 
           {step < STEP_COUNT && (

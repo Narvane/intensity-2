@@ -123,8 +123,16 @@
     "loading": "Carregando…",
     "error": "Algo deu errado. Tente novamente.",
     "back": "Voltar",
+    "close": "Fechar",
     "offlineBanner": "Você está offline. Ações destrutivas ficam desativadas até a conexão voltar.",
     "offlineDestructiveBlocked": "Reconecte-se para confirmar esta ação."
+  },
+  "nav": {
+    "back": "Voltar para a tela anterior",
+    "close": "Fechar",
+    "logout": "Sair da sessão",
+    "help": "Abrir guia rápido",
+    "leave": "Sair do grupo"
   },
   "groups": {
     "title": "Escolha sua turma",
@@ -224,12 +232,11 @@
     "sealLabel": "Selo de integridade",
     "paramsSummary": "Esforço {{effort}} · Abertura {{openness}} · Novidade {{novelty}}",
     "otherSummary": "Carta guardada por {{author}} — intensidade e selo ficam visíveis até a revelação.",
+    "revealDescription": "Mostrar descrição e reflexão",
+    "hideDescription": "Ocultar descrição e reflexão",
     "anonymous": "Membro do grupo",
     "edit": "Editar",
     "delete": "Excluir",
-    "previewToggle": "Prévia como os outros veem",
-    "showFull": "Mostrar texto completo",
-    "previewAsOthers": "Os outros veem só intensidade e selo — assim.",
     "validationError": "Verifique intensidade e parâmetros (níveis 1–5).",
     "notAuthor": "Somente o autor pode editar ou excluir esta experiência.",
     "deleteSuccess": "Experiência excluída.",

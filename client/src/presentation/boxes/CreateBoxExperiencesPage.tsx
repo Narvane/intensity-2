@@ -2,7 +2,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useSession } from '@app/SessionProvider';
 import { useI18n } from '../../i18n/I18nContext';
 import { CreateBoxForm } from './CreateBoxForm';
-import { Button } from '../components/Button';
+import { NavButton } from '../components/NavButton';
+import { ScreenHeader } from '../components/ScreenHeader';
 import { SessionModeChrome } from '../components/SessionModeChrome';
 import styles from './CreateBoxExperiencesPage.module.css';
 
@@ -20,16 +21,15 @@ export function CreateBoxExperiencesPage() {
 
   return (
     <main className={styles.page}>
-      <header className={styles.header}>
+      <ScreenHeader
+        leading={<NavButton action="back" onClick={() => navigate(boxesPath)} />}
+      >
         <SessionModeChrome
           mode="EXPERIENCES"
           title={t('createBox.title')}
           participantDisplayName={session.displayName}
         />
-        <Button variant="ghost" onClick={() => navigate(boxesPath)}>
-          {t('common.back')}
-        </Button>
-      </header>
+      </ScreenHeader>
 
       <p className={styles.intro}>{t('boxes.createIntro')}</p>
 

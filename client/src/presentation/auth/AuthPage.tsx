@@ -15,11 +15,11 @@ import {
   resolvePostAuthDestination,
 } from '@domain/invite/pendingInvite';
 import { consumeExperienceBoxSessionEndReason } from '@domain/session/experienceBoxSessionEnd';
-import { HelpCircle } from 'lucide-react';
 import { useI18n } from '../../i18n/I18nContext';
 import { BrandMark } from '../components/BrandMark';
 import { AuthModeIntro } from '../components/AuthModeIntro';
 import { Button } from '../components/Button';
+import { NavButton } from '../components/NavButton';
 import { QuickGuideOverlay } from '../quick-guide/QuickGuideOverlay';
 import styles from './AuthPage.module.css';
 
@@ -192,14 +192,12 @@ export function AuthPage() {
             size="auth"
             accessibleName={t('app.name')}
           />
-          <Button
-            variant="ghost"
+          <NavButton
+            action="help"
+            iconOnly
             className={styles.helpButton}
-            aria-label={t('auth.helpLabel')}
             onClick={() => setQuickGuideOpen(true)}
-          >
-            <HelpCircle aria-hidden="true" />
-          </Button>
+          />
         </header>
 
         <nav className={styles.tabs} aria-label={t('auth.tabsLabel')}>

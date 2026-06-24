@@ -20,7 +20,7 @@
   box-shadow: var(--shadow-soft);
 }
 
-.header h2 {
+.headerBody h2 {
   margin: 0.35rem 0 0;
   font-size: 1.6rem;
   line-height: 1.1;

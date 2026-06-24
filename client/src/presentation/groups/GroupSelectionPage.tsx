@@ -10,6 +10,8 @@ import { LeaveGroupUseCase, ListGroupsUseCase } from '@domain/box/boxUseCases';
 import { useI18n } from '../../i18n/I18nContext';
 import { ShareInviteSheet } from '../invite/ShareInviteSheet';
 import { Button } from '../components/Button';
+import { NavButton } from '../components/NavButton';
+import { ScreenHeader } from '../components/ScreenHeader';
 import { SessionModeChrome } from '../components/SessionModeChrome';
 import { LeaveGroupDialog } from './LeaveGroupDialog';
 import styles from './GroupSelectionPage.module.css';
@@ -82,16 +84,15 @@ export function GroupSelectionPage() {
 
   return (
     <main className={styles.page}>
-      <header className={styles.header}>
+      <ScreenHeader
+        trailing={<NavButton action="logout" onClick={() => void logout()} />}
+      >
         <SessionModeChrome
           mode="EXPERIENCES"
           title={t('groups.title')}
           participantDisplayName={session?.displayName}
         />
-        <Button variant="ghost" onClick={() => void logout()}>
-          {t('session.logout')}
-        </Button>
-      </header>
+      </ScreenHeader>
 
       {loading && <p className={styles.message}>{t('common.loading')}</p>}
 

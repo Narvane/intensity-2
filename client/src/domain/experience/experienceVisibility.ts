@@ -2,11 +2,6 @@ import type { Experience } from '@domain/experience/experienceTypes';
 
 export type ExperienceViewContext = 'EXPERIENCES_LIST' | 'DRAW_COVER' | 'DRAW_FACE';
 
-export interface ListVisibilityOptions {
-  isAuthor: boolean;
-  previewAsOthers?: boolean;
-}
-
 export function hasFullContent(experience: Experience): boolean {
   return !experience.summaryOnly;
 }
@@ -14,7 +9,6 @@ export function hasFullContent(experience: Experience): boolean {
 export function shouldShowDescription(
   experience: Experience,
   context: ExperienceViewContext,
-  options?: ListVisibilityOptions,
 ): boolean {
   if (context === 'DRAW_COVER') {
     return false;
@@ -28,17 +22,12 @@ export function shouldShowDescription(
     return false;
   }
 
-  if (options?.isAuthor && options.previewAsOthers) {
-    return false;
-  }
-
-  return Boolean(experience.description);
+  return false;
 }
 
 export function shouldShowReflection(
   experience: Experience,
   context: ExperienceViewContext,
-  options?: ListVisibilityOptions,
 ): boolean {
   if (context === 'DRAW_COVER') {
     return false;
@@ -52,17 +41,12 @@ export function shouldShowReflection(
     return false;
   }
 
-  if (options?.isAuthor && options.previewAsOthers) {
-    return false;
-  }
-
-  return Boolean(experience.reflection);
+  return false;
 }
 
 export function isSummaryOnlyView(
   experience: Experience,
   context: ExperienceViewContext,
-  options?: ListVisibilityOptions,
 ): boolean {
   if (context === 'DRAW_COVER') {
     return true;
@@ -72,9 +56,7 @@ export function isSummaryOnlyView(
     return false;
   }
 
-  return (
-    experience.summaryOnly || Boolean(options?.isAuthor && options?.previewAsOthers)
-  );
+  return experience.summaryOnly;
 }
 
 export function canManageExperience(
@@ -82,4 +64,8 @@ export function canManageExperience(
   participantId?: string,
 ): boolean {
   return Boolean(participantId && experience.authorId === participantId);
+}
+
+export function hasRevealableAuthorContent(experience: Experience): boolean {
+  return Boolean(experience.description?.trim() || experience.reflection?.trim());
 }

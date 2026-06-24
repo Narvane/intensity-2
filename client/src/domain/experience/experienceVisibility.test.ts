@@ -3,6 +3,7 @@ import type { Experience } from '@domain/experience/experienceTypes';
 import {
   canManageExperience,
   hasFullContent,
+  hasRevealableAuthorContent,
   isSummaryOnlyView,
   shouldShowDescription,
 } from '@domain/experience/experienceVisibility';
@@ -31,41 +32,21 @@ const otherExperience: Experience = {
 };
 
 describe('experienceVisibility', () => {
-  it('hides description on draw cover', () => {
+  it('hides description on draw cover and shows it on draw face', () => {
     expect(shouldShowDescription(ownExperience, 'DRAW_COVER')).toBe(false);
     expect(shouldShowDescription(ownExperience, 'DRAW_FACE')).toBe(true);
   });
 
-  it('shows full content for author in list', () => {
-    expect(
-      shouldShowDescription(ownExperience, 'EXPERIENCES_LIST', {
-        isAuthor: true,
-      }),
-    ).toBe(true);
-  });
-
-  it('supports preview-as-others for author items', () => {
-    expect(
-      isSummaryOnlyView(ownExperience, 'EXPERIENCES_LIST', {
-        isAuthor: true,
-        previewAsOthers: true,
-      }),
-    ).toBe(true);
-    expect(
-      shouldShowDescription(ownExperience, 'EXPERIENCES_LIST', {
-        isAuthor: true,
-        previewAsOthers: true,
-      }),
-    ).toBe(false);
+  it('keeps list content hidden until the author reveals it in the UI', () => {
+    expect(shouldShowDescription(ownExperience, 'EXPERIENCES_LIST')).toBe(false);
+    expect(isSummaryOnlyView(ownExperience, 'EXPERIENCES_LIST')).toBe(false);
+    expect(hasRevealableAuthorContent(ownExperience)).toBe(true);
   });
 
   it('hides other members content in list', () => {
     expect(hasFullContent(otherExperience)).toBe(false);
-    expect(
-      shouldShowDescription(otherExperience, 'EXPERIENCES_LIST', {
-        isAuthor: false,
-      }),
-    ).toBe(false);
+    expect(shouldShowDescription(otherExperience, 'EXPERIENCES_LIST')).toBe(false);
+    expect(isSummaryOnlyView(otherExperience, 'EXPERIENCES_LIST')).toBe(true);
   });
 
   it('allows manage actions only for author', () => {

@@ -14,6 +14,8 @@ import {
 } from '@domain/experience/experienceUseCases';
 import { useI18n } from '../../i18n/I18nContext';
 import { Button } from '../components/Button';
+import { NavButton } from '../components/NavButton';
+import { ScreenHeader } from '../components/ScreenHeader';
 import { SessionModeChrome } from '../components/SessionModeChrome';
 import { CreationAssistant } from './CreationAssistant';
 import { DeleteExperienceDialog } from './DeleteExperienceDialog';
@@ -98,21 +100,21 @@ export function ExperienceListPage() {
 
   return (
     <main className={styles.page}>
-      <header className={styles.header}>
+      <ScreenHeader
+        leading={
+          <NavButton
+            action="back"
+            onClick={() => navigate(`/groups/${groupId}/boxes`)}
+          />
+        }
+        trailing={<NavButton action="logout" onClick={() => void logout()} />}
+      >
         <SessionModeChrome
           mode="EXPERIENCES"
           title={boxName}
           participantDisplayName={session?.displayName}
         />
-        <div className={styles.headerActions}>
-          <Button variant="ghost" onClick={() => navigate(`/groups/${groupId}/boxes`)}>
-            {t('common.back')}
-          </Button>
-          <Button variant="ghost" onClick={() => void logout()}>
-            {t('session.logout')}
-          </Button>
-        </div>
-      </header>
+      </ScreenHeader>
 
       <p className={styles.transparency}>{t('experiences.transparency')}</p>
 

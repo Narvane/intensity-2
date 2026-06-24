@@ -16,6 +16,7 @@ import {
 import { AcceptInviteUseCase, ValidateInviteUseCase } from '@domain/invite/inviteUseCases';
 import { useI18n } from '../../i18n/I18nContext';
 import { Button } from '../components/Button';
+import { NavButton } from '../components/NavButton';
 import styles from './InvitePreviewPage.module.css';
 
 export function InvitePreviewPage() {
@@ -219,9 +220,11 @@ export function InvitePreviewPage() {
                   </Button>
                 </>
               )}
-              <Button variant="ghost" fullWidth onClick={() => navigate('/auth')}>
-                {t('common.back')}
-              </Button>
+              <NavButton
+                action="back"
+                fullWidth
+                onClick={() => navigate('/auth')}
+              />
             </div>
           </>
         )}

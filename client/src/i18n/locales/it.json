@@ -123,8 +123,16 @@
     "loading": "Caricamento…",
     "error": "Qualcosa è andato storto. Riprova.",
     "back": "Indietro",
+    "close": "Chiudi",
     "offlineBanner": "Sei offline. Le azioni distruttive restano disabilitate finché la connessione non torna.",
     "offlineDestructiveBlocked": "Riconnettiti per confermare questa azione."
+  },
+  "nav": {
+    "back": "Torna indietro",
+    "close": "Chiudi",
+    "logout": "Esci dalla sessione",
+    "help": "Apri guida rapida",
+    "leave": "Lascia il gruppo"
   },
   "groups": {
     "title": "Scegli un gruppo",
@@ -224,12 +232,11 @@
     "sealLabel": "Sigillo di integrità",
     "paramsSummary": "Sforzo {{effort}} · Apertura {{openness}} · Novità {{novelty}}",
     "otherSummary": "Contributo di {{author}} — solo intensità e sigillo fino alla rivelazione.",
+    "revealDescription": "Mostra descrizione e riflessione",
+    "hideDescription": "Nascondi descrizione e riflessione",
     "anonymous": "Membro del gruppo",
     "edit": "Modifica",
     "delete": "Elimina",
-    "previewToggle": "Anteprima come vedono gli altri",
-    "showFull": "Mostra testo completo",
-    "previewAsOthers": "Gli altri vedono solo intensità e sigillo — così.",
     "validationError": "Controlla intensità e parametri (livelli 1–5).",
     "notAuthor": "Solo l'autore può modificare o eliminare questa esperienza.",
     "deleteSuccess": "Esperienza eliminata.",

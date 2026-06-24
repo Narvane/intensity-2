@@ -10,6 +10,8 @@ import { useI18n } from '../../i18n/I18nContext';
 import { ShareInviteSheet } from '../invite/ShareInviteSheet';
 import { BoxCard } from '../components/BoxCard';
 import { Button } from '../components/Button';
+import { NavButton } from '../components/NavButton';
+import { ScreenHeader } from '../components/ScreenHeader';
 import { SessionModeChrome } from '../components/SessionModeChrome';
 import styles from './BoxSelectionPage.module.css';
 
@@ -86,21 +88,18 @@ export function BoxSelectionPage() {
 
   return (
     <main className={styles.page}>
-      <header className={styles.header}>
+      <ScreenHeader
+        leading={
+          <NavButton action="back" onClick={() => navigate('/groups')} />
+        }
+        trailing={<NavButton action="logout" onClick={() => void logout()} />}
+      >
         <SessionModeChrome
           mode="EXPERIENCES"
           title={t('boxes.title')}
           participantDisplayName={session?.displayName}
         />
-        <div className={styles.headerActions}>
-          <Button variant="ghost" onClick={() => navigate('/groups')}>
-            {t('common.back')}
-          </Button>
-          <Button variant="ghost" onClick={() => void logout()}>
-            {t('session.logout')}
-          </Button>
-        </div>
-      </header>
+      </ScreenHeader>
 
       <div className={styles.toolbar}>
         <Button onClick={openCreate}>{t('boxes.create')}</Button>

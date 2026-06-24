@@ -185,7 +185,7 @@ Lists boxes in selected group. Empty state: "Create a box together in Experience
 
 ### Experience list
 
-Shows contributions in active box. Own items: full text, edit, delete. Others' items: intensity + seal summary only (no description). Actions: create (+), toggle reveal preview for own items, logout, back.
+Shows contributions in active box. Own items: intensity, parameters, and seal always visible; description and reflection revealed by the author via eye icon; edit and delete in the card footer. Others' items: intensity + seal summary only (no description). Page actions: create (+), logout, back.
 
 **Edit experience:** author opens edit from item menu → same fields as assistant (pre-filled) → save.
 
