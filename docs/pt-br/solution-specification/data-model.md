@@ -6,7 +6,7 @@ Este documento define o modelo de domínio funcional do Intensity — entidades,
 
 ## Curta
 
-O domínio centra-se em **Participante**, **Grupo**, **Caixinha** e **Experiência**, além de **Resultado de Sorteio** transitório e **Contexto de Sessão** operacional. Um grupo é um conjunto de participantes que compartilham caixinhas; forma-se por login conjunto na Caixa de Experiências ou cresce via **Convite**. Caixinhas contêm experiências; apenas o autor edita ou exclui uma experiência. Caixinhas podem ser **excluídas** no modo Caixa de Experiências, removendo todas as experiências contidas. Resultados de sorteio não são persistidos.
+O domínio centra-se em **Participante**, **Grupo**, **Caixinha** e **Experiência**, além de **Resultado de Sorteio** transitório e **Contexto de Sessão** operacional. Um grupo é um conjunto de participantes que compartilham caixinhas; forma-se por login conjunto na Caixa de Experiências, por **criação no modo Experiences** ou cresce via **Convite**. Participantes sem nenhum grupo ao entrar no Experiences recebem automaticamente um grupo solo. Caixinhas contêm experiências; apenas o autor edita ou exclui uma experiência. Caixinhas podem ser **excluídas** no modo Caixa de Experiências, removendo todas as experiências contidas. Resultados de sorteio não são persistidos.
 
 ---
 
@@ -112,7 +112,9 @@ Representa uma pessoa com login de e-mail único. O registro exige que o e-mail 
 Emerge quando:
 
 1. Dois ou mais participantes se autenticam juntos no modo Caixa de Experiências — se esse conjunto exato ainda não tem grupo, um é criado.
-2. Um participante aceita um convite para um grupo existente.
+2. Um participante **cria um grupo** no modo Experiences (`POST /v1/groups`) — começa só com o criador; pode criar vários grupos.
+3. Um participante aceita um convite para um grupo existente.
+4. Um participante entra no modo Experiences **sem pertencer a nenhum grupo** — a API provisiona automaticamente um grupo solo na primeira listagem.
 
 A membresia é **persistente**: um participante que entrou via convite aparece na seleção de grupo do modo Experiências sem precisar repetir login conjunto. O modo Caixa de Experiências ainda usa login multi-credencial para definir **quem está presente nesta sessão**; todas as credenciais devem pertencer a membros do mesmo grupo, ou a autenticação falha com erro claro de incompatibilidade.
 

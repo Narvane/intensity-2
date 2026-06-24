@@ -177,11 +177,11 @@ Displays: group member first names / display names, invite expiry, accept and ca
 
 ### Group selection (Experiences)
 
-Lists groups where the participant is a member. Empty state points to global invite entry. Each card shows member name preview and a distinct color per group; tap opens box selection. **Invite** and **Leave group** live on box selection, not on this list.
+Lists groups where the participant is a member. Participants with no group receive a solo group automatically. **Create group** adds a new team (starts with just the user; invite inside the group on box selection). Each card shows member name preview and a distinct color per group; tap opens box selection.
 
 ### Box selection (Experiences)
 
-Lists boxes in selected group. Toolbar: create box, **Invite**, **Leave group** (confirm). Empty state: "Create a box together in Experience Box mode." Select box → experience list.
+Lists boxes in selected group. Horizontal pill strip shows every member display name. Toolbar: create box, **Invite**, **Leave group** (confirm). Empty state: "Create a box together in Experience Box mode." Select box → experience list.
 
 ### Experience list
 

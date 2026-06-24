@@ -9,7 +9,7 @@ interface ParameterStarFieldProps {
   value: number;
   onChange?: (value: number) => void;
   showHint?: boolean;
-  layout?: 'picker' | 'cover' | 'inline' | 'list' | 'drawCover';
+  layout?: 'picker' | 'cover' | 'inline' | 'list' | 'listCompact' | 'drawCover';
 }
 
 export function ParameterStarField({
@@ -42,7 +42,7 @@ export function ParameterStarField({
         readOnly={readOnly}
         onChange={onChange}
         size={
-          layout === 'drawCover'
+          layout === 'drawCover' || layout === 'listCompact'
             ? 'xs'
             : layout === 'cover' || layout === 'inline' || layout === 'list'
               ? 'sm'
@@ -60,7 +60,7 @@ export function ParameterStarField({
 
 interface ParameterStarsGroupProps {
   parameters: ExperienceParameters;
-  layout?: 'inline' | 'cover' | 'list' | 'drawCover';
+  layout?: 'inline' | 'cover' | 'list' | 'listCompact' | 'drawCover';
 }
 
 export function ParameterStarsGroup({ parameters, layout = 'inline' }: ParameterStarsGroupProps) {
@@ -70,17 +70,21 @@ export function ParameterStarsGroup({ parameters, layout = 'inline' }: Parameter
       ? styles.drawCoverGroup
       : layout === 'cover'
         ? styles.coverGroup
-        : layout === 'list'
-          ? styles.listGroup
-          : styles.inlineGroup;
+        : layout === 'listCompact'
+          ? styles.listCompactGroup
+          : layout === 'list'
+            ? styles.listGroup
+            : styles.inlineGroup;
   const itemLayout =
     layout === 'drawCover'
       ? 'drawCover'
       : layout === 'cover'
         ? 'cover'
-        : layout === 'list'
-          ? 'list'
-          : 'inline';
+        : layout === 'listCompact'
+          ? 'listCompact'
+          : layout === 'list'
+            ? 'list'
+            : 'inline';
 
   return (
     <div className={groupClass} aria-label={t('intensity.parametersLabel')}>

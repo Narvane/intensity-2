@@ -123,6 +123,21 @@ paths:
                   $ref: '#/components/schemas/Group'
         '401':
           $ref: '#/components/responses/Unauthorized'
+    post:
+      tags: [Groups]
+      summary: Create a solo group for the authenticated participant
+      operationId: createGroup
+      responses:
+        '201':
+          description: Group created with caller as sole member
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
 
   /v1/groups/{groupId}/members:
     parameters:

@@ -6,7 +6,7 @@ This document defines the functional domain model of Intensity — entities, rel
 
 ## Short
 
-The domain centers on **Participant**, **Group**, **Box**, and **Experience**, plus transient **Draw Result** and operational **Session Context**. A group is a set of participants who share boxes; it forms through joint Experience Box login or grows via **Invite**. Boxes contain experiences; only the author edits or deletes an experience. Boxes can be **deleted** in Experience Box mode, removing all contained experiences. Draw results are not persisted.
+The domain centers on **Participant**, **Group**, **Box**, and **Experience**, plus transient **Draw Result** and operational **Session Context**. A group is a set of participants who share boxes; it forms through joint Experience Box login, **creation in Experiences mode**, or grows via **Invite**. Participants with no group when entering Experiences receive a solo group automatically. Boxes contain experiences; only the author edits or deletes an experience. Boxes can be **deleted** in Experience Box mode, removing all contained experiences. Draw results are not persisted.
 
 ---
 
@@ -112,7 +112,9 @@ Represents a person with a unique email login. Registration requires the email t
 Emerges when:
 
 1. Two or more participants authenticate together in Experience Box mode — if that exact set has no group yet, one is created.
-2. A participant accepts an invite to an existing group.
+2. A participant **creates a group** in Experiences mode (`POST /v1/groups`) — starts with only the creator; multiple groups are allowed.
+3. A participant accepts an invite to an existing group.
+4. A participant enters Experiences mode **belonging to no group** — the API auto-provisions a solo group on first listing.
 
 Membership is **persistent**: a participant who joined via invite appears in Experiences mode group selection without needing to repeat joint login. Experience Box mode still uses multi-credential login to define **who is present for this session**; all credentials must belong to members of the same group, or authentication fails with a clear mismatch error.
 

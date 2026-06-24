@@ -200,3 +200,39 @@
   gap: 0.4rem;
   width: 100%;
 }
+
+.listCompact {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.08rem;
+  width: 100%;
+  text-align: left;
+}
+
+.listCompact .icon {
+  width: 1.05rem;
+  height: 1.05rem;
+}
+
+.listCompact .icon svg {
+  width: 0.82rem;
+  height: 0.82rem;
+}
+
+.listCompact .label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.listCompact .rating {
+  justify-content: flex-start;
+}
+
+.listCompactGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.28rem;
+  width: 100%;
+}

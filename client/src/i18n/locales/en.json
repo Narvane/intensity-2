@@ -144,6 +144,15 @@
       "overflow": "{{names}} and +{{count}}"
     },
     "openBoxes": "Open boxes",
+    "create": "Create group",
+    "createSuccess": "Group created.",
+    "membersStrip": "Group members",
+    "createDialog": {
+      "title": "Create a new group?",
+      "message": "The group starts with just you. To invite others, open the group and use Invite on the boxes screen.",
+      "confirm": "Create group",
+      "cancel": "Cancel"
+    },
     "invite": "Invite",
     "leave": "Leave group",
     "leaveSuccess": "You left the group.",

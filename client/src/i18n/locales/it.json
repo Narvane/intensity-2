@@ -144,6 +144,15 @@
       "overflow": "{{names}} e +{{count}}"
     },
     "openBoxes": "Apri scatole",
+    "create": "Crea gruppo",
+    "createSuccess": "Gruppo creato.",
+    "membersStrip": "Membri del gruppo",
+    "createDialog": {
+      "title": "Creare un nuovo gruppo?",
+      "message": "Il gruppo inizia solo con te. Per invitare altre persone, apri il gruppo e usa Invita nella schermata delle scatole.",
+      "confirm": "Crea gruppo",
+      "cancel": "Annulla"
+    },
     "invite": "Invita",
     "leave": "Lascia il gruppo",
     "leaveSuccess": "Hai lasciato il gruppo.",

@@ -144,6 +144,15 @@
       "overflow": "{{names}} e +{{count}}"
     },
     "openBoxes": "Abrir caixinhas",
+    "create": "Criar grupo",
+    "createSuccess": "Grupo criado.",
+    "membersStrip": "Membros do grupo",
+    "createDialog": {
+      "title": "Criar um novo grupo?",
+      "message": "O grupo começa só com você. Para convidar outras pessoas, abra o grupo e use Convidar na tela das caixinhas.",
+      "confirm": "Criar grupo",
+      "cancel": "Cancelar"
+    },
     "invite": "Convidar",
     "leave": "Sair do grupo",
     "leaveSuccess": "Você saiu do grupo.",

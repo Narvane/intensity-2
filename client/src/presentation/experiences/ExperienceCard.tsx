@@ -31,7 +31,7 @@ export function ExperienceCard({
   return (
     <article className={styles.card}>
       <div className={styles.metaRow}>
-        <ExperienceSummaryMeta experience={experience} />
+        <ExperienceSummaryMeta experience={experience} variant="experienceList" />
         {canReveal && (
           <button
             type="button"

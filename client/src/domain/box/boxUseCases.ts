@@ -11,6 +11,14 @@ export class ListGroupsUseCase {
   }
 }
 
+export class CreateGroupUseCase {
+  constructor(private readonly api: ApiClient) {}
+
+  execute(token: string): Promise<Group> {
+    return this.api.post<Group>('/v1/groups', {}, token);
+  }
+}
+
 export class ListBoxesUseCase {
   constructor(private readonly api: ApiClient) {}
 

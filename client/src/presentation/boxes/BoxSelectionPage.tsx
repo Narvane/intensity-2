@@ -5,11 +5,12 @@ import { useAppLogout } from '@app/useAppLogout';
 import { useToast } from '@app/ToastProvider';
 import { useNavigation } from '@app/NavigationProvider';
 import { useSession } from '@app/SessionProvider';
-import type { Box } from '@domain/box/boxTypes';
+import type { Box, GroupMember } from '@domain/box/boxTypes';
 import { LeaveGroupUseCase, ListBoxesUseCase, ListGroupsUseCase } from '@domain/box/boxUseCases';
 import { useI18n } from '../../i18n/I18nContext';
 import { ShareInviteSheet } from '../invite/ShareInviteSheet';
 import { LeaveGroupDialog } from '../groups/LeaveGroupDialog';
+import { GroupMemberPills } from '../components/GroupMemberPills';
 import { BoxCard } from '../components/BoxCard';
 import { Button } from '../components/Button';
 import { NavButton } from '../components/NavButton';
@@ -38,7 +39,7 @@ export function BoxSelectionPage() {
   const leaveGroup = useMemo(() => new LeaveGroupUseCase(api), [api]);
 
   const [boxes, setBoxes] = useState<Box[]>([]);
-  const [groupMemberCount, setGroupMemberCount] = useState(0);
+  const [groupMembers, setGroupMembers] = useState<GroupMember[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [shareOpen, setShareOpen] = useState(false);
@@ -62,7 +63,8 @@ export function BoxSelectionPage() {
         listGroups.execute(session.token),
       ]);
       setBoxes(items);
-      setGroupMemberCount(groups.find((group) => group.id === groupId)?.memberCount ?? 0);
+      const activeGroup = groups.find((group) => group.id === groupId);
+      setGroupMembers(activeGroup?.members ?? []);
     } catch (err: unknown) {
       setError(err instanceof ApiError ? err.message : t('common.error'));
     } finally {
@@ -138,6 +140,14 @@ export function BoxSelectionPage() {
           participantDisplayName={session?.displayName}
         />
       </ScreenHeader>
+
+      {!loading && !error && groupMembers.length > 0 && (
+        <GroupMemberPills
+          members={groupMembers}
+          currentParticipantId={session?.participantId}
+          ariaLabel={t('groups.membersStrip')}
+        />
+      )}
 
       <div className={styles.toolbar}>
         <Button onClick={openCreate}>{t('boxes.create')}</Button>
@@ -220,7 +230,7 @@ export function BoxSelectionPage() {
 
       <LeaveGroupDialog
         open={leaveOpen}
-        memberCount={groupMemberCount}
+        memberCount={groupMembers.length}
         leavingCount={1}
         leaving={leaving}
         error={leaveError}

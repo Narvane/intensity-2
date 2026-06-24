@@ -177,11 +177,11 @@ Exibe: primeiros nomes / nomes de exibição dos membros do grupo, expiração d
 
 ### Seleção de grupo (Experiências)
 
-Lista grupos onde o participante é membro. Estado vazio orienta entrada por convite global. Cada card mostra nomes dos membros (preview) e cor distinta por grupo; toque abre a seleção de caixinhas. **Convidar** e **Sair do grupo** ficam na seleção de caixinhas, não nesta listagem.
+Lista grupos onde o participante é membro. Quem não tem grupo recebe um grupo solo automaticamente. Ação **Criar grupo** adiciona nova turma (começa só com o usuário; convite dentro do grupo em `BoxSelectionPage`). Cada card mostra nomes dos membros (preview) e cor distinta por grupo; toque abre a seleção de caixinhas.
 
 ### Seleção de caixinha (Experiências)
 
-Lista caixinhas no grupo selecionado. Toolbar: criar caixinha, **Convidar**, **Sair do grupo** (confirmar). Estado vazio: "Criem uma caixinha juntos no modo Caixa de Experiências." Selecionar caixinha → lista de experiências.
+Lista caixinhas no grupo selecionado. Faixa de pills com nomes de todos os membros (scroll horizontal). Toolbar: criar caixinha, **Convidar**, **Sair do grupo** (confirmar). Estado vazio: "Criem uma caixinha juntos no modo Caixa de Experiências." Selecionar caixinha → lista de experiências.
 
 ### Lista de experiências
 

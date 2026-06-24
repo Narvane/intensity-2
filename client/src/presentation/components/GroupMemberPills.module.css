@@ -1,0 +1,34 @@
+.strip {
+  margin: 0 0 1rem;
+  min-width: 0;
+}
+
+.list {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0.1rem 0;
+  list-style: none;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.pill {
+  flex-shrink: 0;
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--radius-chip);
+  background: color-mix(in srgb, var(--teal) 14%, white);
+  color: var(--purple);
+  font-size: 0.82rem;
+  font-weight: 800;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.pillCurrent {
+  background: color-mix(in srgb, var(--coral) 16%, white);
+  color: var(--coral-strong);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--coral) 28%, transparent);
+}

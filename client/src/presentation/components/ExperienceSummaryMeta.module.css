@@ -11,3 +11,11 @@
   flex-direction: column;
   gap: 0.65rem;
 }
+
+.experienceList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 0;
+  width: 100%;
+}
