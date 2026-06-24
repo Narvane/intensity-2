@@ -61,7 +61,8 @@ O produto deve transmitir:
 | `--coral` | `#FF6B3D` | Marca principal, CTA primário |
 | `--coral-strong` | `#E85626` | Coral hover / pressed |
 | `--yellow` | `#FFC94D` | Descoberta, destaques |
-| `--purple` | `#7B5CF6` | Criatividade |
+| `--purple` | `#7B5CF6` | Criatividade, modo Experiências |
+| `--purple-soft` | `rgba(123,92,246,.14)` | Fundos suaves com roxo (chips, banners, painéis auxiliares) |
 | `--teal` | `#2DBD9A` | Aventura |
 | `--ink-soft` | `rgba(31,31,31,.06)` | Base de sombra suave |
 
@@ -128,6 +129,10 @@ Se uma tela pudesse existir no Jira, Trello, Notion, Monday ou Asana — está e
 ### Filosofia de cor
 
 Cada caixinha deve parecer uma **categoria divertida**. A cor ajuda no reconhecimento imediato. Preferir preenchimentos sólidos a contornos.
+
+**Roxo (`--purple`):** usar sempre como cor **flat** (`#7B5CF6`). Não misturar roxo com `--teal` em gradientes (ex.: `linear-gradient(teal → purple)`), pois o resultado parece azulado e foge do token. Fundos suaves usam `--purple-soft` (tint neutro sobre branco), não `color-mix` com teal. Badges e ícones do modo Experiências: `background: var(--purple)` sólido.
+
+**Teal (`--teal`):** reservado a família Amigos (tipos de caixinha), convites e escala de intensidade baixa — não como acento principal do fluxo Experiências.
 
 ### Linhas e separadores
 
@@ -213,7 +218,7 @@ Sugestão para reveal do sorteio: flip curto ease-out; dica de alinhamento pode 
 
 Clareza de modo permanece obrigatória (`experience-and-identity.md`). Neste sistema:
 
-- **Experiências:** acentos teal ou roxo para contexto de contribuição individual.
+- **Experiências:** acento **roxo flat** (`--purple`) para chrome de sessão, login, pills e destaques de contribuição individual.
 - **Caixa de Experiências:** contexto de ritual com destaque coral.
 - **Entrar via convite:** chip amarelo ou teal — distinto dos painéis de login.
 - **Registro:** superfície neutra sobre fundo quente.
@@ -249,6 +254,7 @@ Não usar paleta corporativa marrom/azul nem gradientes sutis no wordmark.
   --coral-strong: #E85626;
   --yellow: #FFC94D;
   --purple: #7B5CF6;
+  --purple-soft: rgba(123, 92, 246, 0.14);
   --teal: #2DBD9A;
   --ink-soft: rgba(31, 31, 31, 0.06);
   --radius-button: 24px;

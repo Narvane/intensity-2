@@ -17,6 +17,7 @@
   --coral-strong: #e85626;
   --yellow: #ffc94d;
   --purple: #7b5cf6;
+  --purple-soft: rgba(123, 92, 246, 0.14);
   --teal: #2dbd9a;
   --ink-soft: rgba(31, 31, 31, 0.06);
   --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.06);
@@ -29,7 +30,7 @@
   --color-brown: var(--coral);
   --color-brown-soft: rgba(255, 107, 61, 0.14);
   --color-blue: var(--purple);
-  --color-blue-soft: rgba(123, 92, 246, 0.14);
+  --color-blue-soft: var(--purple-soft);
   --color-teal: var(--teal);
   --color-lime: var(--yellow);
   --color-pink: var(--purple);

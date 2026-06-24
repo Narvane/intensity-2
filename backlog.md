@@ -6,172 +6,214 @@ Executar na ordem das seções abaixo — dentro de cada seção, na ordem lista
 
 ---
 
-## Funcionalidades Principais
+## Refatorações
 
-Jornada de grupo no modo Experiences: criar turma com um toque, garantir grupo inicial para quem entra sem nenhum, e contextualizar quem está no grupo ao abrir as caixinhas.
+Ajustes de design system e tokens que impactam várias telas; estabilizar paleta antes de refinar fluxos que dependem dela.
 
-## Criar grupo na sessão Experiences
-
-### Descrição
-
-No modo Experiences, um participante pode pertencer a vários grupos (@ref:pt-br-data-model), mas hoje **não existe forma de criar um grupo pela sessão individual**. Grupos só surgem por login conjunto na Caixa de Experiências ou por aceitar convite. Quem registra e entra só no Experiences chega em `GroupSelectionPage` com lista vazia e copy de convite — sem caminho direto para começar uma turma própria.
-
-O produto passa a oferecer **Criar grupo** na listagem: um toque cria um grupo com **apenas o participante autenticado**, o card aparece na lista na hora (sem tela dedicada de criação) e, ao abrir o grupo, o fluxo é o mesmo de hoje (`BoxSelectionPage` com convidar, sair, criar caixinha). Opcionalmente, um diálogo de confirmação antes da criação explica que o grupo começa só com a pessoa e que convites são feitos **dentro** do grupo.
-
-Além disso, participantes que **não pertencem a nenhum grupo** ao entrar no Experiences devem receber **automaticamente um grupo padrão** só com eles — eliminando o estado vazio como experiência inicial. Quem já tem um ou mais grupos não ganha grupo extra.
-
-### Prompt IA
-
-**Objetivo:** Permitir criar grupo na sessão Experiences com um toque; provisionar grupo padrão solo para quem entra sem nenhum grupo; manter convite e demais ações dentro de `BoxSelectionPage`.
-
-**Estado atual (confirmar):**
-- `GET /v1/groups` lista grupos do participante (`GroupQueryService`); **não há** `POST /v1/groups`.
-- Grupos são criados em `GroupService.createGroupWithMembers` (login Experience Box) e ao aceitar convite.
-- `GroupSelectionPage` — lista cards coloridos; empty state quando `groups.length === 0`; sem ação de criar.
-- `BoxSelectionPage` — convite, sair, criar caixinha (já implementados).
-- Login Experiences (`POST /v1/auth/login`) não cria grupo.
-
-**Comportamento esperado — criar grupo:**
-1. Botão/ação **Criar grupo** visível em `GroupSelectionPage` (toolbar ou CTA persistente, inclusive quando já há grupos).
-2. Toque dispara criação imediata **ou** abre diálogo de confirmação curto (título + mensagem explicando grupo solo + convite dentro do grupo) com confirmar/cancelar; ao confirmar, cria.
-3. API cria grupo com o `participantId` da sessão como único membro; retorna `GroupResponse` enriquecido (id, memberCount, members com displayName).
-4. Client atualiza a lista local com o novo card; toast opcional de sucesso.
-5. **Não** navegar automaticamente para dentro do grupo — usuário escolhe quando abrir (como nos cards existentes).
-6. Não criar tela/rota nova de “criar grupo”.
-
-**Comportamento esperado — grupo padrão:**
-1. Após login/registro Experiences, se `GET /v1/groups` retornar lista vazia, criar automaticamente um grupo solo (mesma regra de um membro).
-2. Implementar no **backend** (preferível: idempotente no primeiro `GET /v1/groups` ou no login Experiences) ou no client na primeira carga de `GroupSelectionPage` — documentar escolha; evitar duplicar grupos em refresh.
-3. Usuário com 1+ grupos nunca recebe grupo extra.
-
-**API e domínio:**
-- `POST /v1/groups` (ou nome alinhado ao OpenAPI) — autenticado, modo Experiences; corpo vazio ou mínimo; resposta `GroupResponse`.
-- Extrair lógica de criação de grupo reutilizável (`GroupService` ou serviço dedicado) sem quebrar login Experience Box.
-- Atualizar `openapi/openapi.yaml` e testes de integração (criar grupo solo, listagem inclui novo grupo, provisionamento padrão quando vazio).
-
-**Client:**
-- `CreateGroupUseCase` em `boxUseCases.ts` (ou módulo de grupo).
-- `GroupSelectionPage` + CSS — botão criar; diálogo opcional (`DestructiveConfirmDialog` ou confirmação não destrutiva).
-- i18n `groups.create`, `groups.createDialog.*`, `groups.createSuccess` em pt-BR, en, it.
-- Garantir que empty state deixe de ser o único caminho para novos usuários (pode manter hint de convite como secundário).
-
-**Regras arquiteturais:**
-- Clean Architecture no client (use case + adapter API).
-- Convite continua **por grupo** em `BoxSelectionPage` — não na listagem.
-- Não alterar fluxo Experience Box nem regras de conflito de membresia no login conjunto.
-
-**Documentação:**
-- Atualizar @ref:pt-br-data-model e @ref:pt-br-functional-components: grupo pode ser criado no modo Experiences; participante sem grupo recebe um grupo solo por padrão.
-
-**Critérios de aceitação:**
-- Novo usuário Experiences vê pelo menos um grupo (provisionado) sem passar por empty state obrigatório.
-- “Criar grupo” adiciona card na lista; abrir o grupo leva à mesma `BoxSelectionPage` de sempre.
-- Diálogo de confirmação (se implementado) explica grupo solo + convite interno.
-- Testes API passam; build client passa; três locales com paridade.
-
-**Restrições:**
-- Sem tela dedicada de criação de grupo.
-- Sem nomear/editar grupo (fora de escopo).
-- Não mudar ritual Experience Box.
-
----
-
-## Exibir membros do grupo na seleção de caixinhas
+## Aplanar roxo do design system
 
 ### Descrição
 
-Depois de escolher um grupo, `BoxSelectionPage` lista caixinhas mas **não mostra quem está na turma**. A API já devolve `members` em `GET /v1/groups` (participantId + displayName), e os cards da listagem de grupos usam preview de nomes — porém, dentro do grupo, falta reforço visual de “com quem estou”.
+O token `--purple` (`#7B5CF6`) aparece em chips, pills, destaques de modo Experiences, gradientes com `--teal` e misturas `color-mix` que produzem um **fade azulado** em vez de roxo sólido flat. A spec (@ref:pt-br-design-system) já pede cores sólidas e evita gradientes decorativos nas páginas, mas a implementação ainda mistura roxo com teal/branco de formas que desviam do tom canônico.
 
-Esta tarefa adiciona uma faixa de **pills** com o `displayName` de cada membro: scroll horizontal quando não couber, tipografia compacta, sem e-mail. Ajuda a distinguir grupos sem nome formal e prepara o contexto antes de criar caixinha ou convidar.
+Esta tarefa alinha o roxo à cor **flat** do design system em toda a aplicação e atualiza a documentação para deixar explícito que `--purple` não deve ser usado em gradientes com teal nem em `color-mix` que altere o matiz percebido.
 
 ### Prompt IA
 
-**Objetivo:** Exibir todos os membros do grupo ativo em `BoxSelectionPage` como pills horizontais com scroll.
+**Objetivo:** Garantir que `--purple` seja aplicado como cor sólida flat, sem aparência azulada por gradientes ou misturas.
 
 **Estado atual (confirmar):**
-- `BoxSelectionPage` carrega caixinhas e `groupMemberCount` via `ListGroupsUseCase`; não renderiza lista de membros.
-- `Group.members` já tipado em `boxTypes.ts`.
-- Padrões visuais: chips em `SessionModeChrome` (Experience Box), pills em `NavButton`/design system (`--radius-chip`).
+- `client/src/presentation/styles/global.css` — `--purple: #7b5cf6`
+- Gradientes `linear-gradient(145deg, var(--teal), var(--purple))` em `SessionModeChrome`, `AuthPage`, `AuthModeIntro`
+- `color-mix(in srgb, var(--purple) X%, white)` em vários `.module.css` (pills, banners, suggestion explorer)
+- `BoxSelectionPage` success banner: `color: var(--purple)` sobre fundo teal-mix
+- Docs: @ref:pt-br-design-system, @ref:en-design-system — token `--purple` sem proibição explícita de gradiente roxo+teal
 
 **Comportamento esperado:**
-1. Abaixo do header (ou entre header e toolbar), faixa com pills: uma por membro, só `displayName`.
-2. Container com `overflow-x: auto`, scroll suave em mobile; sem quebrar layout da toolbar (criar, convidar, sair).
-3. Ordem dos nomes: mesma da API (alfabética por displayName) ou estável por `participantId`.
-4. Destaque opcional e discreto para o participante da sessão atual (ex. borda ou peso) — não obrigatório se complicar i18n.
-5. Estado de carregamento: omitir faixa ou skeleton curto; erro não bloqueia listagem de caixinhas.
+1. Substituir gradientes teal→roxo por **uma cor sólida** por contexto (ex.: roxo flat para Experiences, teal para Experience Box — seguir matriz existente em @ref:pt-br-experience-and-identity).
+2. Revisar usos de `color-mix` com `--purple`: preferir roxo sólido para texto/ícone; fundos com opacidade ou mix **neutro** (branco/surface) que não desloquem o matiz para azul.
+3. Manter contraste e legibilidade (WCAG) em chips e pills.
+4. Atualizar @ref:pt-br-design-system e equivalentes en/it: roxo é **flat**; não usar gradiente teal+roxo em chrome de sessão; exemplos de uso correto.
 
-**Implementação sugerida:**
-- Componente `GroupMemberPills` em `presentation/components/` (reutilizável).
-- `BoxSelectionPage` resolve `members` do grupo ativo a partir de `ListGroupsUseCase` (já chamado) ou cache local.
-- CSS module: flex row, `gap`, `flex-shrink: 0` nas pills, `-webkit-overflow-scrolling: touch`.
-- i18n: `groups.membersLabel` ou `aria-label` acessível (“Membros do grupo”) em pt-BR, en, it.
-
-**Regras arquiteturais:**
-- Somente leitura; sem ações nas pills.
-- Não duplicar lógica de preview abreviado da listagem de grupos — aqui mostrar **todos** os nomes em pills individuais.
-- Não alterar `GroupSelectionPage` além do que for necessário para consistência visual.
+**Arquivos prováveis:** `global.css`, `SessionModeChrome.module.css`, `AuthPage.module.css`, `AuthModeIntro.module.css`, `GroupMemberPills.module.css`, `SuggestionExplorer.module.css`, `CreateBoxForm.module.css`, `BoxSelectionPage.module.css`, docs de design system.
 
 **Critérios de aceitação:**
-- Grupo com 2+ membros: todos os nomes visíveis via scroll horizontal em ~320px.
-- Grupo solo: uma pill com o nome do usuário.
-- Toolbar e lista de caixinhas sem regressão.
-- Build e testes existentes passam.
+- Roxo percebido como `#7B5CF6` flat nos principais consumidores (login, chrome de modo, pills de grupo, explorer de sugestões).
+- Sem gradientes teal→roxo em componentes de sessão/auth.
+- Docs atualizadas.
+- Build client OK; revisão visual em telas com roxo.
 
 **Restrições:**
-- Escopo limitado a `BoxSelectionPage` (não Experience Box `BoxHomePage` nesta tarefa, salvo reuso trivial do componente).
-- Sem avatar/foto de perfil (não modelado).
+- Não alterar outros tokens (`--coral`, `--teal`, `--yellow`) além de ajustes colaterais inevitáveis.
+- Não redesenhar layouts inteiros — só cor/mistura.
 
 ---
 
 ## Melhorias
 
-Ajustes visuais na listagem de experiências do modo Experiences, sem mudar comportamento de revelação, edição ou exclusão.
+Refinamentos visuais e de UX em fluxos já existentes.
 
-## Compactar meta do card de experiência
+## Melhorar checkboxes na criação de caixinha
 
 ### Descrição
 
-Na `ExperienceListPage`, cada `ExperienceCard` usa `ExperienceSummaryMeta` com layout `list` para esforço, abertura e novidade. O layout atual aplica **fundo** (`--surface-sunken`) em cada bloco de parâmetro, ocupa altura vertical excessiva e o selo de integridade ainda compete com intensidade e parâmetros. O resultado parece pesado para uma listagem densa.
+Em `CreateBoxForm` (Experiences e Experience Box), a opção **Preencher com ideias padrão** usa checkbox nativo sem tratamento visual alinhado ao design system (@ref:pt-br-design-system). Quando ativa, `SuggestionPickerList` exibe dezenas de checkboxes por intensidade — também genéricos, pouco legíveis e visualmente pesados.
 
-A tarefa refina só o **card de lista** (não a capa do sorteio nem o layout `drawCover`): remover fundo dos parâmetros; empilhar ícone, label e estrelas de forma **verticalmente compacta**; reduzir o selo ao mínimo legível (tamanho e peso visual), mantendo `aria-label` e `title` com o código completo.
+O objetivo é deixar o toggle principal e os itens de sugestão com aparência consistente: alvos de toque ≥ 48px, estados checked/focus visíveis, hierarquia clara entre flag principal e lista de seleção.
 
 ### Prompt IA
 
-**Objetivo:** Deixar o bloco de meta do `ExperienceCard` mais compacto e limpo — parâmetros sem caixa de fundo, selo bem pequeno.
+**Objetivo:** Redesenhar checkboxes do fluxo de criação de caixinha (flag + lista de sugestões).
 
 **Estado atual (confirmar):**
-- `ExperienceCard` → `ExperienceSummaryMeta` (`compact=false`) → `ParameterStarsGroup layout="list"`.
-- `ParameterStarField.module.css` — `.list` e `.listGroup` com `background: var(--surface-sunken)` e padding.
-- `IntegritySeal` — variantes `default`, `compact`, `minimal` (esta última usada na capa do sorteio).
-- Capa do sorteio (`DrawCardCover`) e layout `drawCover` **não** devem regredir.
+- `client/src/presentation/boxes/CreateBoxForm.tsx` — `<input type="checkbox">` em `.flag`
+- `client/src/presentation/suggestions/SuggestionPickerList.tsx` — checkboxes por sugestão agrupadas por intensidade
+- `CreateBoxForm.module.css`, `SuggestionPickerList.module.css`
 
 **Comportamento esperado:**
-1. Novo layout de parâmetro para lista de experiências — ex. `layout="listCompact"` ou variante `ExperienceSummaryMeta variant="listCard"` — com:
-   - Ícone + label + estrelas em coluna apertada por parâmetro.
-   - **Sem** background no bloco do parâmetro (transparente sobre o card).
-   - Gaps e fontes menores que o `list` atual; estrelas `sm` ou `xs`.
-2. Três parâmetros em coluna ou grid que não colida em cards estreitos (~320px) — reutilizar lições da Etapa 2 (sem colisão Esforço/Abertura).
-3. Selo no card de lista: menor que hoje — inspirar em `variant="minimal"` mas pode manter label curto se couber; opacidade/tamanho reduzidos; código completo em `title`/`aria-label`.
-4. `IntensityBadge` no card pode permanecer como está, salvo ajuste de margem herdado.
+1. Checkbox da flag **Preencher com ideias padrão**: estilo customizado (ou componente compartilhado `Checkbox` se fizer sentido) — borda arredondada, check visível, cor de acento do design system.
+2. Itens em `SuggestionPickerList`: cards/linhas selecionáveis com checkbox integrado; resumo da ideia legível; grupo por intensidade mantido.
+3. Estados hover, focus-visible e disabled coerentes com `Button`/`NavButton`.
+4. Sem mudança de lógica (mesmos IDs selecionados, mesmo submit).
 
-**Implementação sugerida:**
-- Estender `ParameterStarField` / `ParameterStarsGroup` com layout dedicado **ou** props em `ExperienceSummaryMeta` que não afetem `compact` da capa antiga.
-- Ajustar `ExperienceSummaryMeta.module.css` e/ou novo módulo para variante de lista.
-- `ExperienceCard.module.css` — espaçamento do `metaRow` se necessário.
-- Validar `ExperienceListPage` em mobile estreito.
+**Regras:** reutilizar tokens `--radius-*`, `--coral`/`--teal` conforme `data-variant` do form; i18n inalterada salvo labels de acessibilidade.
 
-**Regras arquiteturais:**
-- Alteração visual apenas; mesmas regras de visibilidade (`experienceVisibility`), olho de revelação, editar/excluir.
-- Não alterar API nem campos de experiência.
-- `DrawCardCover`, `drawCover`, `list` em outros contextos: sem regressão.
+**Critérios de aceitação:** flag e lista visualmente polidas; seleção múltipla funciona; build e fluxo de criar caixinha com preenchimento OK.
+
+**Restrições:** escopo limitado a `CreateBoxForm` + `SuggestionPickerList` (+ componente compartilhado opcional).
+
+---
+
+## Funcionalidades Principais
+
+Jornadas centrais de contribuição e ritual compartilhado.
+
+## Refinar wizard de criação de experiências
+
+### Descrição
+
+O `CreationAssistant` (cinco etapas) hoje mostra **Sua ideia** como card somente leitura no topo e um campo **Descrição** separado no passo 1, além do `SuggestionExplorer` ocupando muito espaço com aparência de tela inteira (filtro de intensidade grande, metadados da sugestão, cores e espaçamentos pesados). Avançar no passo 1 exige `description.trim().length > 0`, mas a UX sugere dependência de aceitar sugestão — o fluxo correto é: **um único campo de descrição** editável sempre; sugestões são atalhos que preenchem esse campo.
+
+Também é preciso compactar o passo 3 (parâmetros), deixar explícito no passo 4 que a intensidade sugerida vem da **média dos parâmetros**, e redesenhar sugestões como componente auxiliar compacto (navegar sugestões → pick → continuar wizard).
+
+### Prompt IA
+
+**Objetivo:** Reestruturar o assistente de criação para descrição única sticky, sugestões auxiliares compactas e passos 3–4 mais claros/compactos.
+
+**Estado atual (confirmar):**
+- `CreationAssistant.tsx` — `descriptionCard` + `SuggestionExplorer` + textarea `assistant.fields.description` no step 1; `canAdvance` step 1 = descrição não vazia
+- `SuggestionExplorer.tsx` / `.module.css` — `RatingScale` filtro, card grande, intensidade e parâmetros visíveis
+- Step 3: três `ParameterStarField` layout `picker` com `showHint` — alto verticalmente
+- Step 4: hint `assistant.suggestedIntensity` só quando `!intensityTouched`
+- i18n: `assistant.descriptionCard` = "Sua ideia"; `assistant.fields.description` = "Descrição"
+
+**Comportamento esperado — descrição:**
+1. **Remover** duplicidade Sua ideia vs Descrição: um único campo **Descrição** (label i18n unificada), textarea editável.
+2. Campo fixo **sticky no topo** do painel do wizard em **todas** as etapas (abaixo do header/progress), sempre visível ao rolar.
+3. Usuário pode digitar livremente ou preencher via sugestão; avançar step 1 com descrição não vazia (sem obrigar aceitar sugestão).
+
+**Comportamento esperado — sugestões (step 1):**
+1. Redesenhar `SuggestionExplorer` (ou `SuggestionPicker` auxiliar): **compacto**, visual de componente auxiliar, não de tela.
+2. Filtro de intensidade **pequeno** (chips ou escala compacta); botões **Outra sugestão** e **Usar esta ideia** discretos.
+3. **Não** exibir intensidade nem parâmetros da sugestão no step 1 — ao aceitar, pré-preencher parâmetros/intensidade/reflexão nas etapas seguintes (comportamento já existente em `applySuggestion`).
+4. Metáfora: next → next pelo wizard; no step 1, folhear sugestões e dar **pick** quando quiser.
+
+**Comportamento esperado — passos 3 e 4:**
+1. Step 3: reduzir gaps/padding dos cards de parâmetro (`picker` ou variante `wizard` compacta); menos scroll em mobile.
+2. Step 4: copy explícita de que a classificação sugerida é baseada na **média arredondada** dos três parâmetros (i18n pt-BR, en, it); manter `suggestIntensity` do domínio.
+
+**Arquivos:** `CreationAssistant.tsx`, `.module.css`, `SuggestionExplorer.tsx`, `.module.css`, i18n `assistant.*` / `suggestions.explorer.*`, opcional extrair `StickyDescriptionField`.
 
 **Critérios de aceitação:**
-- Cards na lista sem fundo cinza atrás de cada parâmetro.
-- Bloco de parâmetros visivelmente mais baixo que o layout `list` atual.
-- Selo claramente menor/discreto; acessível via leitor de tela.
-- Capa do sorteio e lista de grupos/caixinhas sem regressão visual.
-- Build client passa.
+- Descrição única sticky em 5 passos; sugestão opcional preenche descrição + demais campos.
+- Explorer compacto sem metadados de intensidade/parâmetros no step 1.
+- Step 3 visivelmente mais baixo; step 4 explica origem da sugestão de intensidade.
+- Edição de experiência existente sem regressão.
+- Build + testes client OK.
 
-**Restrições:**
-- Escopo: `ExperienceCard` / `ExperienceSummaryMeta` na listagem Experiences.
-- Não redesenhar assistente de criação nem explorer de sugestões nesta tarefa.
+**Restrições:** sem mudança de API; manter cinco passos e validações de domínio.
+
+---
+
+## Virar card na listagem de experiências
+
+### Descrição
+
+Na `ExperienceListPage`, o autor revela descrição/reflexão com ícone de **olho**, expandindo conteúdo abaixo do card (`ExperienceCard`). O produto passa a usar metáfora de **virar carta**: ícone de flip no card; face traseira com texto; animação similar à capa do sorteio (`DrawResultCard`).
+
+Na toolbar, ao lado de **Guardar uma ideia**, botão ícone-only à **direita** (mesmo ícone de virar, cor distinta) para **virar todos** os cards do autor de uma vez.
+
+### Prompt IA
+
+**Objetivo:** Substituir reveal por olho por flip 3D no card; adicionar virar todos.
+
+**Estado atual (confirmar):**
+- `ExperienceCard.tsx` — `Eye`/`EyeOff`, `contentRevealed`, bloco `.revealedContent` abaixo
+- `ExperienceListPage.tsx` — toolbar só com botão criar
+- `DrawResultCard` — referência de flip `rotateY` + `preserve-3d`
+
+**Comportamento esperado:**
+1. Trocar ícone olho por ícone de virar carta (ex. `RotateCw`, `FlipHorizontal2` do lucide — escolher o mais legível).
+2. Card com frente (meta atual) e verso (descrição + reflexão); flip 3D ao tocar; só para itens do autor com conteúdo revelável.
+3. Toolbar: layout `criar | spacer | virar-todos`; botão virar todos ícone-only, `aria-label` i18n; alterna todos os cards viráveis.
+4. i18n: substituir `revealDescription`/`hideDescription` por labels de virar; adicionar `flipAll` / `unflipAll` para acessibilidade.
+
+**Critérios de aceitação:** flip individual e em massa; meta na frente intacta; acessibilidade; sem regressão em editar/excluir.
+
+**Restrições:** escopo `ExperienceCard` + `ExperienceListPage` + CSS; não alterar `DrawResultCard`.
+
+---
+
+## Melhorias (polimento)
+
+Ajustes visuais pontuais em seleção de grupo e ritual do sorteio.
+
+## Ícone de grupo nos cards de seleção
+
+### Descrição
+
+Em `GroupSelectionPage`, os cards coloridos mostram preview de nomes e contagem, mas não têm ícone que comunique “grupo/turma”. Adicionar ícone de grupo (ex. `UsersRound` do lucide, alinhado a Experience Box) de forma discreta no card.
+
+### Prompt IA
+
+**Objetivo:** Ícone de grupo em cada card da listagem de grupos.
+
+**Estado atual:** `GroupSelectionPage.tsx` — botão `.row` com `rowTitle` (preview nomes) e `rowMeta`; cores via `data-accent` + `getGroupAccent`.
+
+**Comportamento esperado:**
+1. Ícone à esquerda ou no topo do card, tamanho moderado, cor contrastante sobre fundo do card.
+2. Não quebrar layout em 320px; preview de nomes continua legível.
+3. Decorativo com `aria-hidden`; nome do grupo continua sendo os membros (sem título formal).
+
+**Arquivos:** `GroupSelectionPage.tsx`, `.module.css`; reutilizar padrão de ícones de `sessionModeVisuals` se adequado.
+
+**Critérios de aceitação:** ícone visível em todos os cards; toque navega para caixinhas como hoje.
+
+---
+
+## Ritual do sorteio: blank slate e dica de alinhamento
+
+### Descrição
+
+Em `SharedMomentPage`, a seção `.ritual` (quadrado coral inclinado + `Sparkles` + texto “Toquem juntos…”) aparece **sempre**, inclusive após sortear. Esses elementos devem ser **blank slate** — visíveis só **antes** do primeiro sorteio da sessão na tela (estado idle, sem carta sorteada).
+
+A dica “Respirem juntos antes de abrir a carta completa.” (`alignmentHint`) aparece após sortear; deve ganhar tratamento tipográfico mais editorial (menos chip genérico), mantendo função de pausa antes de revelar.
+
+### Prompt IA
+
+**Objetivo:** Ocultar ritual inicial após sorteio; refinar tipografia da dica de alinhamento.
+
+**Estado atual (confirmar):**
+- `SharedMomentPage.tsx` — `.ritual` sempre renderizado; `DrawResultCard` quando `drawSession.phase !== 'idle'`
+- `alignmentHint` após carta, antes de revelar — estilo tracejado âmbar em `.module.css`
+- `drawSession` via `RevelationOrchestrator` — fases idle / drawn / revealed
+
+**Comportamento esperado:**
+1. Mostrar `.ritual` (envelope + `ritualHint`) **somente** quando não há carta sorteada (`drawSession.phase === 'idle'` ou equivalente).
+2. Após sortear, esconder envelope e `ritualHint`; manter filtros e carta.
+3. `alignmentHint`: tipografia de destaque — ex. itálico leve, tamanho menor, letter-spacing, cor âmbar/marrom; sem aparência de alerta/banner pesado.
+4. Opcional: pequeno refinamento visual do envelope no blank slate (sem aumentar tamanho).
+
+**Critérios de aceitação:** blank slate só pré-sorteio; pós-sorteio foco na carta; dica de alinhamento mais “tip”; flip/reveal inalterados.
+
+**Restrições:** escopo `SharedMomentPage` + CSS + i18n se copy mudar.

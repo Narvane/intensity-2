@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { UsersRound } from 'lucide-react';
 import { ApiError, createApiClient } from '@adapters/api/ApiClient';
 import { useAppLogout } from '@app/useAppLogout';
 import { useToast } from '@app/ToastProvider';
@@ -136,11 +137,16 @@ export function GroupSelectionPage() {
                     });
                   }}
                 >
-                  <span className={styles.rowTitle}>{memberPreview}</span>
-                  <span className={styles.rowMeta}>
-                    {t('groups.memberCount', { count: group.memberCount })}
-                    {' · '}
-                    {t('groups.openBoxes')}
+                  <span className={styles.rowIcon} aria-hidden="true">
+                    <UsersRound size={26} strokeWidth={2.25} />
+                  </span>
+                  <span className={styles.rowCopy}>
+                    <span className={styles.rowTitle}>{memberPreview}</span>
+                    <span className={styles.rowMeta}>
+                      {t('groups.memberCount', { count: group.memberCount })}
+                      {' · '}
+                      {t('groups.openBoxes')}
+                    </span>
                   </span>
                 </button>
               </li>

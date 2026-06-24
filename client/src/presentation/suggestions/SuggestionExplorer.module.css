@@ -1,65 +1,116 @@
 .explorer {
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
-  margin-bottom: 1rem;
-  padding: 1rem;
-  border-radius: var(--radius-card);
-  background: color-mix(in srgb, var(--teal) 8%, var(--surface));
-  box-shadow: var(--shadow-soft);
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+  padding: 0.6rem 0.7rem;
+  border-radius: var(--radius-input);
+  border: 1px dashed rgba(123, 92, 246, 0.32);
+  background: var(--surface-sunken);
 }
 
-.typeBadge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  align-self: flex-start;
-  padding: 0.35rem 0.7rem;
-  border-radius: var(--radius-chip);
-  font-size: 0.85rem;
-  font-weight: 800;
-}
-
-.typeBadge[data-family='friends'] {
-  background: color-mix(in srgb, var(--teal) 18%, white);
-  color: var(--purple);
-}
-
-.typeBadge[data-family='couple'] {
-  background: color-mix(in srgb, var(--coral) 18%, white);
-  color: var(--purple);
-}
-
-.typeBadge[data-family='growth'] {
-  background: color-mix(in srgb, var(--yellow) 24%, white);
-  color: var(--color-brown);
-}
-
-.typeBadge[data-family='connection'] {
-  background: color-mix(in srgb, var(--purple) 14%, white);
-  color: var(--purple);
-}
-
-.card {
+.toolbar {
   display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.5rem;
 }
 
-.description {
-  margin: 0;
-  line-height: 1.5;
-  font-weight: 700;
-}
-
-.meta {
-  margin: 0;
+.toolbarLabel {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   color: var(--color-text-muted);
-  font-size: 0.85rem;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.chip,
+.chipActive {
+  min-width: 1.55rem;
+  min-height: 1.55rem;
+  padding: 0 0.35rem;
+  border-radius: var(--radius-chip);
+  border: 1px solid var(--color-border);
+  background: var(--surface);
+  color: var(--color-text-muted);
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition:
+    background 0.14s ease,
+    border-color 0.14s ease,
+    color 0.14s ease,
+    transform 0.14s ease;
+}
+
+.chipActive {
+  border-color: rgba(123, 92, 246, 0.5);
+  background: var(--purple-soft);
+  color: var(--purple);
+}
+
+.chip:not(:disabled):active,
+.chipActive:not(:disabled):active {
+  transform: scale(0.94);
+}
+
+.quote {
+  margin: 0;
+  padding: 0.45rem 0.15rem 0.15rem;
+  border: none;
+  color: var(--color-text);
+  font-size: 0.88rem;
+  font-weight: 600;
+  line-height: 1.45;
 }
 
 .actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.55rem;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.35rem;
+}
+
+.skipButton,
+.pickButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  min-height: 2rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: var(--radius-chip);
+  border: none;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.14s ease, background 0.14s ease;
+}
+
+.skipButton {
+  background: transparent;
+  color: var(--color-text-muted);
+}
+
+.skipButton:not(:disabled):active,
+.pickButton:not(:disabled):active {
+  transform: scale(0.96);
+}
+
+.pickButton {
+  background: var(--purple);
+  color: #fff;
+  box-shadow: var(--shadow-soft);
+}
+
+.pickButton:not(:disabled):hover {
+  background: #6b4ce6;
 }

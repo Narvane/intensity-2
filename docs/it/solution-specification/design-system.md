@@ -61,7 +61,8 @@ Il prodotto deve trasmettere:
 | `--coral` | `#FF6B3D` | Brand principale, CTA primario |
 | `--coral-strong` | `#E85626` | Corallo hover / pressed |
 | `--yellow` | `#FFC94D` | Scoperta, evidenziazioni |
-| `--purple` | `#7B5CF6` | Creatività |
+| `--purple` | `#7B5CF6` | Creatività, modalità Esperienze |
+| `--purple-soft` | `rgba(123,92,246,.14)` | Sfondi morbidi viola (chip, banner, pannelli ausiliari) |
 | `--teal` | `#2DBD9A` | Avventura |
 | `--ink-soft` | `rgba(31,31,31,.06)` | Base ombra morbida |
 
@@ -128,6 +129,10 @@ Se una schermata potesse esistere in Jira, Trello, Notion, Monday o Asana — è
 ### Filosofia del colore
 
 Ogni scatola deve sembrare una **categoria divertente**. Il colore aiuta il riconoscimento immediato. Preferire riempimenti solidi ai contorni.
+
+**Viola (`--purple`):** usare sempre come colore **flat** (`#7B5CF6`). Non mescolare viola con `--teal` in gradienti (es. `linear-gradient(teal → purple)`), che appare bluastro e si allontana dal token. Sfondi morbidi usano `--purple-soft` (tinta neutra su bianco), non `color-mix` con teal. Badge e icone modalità Esperienze: `background: var(--purple)` solido.
+
+**Teal (`--teal`):** riservato alla famiglia Amici (tipi scatola), inviti e scala intensità bassa — non come accento principale del flusso Esperienze.
 
 ### Linee e separatori
 
@@ -213,7 +218,7 @@ Suggerimento reveal estrazione: flip breve ease-out; suggerimento allineamento p
 
 Chiarezza modalità resta obbligatoria (`experience-and-identity.md`). In questo sistema:
 
-- **Esperienze:** accenti teal o viola per contesto contributo individuale.
+- **Esperienze:** accento **viola flat** (`--purple`) per chrome sessione, login, pill e contributo individuale.
 - **Scatola delle Esperienze:** contesto rituale con accento corallo.
 - **Unisciti via invito:** chip giallo o teal — distinto dai pannelli login.
 - **Registrazione:** superficie neutra su sfondo caldo.
@@ -249,6 +254,7 @@ Non usare palette corporate marrone/blu né gradienti sottili sul wordmark.
   --coral-strong: #E85626;
   --yellow: #FFC94D;
   --purple: #7B5CF6;
+  --purple-soft: rgba(123, 92, 246, 0.14);
   --teal: #2DBD9A;
   --ink-soft: rgba(31, 31, 31, 0.06);
   --radius-button: 24px;

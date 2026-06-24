@@ -248,6 +248,10 @@
     "otherSummary": "Carta guardada por {{author}} — intensidade e selo ficam visíveis até a revelação.",
     "revealDescription": "Mostrar descrição e reflexão",
     "hideDescription": "Ocultar descrição e reflexão",
+    "flipCard": "Virar carta",
+    "unflipCard": "Voltar carta",
+    "flipAll": "Virar todos os cards",
+    "unflipAll": "Voltar todos os cards",
     "anonymous": "Membro do grupo",
     "edit": "Editar",
     "delete": "Excluir",
@@ -268,8 +272,9 @@
     "next": "Próximo",
     "descriptionCard": "Sua ideia",
     "descriptionEmpty": "Descreva a experiência que você quer sugerir.",
+    "descriptionPlaceholder": "Descreva a experiência que você quer sugerir.",
     "suggestionItem": "{{type}} — ideia {{number}}",
-    "suggestedIntensity": "Sugerido: nível {{level}} — {{name}}",
+    "suggestedIntensity": "Sugerido pela média dos parâmetros: nível {{level}} — {{name}}",
     "saveFinish": "Guardar ideia",
     "saveAnother": "Guardar e criar outra",
     "saveChanges": "Salvar alterações",
@@ -284,7 +289,7 @@
     "steps": {
       "suggestion": {
         "title": "Sugestão",
-        "body": "Explore ideias do pacote desta caixinha ou escreva a sua — nada é salvo até você confirmar."
+        "body": "Folheie as sugestões abaixo ou escreva direto na descrição — nada é salvo até você confirmar."
       },
       "reflection": {
         "title": "Reflexão",
@@ -296,7 +301,8 @@
       },
       "classification": {
         "title": "Classificação",
-        "body": "Confirme ou ajuste o nível geral de intensidade."
+        "body": "Confirme ou ajuste o nível geral de intensidade.",
+        "averageHint": "A sugestão inicial vem da média arredondada de esforço, abertura e novidade do passo anterior."
       },
       "review": {
         "title": "Revisão",
@@ -311,6 +317,7 @@
     },
     "intensityLabel": "Nível {{level}}",
     "explorer": {
+      "auxLabel": "Sugestões",
       "filterLabel": "Filtrar por intensidade",
       "intensity": "Intensidade {{level}}",
       "another": "Outra sugestão",

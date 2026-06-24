@@ -7,6 +7,7 @@ import { CreateExperienceUseCase } from '@domain/experience/experienceUseCases';
 import { getSuggestionById } from '../../content/suggestion-packs';
 import { useI18n } from '../../i18n/I18nContext';
 import { Button } from '../components/Button';
+import { Checkbox, type CheckboxAccent } from '../components/Checkbox';
 import { SuggestionPickerList } from '../suggestions/SuggestionPickerList';
 import { BoxTypePicker } from './BoxTypePicker';
 import styles from './CreateBoxForm.module.css';
@@ -53,6 +54,7 @@ export function CreateBoxForm({
 
   const trimmedName = name.trim();
   const canSubmit = trimmedName.length > 0 && !loading;
+  const checkboxAccent: CheckboxAccent = variant === 'experiences' ? 'purple' : 'coral';
 
   useEffect(() => {
     setSelectedSuggestionIds(new Set());
@@ -160,13 +162,14 @@ export function CreateBoxForm({
         <h2 id="create-box-defaults-heading" className={styles.sectionTitle}>
           {t('createBox.defaultsStep')}
         </h2>
-        <label className={styles.flag}>
-          <input
-            type="checkbox"
+        <label className={styles.flag} htmlFor="create-box-fill-defaults">
+          <Checkbox
+            id="create-box-fill-defaults"
+            accent={checkboxAccent}
             checked={fillWithDefaults}
             onChange={(event) => setFillWithDefaults(event.target.checked)}
           />
-          <span>
+          <span className={styles.flagCopy}>
             <strong>{t('suggestions.createBox.flag')}</strong>
             <span className={styles.flagHint}>{t('suggestions.createBox.flagHint')}</span>
           </span>
@@ -176,6 +179,7 @@ export function CreateBoxForm({
           <>
             <SuggestionPickerList
               boxType={type}
+              accent={checkboxAccent}
               selectedIds={selectedSuggestionIds}
               onChange={setSelectedSuggestionIds}
             />

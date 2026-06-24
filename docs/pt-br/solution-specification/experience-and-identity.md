@@ -31,7 +31,7 @@ Tokens de cor, tipografia, raios, sombras, componentes e movimento estão em [`d
 
 | Modo | Indicador visual (ver design system) |
 |------|--------------------------------------|
-| Experiências | Contexto de contribuição em turquesa ou roxo |
+| Experiências | Contexto de contribuição com acento roxo flat |
 | Caixa de Experiências | Contexto de ritual com destaque coral |
 | Entrar via convite | Chip amarelo ou turquesa — distinto dos painéis de login |
 
@@ -80,7 +80,7 @@ Três subpainéis dentro de uma tela de autenticação:
 
 | Painel | Indicador visual | Ação primária |
 |--------|------------------|---------------|
-| Login Experiências | Destaque turquesa ou roxo | Formulário de credencial única |
+| Login Experiências | Destaque roxo flat (`--purple`) | Formulário de credencial única |
 | Login Caixa de Experiências | Destaque coral | Cartões multi-credencial com "+" para adicionar participante |
 | Registro | Superfície neutra sobre fundo quente | Nome de exibição, e-mail, senha |
 | Entrar via convite | Chip amarelo ou turquesa | Campo de entrada de código + "Continuar" |

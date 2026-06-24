@@ -6,10 +6,12 @@ import {
   type SuggestionIntensity,
 } from '../../content/suggestion-packs';
 import { useI18n } from '../../i18n/I18nContext';
+import { Checkbox, type CheckboxAccent } from '../components/Checkbox';
 import styles from './SuggestionPickerList.module.css';
 
 interface SuggestionPickerListProps {
   boxType: BoxType;
+  accent?: CheckboxAccent;
   selectedIds: ReadonlySet<string>;
   onChange: (next: Set<string>) => void;
 }
@@ -18,6 +20,7 @@ const INTENSITY_LEVELS: SuggestionIntensity[] = [1, 2, 3, 4, 5];
 
 export function SuggestionPickerList({
   boxType,
+  accent = 'coral',
   selectedIds,
   onChange,
 }: SuggestionPickerListProps) {
@@ -35,7 +38,7 @@ export function SuggestionPickerList({
   };
 
   return (
-    <div className={styles.list}>
+    <div className={styles.list} data-accent={accent}>
       {INTENSITY_LEVELS.map((level) => {
         const group = suggestions.filter((item) => item.intensity === level);
         if (group.length === 0) {
@@ -54,19 +57,21 @@ export function SuggestionPickerList({
 
                 return (
                   <li key={suggestion.id}>
-                    <label className={styles.item} htmlFor={inputId}>
-                      <input
+                    <label
+                      className={styles.item}
+                      data-selected={checked ? 'true' : 'false'}
+                      htmlFor={inputId}
+                    >
+                      <Checkbox
                         id={inputId}
-                        type="checkbox"
+                        size="sm"
+                        accent={accent}
                         checked={checked}
                         onChange={(event) => toggle(suggestion.id, event.target.checked)}
                       />
                       <span className={styles.itemBody}>
                         <span className={styles.itemDescription}>
                           {suggestionDescriptionSummary(suggestion.description)}
-                        </span>
-                        <span className={styles.itemMeta}>
-                          {t('suggestions.intensityLabel', { level: suggestion.intensity })}
                         </span>
                       </span>
                     </label>

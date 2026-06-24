@@ -248,6 +248,10 @@
     "otherSummary": "Contributo di {{author}} — solo intensità e sigillo fino alla rivelazione.",
     "revealDescription": "Mostra descrizione e riflessione",
     "hideDescription": "Nascondi descrizione e riflessione",
+    "flipCard": "Gira carta",
+    "unflipCard": "Riporta carta",
+    "flipAll": "Gira tutte le carte",
+    "unflipAll": "Riporta tutte le carte",
     "anonymous": "Membro del gruppo",
     "edit": "Modifica",
     "delete": "Elimina",
@@ -268,8 +272,9 @@
     "next": "Avanti",
     "descriptionCard": "La tua idea",
     "descriptionEmpty": "Descrivi l'esperienza che vuoi suggerire.",
+    "descriptionPlaceholder": "Descrivi l'esperienza che vuoi suggerire.",
     "suggestionItem": "{{type}} — idea {{number}}",
-    "suggestedIntensity": "Suggerito: livello {{level}} — {{name}}",
+    "suggestedIntensity": "Suggerito dalla media dei parametri: livello {{level}} — {{name}}",
     "saveFinish": "Salva e concludi",
     "saveAnother": "Salva e creane un'altra",
     "saveChanges": "Salva modifiche",
@@ -284,7 +289,7 @@
     "steps": {
       "suggestion": {
         "title": "Suggerimento",
-        "body": "Esplorate idee del pacchetto di questa scatola o scrivete la vostra — nulla viene salvato finché non confermate."
+        "body": "Sfogliate i suggerimenti qui sotto o scrivete direttamente nella descrizione — nulla viene salvato finché non confermate."
       },
       "reflection": {
         "title": "Riflessione",
@@ -296,7 +301,8 @@
       },
       "classification": {
         "title": "Classificazione",
-        "body": "Conferma o regola il livello complessivo di intensità."
+        "body": "Conferma o regola il livello complessivo di intensità.",
+        "averageHint": "Il suggerimento iniziale deriva dalla media arrotondata di impegno, apertura e novità del passo precedente."
       },
       "review": {
         "title": "Revisione",
@@ -311,6 +317,7 @@
     },
     "intensityLabel": "Livello {{level}}",
     "explorer": {
+      "auxLabel": "Suggerimenti",
       "filterLabel": "Filtra per intensità",
       "intensity": "Intensità {{level}}",
       "another": "Altro suggerimento",

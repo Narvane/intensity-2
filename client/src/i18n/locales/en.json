@@ -248,6 +248,10 @@
     "otherSummary": "Contribution by {{author}} — intensity and seal only until reveal.",
     "revealDescription": "Show description and reflection",
     "hideDescription": "Hide description and reflection",
+    "flipCard": "Flip card",
+    "unflipCard": "Flip card back",
+    "flipAll": "Flip all cards",
+    "unflipAll": "Flip all cards back",
     "anonymous": "Group member",
     "edit": "Edit",
     "delete": "Delete",
@@ -268,8 +272,9 @@
     "next": "Next",
     "descriptionCard": "Your idea",
     "descriptionEmpty": "Describe the experience you want to suggest.",
+    "descriptionPlaceholder": "Describe the experience you want to suggest.",
     "suggestionItem": "{{type}} — idea {{number}}",
-    "suggestedIntensity": "Suggested: level {{level}} — {{name}}",
+    "suggestedIntensity": "Suggested from parameter average: level {{level}} — {{name}}",
     "saveFinish": "Save and finish",
     "saveAnother": "Save and create another",
     "saveChanges": "Save changes",
@@ -284,7 +289,7 @@
     "steps": {
       "suggestion": {
         "title": "Suggestion",
-        "body": "Browse ideas from this box's pack or write your own — nothing is saved until you confirm."
+        "body": "Browse suggestions below or write directly in the description — nothing is saved until you confirm."
       },
       "reflection": {
         "title": "Reflection",
@@ -296,7 +301,8 @@
       },
       "classification": {
         "title": "Classification",
-        "body": "Confirm or adjust the overall intensity level."
+        "body": "Confirm or adjust the overall intensity level.",
+        "averageHint": "The initial suggestion comes from the rounded average of effort, openness, and novelty from the previous step."
       },
       "review": {
         "title": "Review",
@@ -311,6 +317,7 @@
     },
     "intensityLabel": "Level {{level}}",
     "explorer": {
+      "auxLabel": "Suggestions",
       "filterLabel": "Filter by intensity",
       "intensity": "Intensity {{level}}",
       "another": "Another suggestion",

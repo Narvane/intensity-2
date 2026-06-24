@@ -61,6 +61,8 @@ export function CreationAssistant({
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const suggestedIntensity = suggestIntensity(parameters);
+
   const applySuggestion = (suggestion: ExperienceSuggestion) => {
     setDescription(suggestion.description);
     setReflection(suggestion.reflection);
@@ -182,28 +184,24 @@ export function CreationAssistant({
           ))}
         </div>
 
-        <article className={styles.descriptionCard}>
-          <p className={styles.cardLabel}>{t('assistant.descriptionCard')}</p>
-          <p className={styles.cardText}>
-            {description.trim().length > 0 ? description : t('assistant.descriptionEmpty')}
-          </p>
-        </article>
+        <div className={styles.stickyDescription}>
+          <label className={styles.descriptionField}>
+            <span>{t('assistant.fields.description')}</span>
+            <textarea
+              value={description}
+              maxLength={1000}
+              rows={3}
+              placeholder={t('assistant.descriptionPlaceholder')}
+              onChange={(event) => setDescription(event.target.value)}
+            />
+          </label>
+        </div>
 
         {step === 1 && (
           <section className={styles.step}>
             <h3>{t('assistant.steps.suggestion.title')}</h3>
             <p>{t('assistant.steps.suggestion.body')}</p>
             <SuggestionExplorer boxType={boxType} onAccept={applySuggestion} />
-            <p className={styles.hint}>{t('suggestions.explorer.manualHint')}</p>
-            <label className={styles.field}>
-              <span>{t('assistant.fields.description')}</span>
-              <textarea
-                value={description}
-                maxLength={1000}
-                rows={4}
-                onChange={(event) => setDescription(event.target.value)}
-              />
-            </label>
           </section>
         )}
 
@@ -228,36 +226,39 @@ export function CreationAssistant({
             <h3>{t('assistant.steps.parameters.title')}</h3>
             <p>{t('assistant.steps.parameters.body')}</p>
             <div className={styles.parameterFields}>
-            <ParameterStarField
-              parameterKey="effort"
-              value={parameters.effort}
-              showHint
-              onChange={(effort) => {
-                const next = { ...parameters, effort };
-                setParameters(next);
-                applySuggestedIntensity(next);
-              }}
-            />
-            <ParameterStarField
-              parameterKey="openness"
-              value={parameters.openness}
-              showHint
-              onChange={(openness) => {
-                const next = { ...parameters, openness };
-                setParameters(next);
-                applySuggestedIntensity(next);
-              }}
-            />
-            <ParameterStarField
-              parameterKey="novelty"
-              value={parameters.novelty}
-              showHint
-              onChange={(novelty) => {
-                const next = { ...parameters, novelty };
-                setParameters(next);
-                applySuggestedIntensity(next);
-              }}
-            />
+              <ParameterStarField
+                parameterKey="effort"
+                value={parameters.effort}
+                layout="wizard"
+                showHint
+                onChange={(effort) => {
+                  const next = { ...parameters, effort };
+                  setParameters(next);
+                  applySuggestedIntensity(next);
+                }}
+              />
+              <ParameterStarField
+                parameterKey="openness"
+                value={parameters.openness}
+                layout="wizard"
+                showHint
+                onChange={(openness) => {
+                  const next = { ...parameters, openness };
+                  setParameters(next);
+                  applySuggestedIntensity(next);
+                }}
+              />
+              <ParameterStarField
+                parameterKey="novelty"
+                value={parameters.novelty}
+                layout="wizard"
+                showHint
+                onChange={(novelty) => {
+                  const next = { ...parameters, novelty };
+                  setParameters(next);
+                  applySuggestedIntensity(next);
+                }}
+              />
             </div>
           </section>
         )}
@@ -266,11 +267,14 @@ export function CreationAssistant({
           <section className={styles.step}>
             <h3>{t('assistant.steps.classification.title')}</h3>
             <p>{t('assistant.steps.classification.body')}</p>
+            <p className={styles.classificationNote}>
+              {t('assistant.steps.classification.averageHint')}
+            </p>
             {!intensityTouched && (
               <p className={styles.hint}>
                 {t('assistant.suggestedIntensity', {
-                  level: suggestIntensity(parameters),
-                  name: t(`intensity.levels.${suggestIntensity(parameters)}`),
+                  level: suggestedIntensity,
+                  name: t(`intensity.levels.${suggestedIntensity}`),
                 })}
               </p>
             )}

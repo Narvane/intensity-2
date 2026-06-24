@@ -236,3 +236,49 @@
   gap: 0.28rem;
   width: 100%;
 }
+
+.wizard {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 0.4rem;
+  row-gap: 0.08rem;
+  align-items: start;
+  width: 100%;
+  padding: 0.38rem 0.5rem;
+  border-radius: var(--radius-input);
+  background: var(--surface-sunken);
+  text-align: left;
+}
+
+.wizard .icon {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-top: 0.05rem;
+}
+
+.wizard .icon svg {
+  width: 0.95rem;
+  height: 0.95rem;
+}
+
+.wizard .label {
+  grid-column: 2;
+  grid-row: 1;
+  font-size: 0.76rem;
+  text-align: left;
+}
+
+.wizard .ratingSlot {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.wizard .hint {
+  grid-column: 2;
+  grid-row: 3;
+  margin: 0;
+  font-size: 0.74rem;
+  line-height: 1.35;
+}

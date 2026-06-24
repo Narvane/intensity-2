@@ -3,8 +3,7 @@
   padding: var(--space-page);
   padding-bottom: calc(var(--space-page) + var(--safe-area-bottom));
   background:
-    radial-gradient(circle at top left, rgba(45, 189, 154, 0.16), transparent 30%),
-    radial-gradient(circle at bottom right, rgba(123, 92, 246, 0.14), transparent 28%),
+    radial-gradient(circle at top right, rgba(123, 92, 246, 0.16), transparent 30%),
     var(--bg);
 }
 
@@ -32,7 +31,7 @@
   margin: 0 0 1rem;
   padding: 0.85rem 1rem;
   border-radius: var(--radius-card);
-  background: color-mix(in srgb, var(--teal) 14%, white);
+  background: var(--purple-soft);
   color: var(--purple);
   font-weight: 700;
   line-height: 1.45;

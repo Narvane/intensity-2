@@ -9,7 +9,7 @@ interface ParameterStarFieldProps {
   value: number;
   onChange?: (value: number) => void;
   showHint?: boolean;
-  layout?: 'picker' | 'cover' | 'inline' | 'list' | 'listCompact' | 'drawCover';
+  layout?: 'picker' | 'cover' | 'inline' | 'list' | 'listCompact' | 'drawCover' | 'wizard';
 }
 
 export function ParameterStarField({
@@ -25,6 +25,22 @@ export function ParameterStarField({
   const label = t(`assistant.fields.${parameterKey}`);
   const hint = showHint ? t(`parameters.${parameterKey}.hints.${value}`) : null;
   const readOnly = !onChange;
+  const starRating = (
+    <StarRating
+      parameterKey={parameterKey}
+      value={value}
+      label={label}
+      readOnly={readOnly}
+      onChange={onChange}
+      size={
+        layout === 'drawCover' || layout === 'listCompact'
+          ? 'xs'
+          : layout === 'cover' || layout === 'inline' || layout === 'list' || layout === 'wizard'
+            ? 'sm'
+            : 'md'
+      }
+    />
+  );
 
   return (
     <div
@@ -35,20 +51,11 @@ export function ParameterStarField({
         <ParameterIcon />
       </div>
       <p className={styles.label}>{label}</p>
-      <StarRating
-        parameterKey={parameterKey}
-        value={value}
-        label={label}
-        readOnly={readOnly}
-        onChange={onChange}
-        size={
-          layout === 'drawCover' || layout === 'listCompact'
-            ? 'xs'
-            : layout === 'cover' || layout === 'inline' || layout === 'list'
-              ? 'sm'
-              : 'md'
-        }
-      />
+      {layout === 'wizard' ? (
+        <div className={styles.ratingSlot}>{starRating}</div>
+      ) : (
+        starRating
+      )}
       {hint && (
         <p className={styles.hint} aria-live="polite">
           {hint}

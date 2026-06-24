@@ -19,7 +19,7 @@
   flex-shrink: 0;
   padding: 0.3rem 0.7rem;
   border-radius: var(--radius-chip);
-  background: color-mix(in srgb, var(--teal) 14%, white);
+  background: var(--purple-soft);
   color: var(--purple);
   font-size: 0.82rem;
   font-weight: 800;

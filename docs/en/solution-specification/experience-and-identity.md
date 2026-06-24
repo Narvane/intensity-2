@@ -31,7 +31,7 @@ Color tokens, typography, radii, shadows, component chrome, and motion are defin
 
 | Mode | Visual cue (see design system) |
 |------|--------------------------------|
-| Experiences | Teal or purple contribution context |
+| Experiences | Individual contribution context with flat purple accent |
 | Experience Box | Coral-forward ritual context |
 | Join via invite | Yellow or teal chip — distinct from login panels |
 
@@ -80,7 +80,7 @@ Three sub-panels within one auth screen:
 
 | Panel | Visual cue | Primary action |
 |-------|------------|----------------|
-| Experiences login | Teal or purple accent | Single credential form |
+| Experiences login | Flat purple accent (`--purple`) | Single credential form |
 | Experience Box login | Coral accent | Multi-credential cards with "+" to add participant |
 | Registration | Neutral surface on warm background | Display name, email, password |
 | Join via invite | Yellow or teal accent chip | Code entry field + "Continue" |

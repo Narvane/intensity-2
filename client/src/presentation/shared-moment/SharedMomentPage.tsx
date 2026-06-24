@@ -155,12 +155,14 @@ export function SharedMomentPage() {
         {t('session.drawsRemaining', { count: drawsLeft })}
       </p>
 
-      <section className={styles.ritual}>
-        <div className={styles.envelope} aria-hidden="true">
-          <Sparkles />
-        </div>
-        <p>{t('sharedMoment.ritualHint')}</p>
-      </section>
+      {drawSession.phase === 'idle' && (
+        <section className={styles.ritual}>
+          <div className={styles.envelope} aria-hidden="true">
+            <Sparkles />
+          </div>
+          <p className={styles.ritualHint}>{t('sharedMoment.ritualHint')}</p>
+        </section>
+      )}
 
       <section className={styles.filters}>
         <button

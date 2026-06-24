@@ -27,7 +27,7 @@
 }
 
 .chrome[data-accent='experiences'] .iconBadge {
-  background: linear-gradient(145deg, var(--teal), var(--purple));
+  background: var(--purple);
   color: #fff;
 }
 

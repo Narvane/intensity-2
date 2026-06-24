@@ -31,7 +31,7 @@ Token colore, tipografia, raggi, ombre, componenti e movimento sono in [`design-
 
 | Modalità | Indizio visivo (vedi design system) |
 |----------|-------------------------------------|
-| Esperienze | Contesto contributo in teal o viola |
+| Esperienze | Contesto contributo con accento viola flat |
 | Scatola delle Esperienze | Contesto rituale con accento corallo |
 | Unisciti via invito | Chip giallo o teal — distinto dai pannelli login |
 
@@ -80,7 +80,7 @@ Tre sotto-pannelli all'interno di una schermata auth:
 
 | Pannello | Indizio visivo | Azione principale |
 |----------|----------------|-------------------|
-| Login Esperienze | Accento teal o viola | Form credenziale singola |
+| Login Esperienze | Accento viola flat (`--purple`) | Form credenziale singola |
 | Login Scatola delle Esperienze | Accento corallo | Carte multi-credenziale con "+" per aggiungere partecipante |
 | Registrazione | Superficie neutra su sfondo caldo | Nome visualizzato, email, password |
 | Unisciti via invito | Chip giallo o teal | Campo inserimento codice + "Continua" |

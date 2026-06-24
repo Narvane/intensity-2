@@ -61,7 +61,8 @@ The product must convey:
 | `--coral` | `#FF6B3D` | Primary brand, primary CTA |
 | `--coral-strong` | `#E85626` | Coral hover / pressed |
 | `--yellow` | `#FFC94D` | Discovery, highlights |
-| `--purple` | `#7B5CF6` | Creativity |
+| `--purple` | `#7B5CF6` | Creativity, Experiences mode |
+| `--purple-soft` | `rgba(123,92,246,.14)` | Soft purple backgrounds (chips, banners, auxiliary panels) |
 | `--teal` | `#2DBD9A` | Adventure |
 | `--ink-soft` | `rgba(31,31,31,.06)` | Soft shadow base |
 
@@ -128,6 +129,10 @@ If a screen could exist in Jira, Trello, Notion, Monday, or Asana — it is wron
 ### Color philosophy
 
 Each box should feel like a **fun category**. Color aids recognition at a glance. Prefer solid fills over outlines.
+
+**Purple (`--purple`):** always use as a **flat** color (`#7B5CF6`). Do not blend purple with `--teal` in gradients (e.g. `linear-gradient(teal → purple)`), which reads bluish and drifts from the token. Soft backgrounds use `--purple-soft` (neutral tint on white), not `color-mix` with teal. Experiences mode badges and icons: solid `background: var(--purple)`.
+
+**Teal (`--teal`):** reserved for the Friends family (box types), invites, and low intensity scale — not as the primary Experiences flow accent.
 
 ### Lines and separators
 
@@ -213,7 +218,7 @@ Suggested draw reveal: short ease-out flip; alignment hint may use gentle pulse 
 
 Mode clarity remains required (`experience-and-identity.md`). Within this system:
 
-- **Experiences** path: teal or purple accents for individual contribution context.
+- **Experiences** path: **flat purple** (`--purple`) for session chrome, login, pills, and individual contribution highlights.
 - **Experience Box** path: coral-forward ritual context.
 - **Join via invite:** yellow or teal chip — distinct from login panels.
 - **Registration:** neutral surface on warm background.
@@ -249,6 +254,7 @@ Do not use brown/blue corporate dual-mode palette or subtle wordmark gradients.
   --coral-strong: #E85626;
   --yellow: #FFC94D;
   --purple: #7B5CF6;
+  --purple-soft: rgba(123, 92, 246, 0.14);
   --teal: #2DBD9A;
   --ink-soft: rgba(31, 31, 31, 0.06);
   --radius-button: 24px;

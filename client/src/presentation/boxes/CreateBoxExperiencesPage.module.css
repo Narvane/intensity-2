@@ -3,8 +3,7 @@
   padding: var(--space-page);
   padding-bottom: calc(var(--space-page) + var(--safe-area-bottom));
   background:
-    radial-gradient(circle at top left, rgba(45, 189, 154, 0.16), transparent 30%),
-    radial-gradient(circle at bottom right, rgba(123, 92, 246, 0.14), transparent 28%),
+    radial-gradient(circle at top right, rgba(123, 92, 246, 0.16), transparent 30%),
     var(--bg);
 }
 

@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { ChevronRight } from 'lucide-react';
 import type { BoxType } from '@domain/box/boxTypes';
 import {
   pickRandomSuggestion,
@@ -6,9 +7,6 @@ import {
   type SuggestionIntensity,
 } from '../../content/suggestion-packs';
 import { useI18n } from '../../i18n/I18nContext';
-import { getBoxVisual } from '../components/boxVisuals';
-import { Button } from '../components/Button';
-import { RatingScale } from '../components/RatingScale';
 import styles from './SuggestionExplorer.module.css';
 
 interface SuggestionExplorerProps {
@@ -16,12 +14,12 @@ interface SuggestionExplorerProps {
   onAccept: (suggestion: ExperienceSuggestion) => void;
 }
 
+const INTENSITY_LEVELS: SuggestionIntensity[] = [1, 2, 3, 4, 5];
+
 export function SuggestionExplorer({ boxType, onAccept }: SuggestionExplorerProps) {
   const { t, locale } = useI18n();
   const [filterIntensity, setFilterIntensity] = useState<SuggestionIntensity>(1);
   const [current, setCurrent] = useState<ExperienceSuggestion | null>(null);
-  const visual = useMemo(() => getBoxVisual(boxType), [boxType]);
-  const TypeIcon = visual.Icon;
 
   useEffect(() => {
     setCurrent(pickRandomSuggestion(locale, boxType, filterIntensity));
@@ -36,39 +34,37 @@ export function SuggestionExplorer({ boxType, onAccept }: SuggestionExplorerProp
   }
 
   return (
-    <div className={styles.explorer}>
-      <div className={styles.typeBadge} data-family={visual.family}>
-        <TypeIcon size={18} aria-hidden />
-        <span>{t(`boxTypes.${boxType}.title`)}</span>
+    <aside className={styles.explorer} aria-label={t('assistant.steps.suggestion.title')}>
+      <div className={styles.toolbar}>
+        <span className={styles.toolbarLabel}>{t('suggestions.explorer.auxLabel')}</span>
+        <div className={styles.chips} role="group" aria-label={t('suggestions.explorer.filterLabel')}>
+          {INTENSITY_LEVELS.map((level) => (
+            <button
+              key={level}
+              type="button"
+              className={level === filterIntensity ? styles.chipActive : styles.chip}
+              aria-pressed={level === filterIntensity}
+              onClick={() => setFilterIntensity(level)}
+            >
+              {level}
+            </button>
+          ))}
+        </div>
       </div>
 
-      <RatingScale
-        label={t('suggestions.explorer.filterLabel')}
-        value={filterIntensity}
-        tone="intensity"
-        onChange={(value) => setFilterIntensity(value as SuggestionIntensity)}
-      />
-
-      <article className={styles.card} aria-live="polite">
-        <p className={styles.description}>{current.description}</p>
-        <p className={styles.meta}>
-          {t('suggestions.explorer.intensity', { level: current.intensity })}
-        </p>
-        <p className={styles.meta}>
-          {t('experiences.paramsSummary', {
-            effort: current.parameters.effort,
-            openness: current.parameters.openness,
-            novelty: current.parameters.novelty,
-          })}
-        </p>
-      </article>
+      <blockquote className={styles.quote} aria-live="polite">
+        {current.description}
+      </blockquote>
 
       <div className={styles.actions}>
-        <Button variant="secondary" onClick={showAnother}>
+        <button type="button" className={styles.skipButton} onClick={showAnother}>
+          <ChevronRight size={15} aria-hidden />
           {t('suggestions.explorer.another')}
-        </Button>
-        <Button onClick={() => onAccept(current)}>{t('suggestions.explorer.use')}</Button>
+        </button>
+        <button type="button" className={styles.pickButton} onClick={() => onAccept(current)}>
+          {t('suggestions.explorer.use')}
+        </button>
       </div>
-    </div>
+    </aside>
   );
 }
