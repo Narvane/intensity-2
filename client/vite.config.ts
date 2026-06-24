@@ -12,10 +12,14 @@ export default defineConfig({
       '@adapters': path.resolve(__dirname, 'src/adapters'),
       '@presentation': path.resolve(__dirname, 'src/presentation'),
       '@i18n': path.resolve(__dirname, 'src/i18n'),
+      '@content': path.resolve(__dirname, 'src/content'),
     },
   },
   server: {
     port: 5173,
+    fs: {
+      allow: [path.resolve(__dirname, '..')],
+    },
   },
   test: {
     environment: 'node',

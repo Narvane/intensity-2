@@ -72,11 +72,15 @@
       "displayName": "Display name"
     },
     "experiences": {
-      "title": "Experiences",
+      "title": "Sign in",
+      "product": "Experiences",
+      "subtitle": "Create experiences on your own",
       "submit": "Sign in"
     },
     "experienceBox": {
-      "title": "Experience Box",
+      "title": "Play",
+      "product": "Experience Box",
+      "subtitle": "Draw experience boxes together",
       "hint": "Enter everyone present in the room. Each person uses their own credentials.",
       "participant": "Participant {{number}}",
       "addParticipant": "Add participant",
@@ -105,8 +109,12 @@
     "enterExperienceBox": "Enter Experience Box"
   },
   "session": {
-    "experiencesMode": "Experiences mode",
-    "experienceBoxMode": "Experience Box mode",
+    "experiencesMode": "Experiences",
+    "experiencesSubtitle": "Your individual session",
+    "experienceBoxMode": "Experience Box",
+    "experienceBoxSubtitle": "Shared room to draw together",
+    "greeting": "Hi, {{name}}",
+    "roomLabel": "In the room now",
     "logout": "Sign out"
   },
   "common": {

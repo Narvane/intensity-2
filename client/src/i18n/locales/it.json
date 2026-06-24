@@ -72,11 +72,15 @@
       "displayName": "Nome visualizzato"
     },
     "experiences": {
-      "title": "Experiences",
+      "title": "Accedi",
+      "product": "Experiences",
+      "subtitle": "Crea esperienze in modo individuale",
       "submit": "Accedi"
     },
     "experienceBox": {
-      "title": "Experience Box",
+      "title": "Gioca",
+      "product": "Experience Box",
+      "subtitle": "Sorteggia le scatole di esperienze",
       "hint": "Inserisci tutte le persone presenti. Ognuna usa le proprie credenziali.",
       "participant": "Partecipante {{number}}",
       "addParticipant": "Aggiungi partecipante",
@@ -105,8 +109,12 @@
     "enterExperienceBox": "Entra in Experience Box"
   },
   "session": {
-    "experiencesMode": "Modalità Experiences",
-    "experienceBoxMode": "Modalità Experience Box",
+    "experiencesMode": "Experiences",
+    "experiencesSubtitle": "La tua sessione individuale",
+    "experienceBoxMode": "Experience Box",
+    "experienceBoxSubtitle": "Stanza condivisa per sorteggiare",
+    "greeting": "Ciao, {{name}}",
+    "roomLabel": "In sala adesso",
     "logout": "Esci"
   },
   "common": {

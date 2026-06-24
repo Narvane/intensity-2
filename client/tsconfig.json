@@ -23,7 +23,8 @@
       "@domain/*": ["src/domain/*"],
       "@adapters/*": ["src/adapters/*"],
       "@presentation/*": ["src/presentation/*"],
-      "@i18n/*": ["src/i18n/*"]
+      "@i18n/*": ["src/i18n/*"],
+      "@content/*": ["src/content/*"]
     }
   },
   "include": ["src"]

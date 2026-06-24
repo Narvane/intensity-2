@@ -17,6 +17,7 @@ import {
 import { HelpCircle } from 'lucide-react';
 import { useI18n } from '../../i18n/I18nContext';
 import { BrandMark } from '../components/BrandMark';
+import { AuthModeIntro } from '../components/AuthModeIntro';
 import { Button } from '../components/Button';
 import { QuickGuideOverlay } from '../quick-guide/QuickGuideOverlay';
 import styles from './AuthPage.module.css';
@@ -175,10 +176,15 @@ export function AuthPage() {
   return (
     <>
       <main className={styles.page}>
-        <header className={styles.header}>
-          <BrandMark />
+        <header className={styles.brandBar}>
+          <BrandMark
+            variant="wordmark"
+            size="auth"
+            accessibleName={t('app.name')}
+          />
           <Button
             variant="ghost"
+            className={styles.helpButton}
             aria-label={t('auth.helpLabel')}
             onClick={() => setQuickGuideOpen(true)}
           >
@@ -193,9 +199,13 @@ export function AuthPage() {
               type="button"
               className={
                 panel === tab
-                  ? tab === 'invite'
-                    ? `${styles.tabActive} ${styles.tabActiveInvite}`
-                    : styles.tabActive
+                  ? tab === 'experiences'
+                    ? `${styles.tabActive} ${styles.tabActiveExperiences}`
+                    : tab === 'experienceBox'
+                      ? `${styles.tabActive} ${styles.tabActiveExperienceBox}`
+                      : tab === 'invite'
+                        ? `${styles.tabActive} ${styles.tabActiveInvite}`
+                        : styles.tabActive
                   : styles.tab
               }
               onClick={() => {
@@ -211,7 +221,7 @@ export function AuthPage() {
         <section className={`${styles.panel} ${panelClass}`}>
           {panel === 'experiences' && (
             <>
-              <h1>{t('auth.experiences.title')}</h1>
+              <AuthModeIntro mode="EXPERIENCES" />
               <label className={styles.field}>
                 <span>{t('auth.fields.email')}</span>
                 <input
@@ -248,7 +258,7 @@ export function AuthPage() {
 
           {panel === 'experienceBox' && (
             <>
-              <h1>{t('auth.experienceBox.title')}</h1>
+              <AuthModeIntro mode="EXPERIENCE_BOX" />
               <p className={styles.hint}>{t('auth.experienceBox.hint')}</p>
               {boxCredentials.map((credential, index) => (
                 <div key={index} className={styles.credentialCard}>

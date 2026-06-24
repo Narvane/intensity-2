@@ -1,27 +1,89 @@
-.mark {
+.image {
+  display: block;
+  object-fit: contain;
+}
+
+.iconMd {
   width: 3.5rem;
   height: 3.5rem;
-  border-radius: var(--radius-card);
+}
+
+.iconLg {
+  width: 4.5rem;
+  height: 4.5rem;
+}
+
+.wordmarkMd {
+  width: min(52vw, 11rem);
+  height: auto;
+  max-height: 2.75rem;
+}
+
+.wordmarkLg,
+.wordmarkAuth {
+  width: min(70vw, 15rem);
+  height: auto;
+  max-height: 3.25rem;
+}
+
+.placeholderIcon {
   display: grid;
   place-items: center;
+  border-radius: var(--radius-card);
   background: var(--coral);
   color: #fff;
   box-shadow: var(--shadow-soft);
 }
 
-.mark svg {
-  width: 1.85rem;
-  height: 1.85rem;
-  stroke-width: 2.5;
+.placeholderIconMd {
+  width: 3.5rem;
+  height: 3.5rem;
 }
 
-.large {
+.placeholderIconLg {
   width: 4.5rem;
   height: 4.5rem;
   border-radius: 1.65rem;
 }
 
-.large svg {
+.placeholderIcon svg {
+  width: 1.85rem;
+  height: 1.85rem;
+  stroke-width: 2.5;
+}
+
+.placeholderIconLg svg {
   width: 2.35rem;
   height: 2.35rem;
+}
+
+.placeholderWordmark {
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--coral);
+  color: #fff;
+  box-shadow: var(--shadow-soft);
+  padding: 0.55rem 1.35rem;
+}
+
+.placeholderWordmarkMd {
+  min-width: min(52vw, 11rem);
+}
+
+.placeholderWordmarkLg,
+.placeholderWordmarkAuth {
+  min-width: min(70vw, 15rem);
+  padding: 0.65rem 1.5rem;
+}
+
+.placeholderWordmarkText {
+  font-size: 1.15rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+.placeholderWordmarkAuth .placeholderWordmarkText {
+  font-size: 1.25rem;
 }

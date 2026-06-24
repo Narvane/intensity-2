@@ -10,7 +10,7 @@ export function BootstrapPage() {
 
   return (
     <main className={styles.page} aria-live="polite">
-      <BrandMark size="lg" />
+      <BrandMark variant="icon" size="lg" />
       <h1 className="srOnly">{t('app.name')}</h1>
 
       {state.status === 'loading' && (

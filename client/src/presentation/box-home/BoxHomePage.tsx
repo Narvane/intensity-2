@@ -12,6 +12,7 @@ import { ShareInviteSheet } from '../invite/ShareInviteSheet';
 import { LeaveGroupDialog } from '../groups/LeaveGroupDialog';
 import { BoxCard } from '../components/BoxCard';
 import { Button } from '../components/Button';
+import { SessionModeChrome } from '../components/SessionModeChrome';
 import { DeleteBoxDialog } from './DeleteBoxDialog';
 import styles from './BoxHomePage.module.css';
 
@@ -132,10 +133,11 @@ export function BoxHomePage() {
   return (
     <main className={styles.page}>
       <header className={styles.header}>
-        <div>
-          <p className={styles.mode}>{t('session.experienceBoxMode')}</p>
-          <h1>{t('boxHome.title')}</h1>
-        </div>
+        <SessionModeChrome
+          mode="EXPERIENCE_BOX"
+          title={t('boxHome.title')}
+          members={session?.members}
+        />
         <Button variant="ghost" onClick={() => void logout()}>
           {t('session.logout')}
         </Button>

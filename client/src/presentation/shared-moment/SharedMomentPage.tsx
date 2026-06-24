@@ -15,6 +15,7 @@ import { RevelationOrchestrator } from '@domain/draw/RevelationOrchestrator';
 import { SlidersHorizontal, Sparkles } from 'lucide-react';
 import { useI18n } from '../../i18n/I18nContext';
 import { Button } from '../components/Button';
+import { SessionModeChrome } from '../components/SessionModeChrome';
 import { RatingScale } from '../components/RatingScale';
 import { DrawResultCard } from './DrawResultCard';
 import styles from './SharedMomentPage.module.css';
@@ -100,10 +101,11 @@ export function SharedMomentPage() {
         {statusMessage}
       </p>
       <header className={styles.header}>
-        <div>
-          <p className={styles.mode}>{t('session.experienceBoxMode')}</p>
-          <h1>{boxName}</h1>
-        </div>
+        <SessionModeChrome
+          mode="EXPERIENCE_BOX"
+          title={boxName}
+          members={session?.members}
+        />
         <div className={styles.headerActions}>
           <Button variant="ghost" onClick={() => navigate('/box-home')}>
             {t('common.back')}

@@ -14,6 +14,7 @@ import {
 } from '@domain/experience/experienceUseCases';
 import { useI18n } from '../../i18n/I18nContext';
 import { Button } from '../components/Button';
+import { SessionModeChrome } from '../components/SessionModeChrome';
 import { CreationAssistant } from './CreationAssistant';
 import { DeleteExperienceDialog } from './DeleteExperienceDialog';
 import { ExperienceCard } from './ExperienceCard';
@@ -98,10 +99,11 @@ export function ExperienceListPage() {
   return (
     <main className={styles.page}>
       <header className={styles.header}>
-        <div>
-          <p className={styles.mode}>{t('session.experiencesMode')}</p>
-          <h1>{boxName}</h1>
-        </div>
+        <SessionModeChrome
+          mode="EXPERIENCES"
+          title={boxName}
+          participantDisplayName={session?.displayName}
+        />
         <div className={styles.headerActions}>
           <Button variant="ghost" onClick={() => navigate(`/groups/${groupId}/boxes`)}>
             {t('common.back')}

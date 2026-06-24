@@ -9,6 +9,7 @@ import { ListBoxesUseCase } from '@domain/box/boxUseCases';
 import { useI18n } from '../../i18n/I18nContext';
 import { BoxCard } from '../components/BoxCard';
 import { Button } from '../components/Button';
+import { SessionModeChrome } from '../components/SessionModeChrome';
 import styles from './BoxSelectionPage.module.css';
 
 export function BoxSelectionPage() {
@@ -43,10 +44,11 @@ export function BoxSelectionPage() {
   return (
     <main className={styles.page}>
       <header className={styles.header}>
-        <div>
-          <p className={styles.mode}>{t('session.experiencesMode')}</p>
-          <h1>{t('boxes.title')}</h1>
-        </div>
+        <SessionModeChrome
+          mode="EXPERIENCES"
+          title={t('boxes.title')}
+          participantDisplayName={session?.displayName}
+        />
         <div className={styles.headerActions}>
           <Button variant="ghost" onClick={() => navigate('/groups')}>
             {t('common.back')}
