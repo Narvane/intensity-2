@@ -115,7 +115,9 @@
     "experienceBoxSubtitle": "Shared room to draw together",
     "greeting": "Hi, {{name}}",
     "roomLabel": "In the room now",
-    "logout": "Sign out"
+    "logout": "Sign out",
+    "drawsRemaining": "Draws remaining: {{count}}",
+    "experienceBoxEnded": "The group session has ended. Sign in together again to continue."
   },
   "common": {
     "loading": "Loading…",
@@ -365,7 +367,6 @@
     "alignmentHint": "Take a breath together before opening the full card.",
     "reveal": "Open card",
     "backToDraw": "Draw another card",
-    "byAuthor": "By {{author}}",
     "filter": {
       "ANY": "Any",
       "EXACT": "Exact",

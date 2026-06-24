@@ -27,6 +27,7 @@ intensity:
   jwt:
     secret: local-dev-secret-key-must-be-at-least-32-characters-long
     expiration-seconds: 86400
+    experience-box-expiration-seconds: 14400
   cors:
     allowed-origin-patterns:
       - http://localhost

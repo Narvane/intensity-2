@@ -14,6 +14,7 @@ intensity:
   jwt:
     secret: test-secret-key-must-be-at-least-32-characters-long
     expiration-seconds: 3600
+    experience-box-expiration-seconds: 900
 
 springdoc:
   api-docs:

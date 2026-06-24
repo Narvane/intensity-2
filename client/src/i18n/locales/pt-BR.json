@@ -115,7 +115,9 @@
     "experienceBoxSubtitle": "Sala compartilhada para sortear",
     "greeting": "Olá, {{name}}",
     "roomLabel": "Na sala agora",
-    "logout": "Sair"
+    "logout": "Sair",
+    "drawsRemaining": "Sorteios restantes: {{count}}",
+    "experienceBoxEnded": "A sessão em grupo terminou. Entrem juntos de novo para continuar."
   },
   "common": {
     "loading": "Carregando…",
@@ -365,7 +367,6 @@
     "alignmentHint": "Respirem juntos antes de abrir a carta completa.",
     "reveal": "Abrir carta",
     "backToDraw": "Sortear outra carta",
-    "byAuthor": "Por {{author}}",
     "filter": {
       "ANY": "Qualquer",
       "EXACT": "Exato",

@@ -115,7 +115,9 @@
     "experienceBoxSubtitle": "Stanza condivisa per sorteggiare",
     "greeting": "Ciao, {{name}}",
     "roomLabel": "In sala adesso",
-    "logout": "Esci"
+    "logout": "Esci",
+    "drawsRemaining": "Estrazioni rimanenti: {{count}}",
+    "experienceBoxEnded": "La sessione di gruppo è terminata. Entrate insieme di nuovo per continuare."
   },
   "common": {
     "loading": "Caricamento…",
@@ -365,7 +367,6 @@
     "alignmentHint": "Respirate insieme prima di aprire la carta completa.",
     "reveal": "Apri carta",
     "backToDraw": "Estrai un'altra carta",
-    "byAuthor": "Di {{author}}",
     "filter": {
       "ANY": "Qualsiasi",
       "EXACT": "Esatto",

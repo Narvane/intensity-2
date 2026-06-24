@@ -12,6 +12,10 @@ export interface SessionState {
   displayName?: string;
   groupId?: string;
   members?: SessionMember[];
+  experienceBox?: {
+    drawCount: number;
+    sessionStartedAt: string;
+  };
 }
 
 export interface SessionPort {

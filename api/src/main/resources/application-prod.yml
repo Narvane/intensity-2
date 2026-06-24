@@ -20,6 +20,8 @@ management:
 intensity:
   jwt:
     secret: ${INTENSITY_JWT_SECRET}
+    expiration-seconds: ${INTENSITY_JWT_EXPIRATION_SECONDS:86400}
+    experience-box-expiration-seconds: ${INTENSITY_JWT_EXPERIENCE_BOX_EXPIRATION_SECONDS:14400}
   cors:
     allowed-origin-patterns:
       - https://localhost

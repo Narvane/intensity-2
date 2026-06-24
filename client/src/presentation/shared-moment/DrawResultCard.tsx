@@ -22,7 +22,7 @@ export function DrawResultCard({ experience, revealed }: DrawResultCardProps) {
           </div>
 
           <div className={styles.face}>
-            <ExperienceContentBlock experience={experience} showAuthor />
+            <ExperienceContentBlock experience={experience} />
           </div>
         </div>
       </div>

@@ -4,12 +4,6 @@
   gap: 0.65rem;
 }
 
-.author {
-  margin: 0;
-  color: var(--color-text-muted);
-  font-size: 0.9rem;
-}
-
 .description,
 .reflection {
   margin: 0;

@@ -203,7 +203,7 @@ Campo de nome, seletor de tipo (lista plana de 11 tipos), botão criar. Validaç
 
 Chips de filtro + seletor de intensidade opcional (padrão 3 — Coragem). Rótulo do botão de sortear adapta ao modo de filtro. Carregando: "Escolhendo…". Caixinha vazia: carta de dica para adicionar experiências via modo Experiências. Pool de filtro vazio: "Nenhuma experiência disponível."
 
-Pós-sorteio: dica de alinhamento (âmbar tracejado), botão revelar, voltar ao sorteio. Estado revelado mostra nome do autor e reflexão.
+Pós-sorteio: dica de alinhamento (âmbar tracejado), botão revelar, voltar ao sorteio. Estado revelado mostra descrição completa e reflexão, sem identificar o autor.
 
 ### Sessão desconhecida
 

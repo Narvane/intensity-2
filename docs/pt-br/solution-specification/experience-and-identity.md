@@ -101,7 +101,7 @@ O catálogo tem seções internas de apresentação (amigos, casal, pessoal, soc
 
 **Carta de lista (modo Experiências):** chip de intensidade, indicadores de parâmetro, selo, descrição truncada ou oculta dependendo da autoria.
 
-**Carta de sorteio (modo Caixa de Experiências):** carta de dois lados com animação de virada no eixo Y. Capa: intensidade, parâmetros, selo. Face: descrição completa + reflexão + nome de exibição do autor.
+**Carta de sorteio (modo Caixa de Experiências):** carta de dois lados com animação de virada no eixo Y. Capa: intensidade, parâmetros, selo. Face: descrição completa e reflexão (autoria oculta no ritual).
 
 ### Ações destrutivas
 

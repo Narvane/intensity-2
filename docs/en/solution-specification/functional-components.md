@@ -203,7 +203,7 @@ Name field, type picker (flat 11-type list), create button. Validation: name req
 
 Filter chips + optional intensity selector (defaults to 3 — Courage). Draw button label adapts to filter mode. Loading: "Choosing…". Empty box: hint card to add experiences via Experiences mode. Empty filter pool: "No experiences available."
 
-Post-draw: alignment hint (amber dashed), reveal button, back to draw. Revealed state shows author name and reflection.
+Post-draw: alignment hint (amber dashed), reveal button, back to draw. Revealed state shows full description and reflection, without identifying the author.
 
 ### Unknown session
 

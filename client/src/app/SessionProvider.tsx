@@ -10,6 +10,8 @@ import {
 import { createApiClient } from '@adapters/api/ApiClient';
 import { createDefaultSessionAdapter } from '@adapters/session/SessionPreferencesAdapter';
 import { LogoutUseCase } from '@domain/auth/authUseCases';
+import { setExperienceBoxSessionEndReason } from '@domain/session/experienceBoxSessionEnd';
+import { isDrawLimitReached } from '@domain/session/experienceBoxSessionPolicy';
 import type { SessionPort, SessionState } from '@domain/session/SessionPort';
 
 interface SessionContextValue {
@@ -43,6 +45,18 @@ export function SessionProvider({ children, sessionPort }: SessionProviderProps)
         setInvalid(Boolean(stored));
         return;
       }
+
+      if (
+        stored.accessMode === 'EXPERIENCE_BOX' &&
+        isDrawLimitReached(stored.experienceBox?.drawCount ?? 0)
+      ) {
+        setExperienceBoxSessionEndReason('draw_limit');
+        await port.clear();
+        setSession(null);
+        setInvalid(false);
+        return;
+      }
+
       setSession(stored);
       setInvalid(false);
     } catch {

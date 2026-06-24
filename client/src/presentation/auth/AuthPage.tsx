@@ -14,6 +14,7 @@ import {
   hydratePendingInvite,
   resolvePostAuthDestination,
 } from '@domain/invite/pendingInvite';
+import { consumeExperienceBoxSessionEndReason } from '@domain/session/experienceBoxSessionEnd';
 import { HelpCircle } from 'lucide-react';
 import { useI18n } from '../../i18n/I18nContext';
 import { BrandMark } from '../components/BrandMark';
@@ -64,6 +65,7 @@ export function AuthPage() {
   const [quickGuideOpen, setQuickGuideOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [sessionNotice, setSessionNotice] = useState<string | null>(null);
 
   const [experiencesForm, setExperiencesForm] = useState<CredentialForm>(emptyCredential);
   const [boxCredentials, setBoxCredentials] = useState<CredentialForm[]>([emptyCredential()]);
@@ -80,6 +82,14 @@ export function AuthPage() {
       setPanel(authState.panel);
     }
   }, [authState.panel]);
+
+  useEffect(() => {
+    const endReason = consumeExperienceBoxSessionEndReason();
+    if (endReason === 'draw_limit') {
+      setSessionNotice(t('session.experienceBoxEnded'));
+      setPanel('experienceBox');
+    }
+  }, [t]);
 
   useEffect(() => {
     if (authState.returnTo) {
@@ -371,6 +381,12 @@ export function AuthPage() {
                 {t('auth.invite.submit')}
               </Button>
             </>
+          )}
+
+          {sessionNotice && (
+            <p className={styles.notice} role="status">
+              {sessionNotice}
+            </p>
           )}
 
           {error && (

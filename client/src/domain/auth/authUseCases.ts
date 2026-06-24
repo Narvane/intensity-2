@@ -1,5 +1,6 @@
 import type { ApiClient } from '@adapters/api/ApiClient';
 import type { SessionPort, SessionState } from '@domain/session/SessionPort';
+import { createExperienceBoxSessionMeta } from '@domain/session/experienceBoxSessionPolicy';
 
 export interface LoginInput {
   email: string;
@@ -92,6 +93,7 @@ export class LoginExperienceBoxUseCase {
       groupId: response.groupId,
       members: response.members,
       displayName: response.members.map((member) => member.displayName).join(', '),
+      experienceBox: createExperienceBoxSessionMeta(),
     };
     await this.sessionPort.save(session);
     return session;

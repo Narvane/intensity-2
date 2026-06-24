@@ -101,7 +101,7 @@ Il catalogo ha sezioni di presentazione interne (amici, coppia, personale, socia
 
 **Carta elenco (modalità Esperienze):** chip intensità, indicatori parametri, sigillo, descrizione troncata o nascosta a seconda della paternità.
 
-**Carta estrazione (modalità Scatola delle Esperienze):** carta a due lati con animazione flip asse Y. Copertina: intensità, parametri, sigillo. Fronte: descrizione completa + riflessione + nome visualizzato autore.
+**Carta estrazione (modalità Scatola delle Esperienze):** carta a due lati con animazione flip asse Y. Copertina: intensità, parametri, sigillo. Fronte: descrizione completa e riflessione (autoria nascosta nel rituale).
 
 ### Azioni distruttive
 

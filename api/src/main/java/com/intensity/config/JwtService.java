@@ -48,7 +48,7 @@ public class JwtService {
 				.claim("participantIds", participantIds.stream().map(UUID::toString).toList())
 				.claim("displayNames", displayNames)
 				.issuedAt(Date.from(now))
-				.expiration(Date.from(now.plusSeconds(properties.expirationSeconds())))
+				.expiration(Date.from(now.plusSeconds(properties.experienceBoxExpirationSeconds())))
 				.signWith(secretKey)
 				.compact();
 	}
