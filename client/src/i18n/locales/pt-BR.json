@@ -194,9 +194,15 @@
   },
   "createBox": {
     "title": "Criar caixinha",
+    "intro": "Dê um nome e escolha o tema que combina com o grupo.",
+    "nameStep": "1. Nome",
+    "nameHint": "Como vocês vão reconhecer esta caixinha na lista.",
     "nameLabel": "Nome da caixinha",
+    "namePlaceholder": "Ex.: Fim de semana especial",
+    "typeStep": "2. Tipo temático",
+    "typeHint": "O tipo orienta o clima das ideias — escolha o que combina com vocês.",
     "typeLabel": "Tipo de caixinha",
-    "submit": "Criar"
+    "submit": "Criar caixinha"
   },
   "experiences": {
     "title": "Experiências",
@@ -339,6 +345,12 @@
     }
   },
   "boxTypes": {
+    "families": {
+      "friends": "Amigos",
+      "couple": "Casal",
+      "growth": "Crescimento",
+      "connection": "Conexão"
+    },
     "SAIDAS_COM_AMIGOS": {
       "title": "Saídas com amigos",
       "hint": "Programas sociais fora da rotina"

@@ -194,9 +194,15 @@
   },
   "createBox": {
     "title": "Crea scatola",
+    "intro": "Scegli un nome e il tema adatto al gruppo.",
+    "nameStep": "1. Nome",
+    "nameHint": "Come riconoscerete questa scatola nell'elenco.",
     "nameLabel": "Nome della scatola",
+    "namePlaceholder": "Es.: Weekend speciale",
+    "typeStep": "2. Tipo tematico",
+    "typeHint": "Il tipo orienta il clima delle idee — scegliete quello giusto per voi.",
     "typeLabel": "Tipo di scatola",
-    "submit": "Crea"
+    "submit": "Crea scatola"
   },
   "experiences": {
     "title": "Esperienze",
@@ -339,6 +345,12 @@
     }
   },
   "boxTypes": {
+    "families": {
+      "friends": "Amici",
+      "couple": "Coppia",
+      "growth": "Crescita",
+      "connection": "Connessione"
+    },
     "SAIDAS_COM_AMIGOS": {
       "title": "Uscite con amici",
       "hint": "Programmi sociali fuori dalla routine"

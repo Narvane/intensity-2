@@ -194,9 +194,15 @@
   },
   "createBox": {
     "title": "Create box",
+    "intro": "Pick a name and the theme that fits your group.",
+    "nameStep": "1. Name",
+    "nameHint": "How you'll recognize this box in the list.",
     "nameLabel": "Box name",
+    "namePlaceholder": "e.g. Special weekend",
+    "typeStep": "2. Thematic type",
+    "typeHint": "The type sets the mood for ideas — choose what fits you.",
     "typeLabel": "Box type",
-    "submit": "Create"
+    "submit": "Create box"
   },
   "experiences": {
     "title": "Experiences",
@@ -339,6 +345,12 @@
     }
   },
   "boxTypes": {
+    "families": {
+      "friends": "Friends",
+      "couple": "Couple",
+      "growth": "Growth",
+      "connection": "Connection"
+    },
     "SAIDAS_COM_AMIGOS": {
       "title": "Outings with friends",
       "hint": "Social plans outside the routine"

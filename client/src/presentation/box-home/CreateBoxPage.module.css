@@ -1,115 +1,23 @@
 .page {
   min-height: 100dvh;
   padding: var(--space-page);
+  padding-bottom: calc(var(--space-page) + var(--safe-area-bottom));
   background:
-    radial-gradient(circle at top left, rgba(255, 107, 61, 0.16), transparent 30%),
+    radial-gradient(circle at top right, rgba(255, 107, 61, 0.14), transparent 32%),
     var(--bg);
 }
 
 .header {
   display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  margin-bottom: 1.25rem;
-}
-
-.header h1 {
-  margin: 0;
-  font-size: clamp(1.9rem, 7vw, 2.5rem);
-  line-height: 1.05;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.field {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-
-.field span,
-.types legend {
-  color: var(--color-text-muted);
-  font-size: 0.9rem;
-}
-
-.field input {
-  min-height: var(--touch-min);
-  border-radius: var(--radius-input);
-  border: 1px solid var(--color-border);
-  background: var(--surface-sunken);
-  color: var(--color-text);
-  padding: 0.65rem 0.85rem;
-  font: inherit;
-}
-
-.types {
-  border: none;
-  border-radius: var(--radius-card);
-  padding: 0.75rem;
-  margin: 0;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.75rem;
-  max-height: 24rem;
-  overflow: auto;
-  background: var(--surface);
-  box-shadow: var(--shadow-soft);
-}
-
-.typeOption {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  min-height: 7rem;
-  padding: 0.85rem;
-  border-radius: var(--radius-card);
-  gap: 0.65rem;
+  justify-content: space-between;
   align-items: flex-start;
-  cursor: pointer;
-  background: var(--surface-sunken);
-  transition: transform 0.16s ease, background 0.16s ease;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
 }
 
-.typeOption:has(input:checked) {
-  background: var(--coral);
-  color: #fff;
-  transform: scale(1.02);
-}
-
-.typeOption input {
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
-  accent-color: var(--coral);
-}
-
-.typeIcon {
-  width: 2rem;
-  height: 2rem;
-  stroke-width: 2.4;
-}
-
-.typeOption strong {
-  display: block;
-  font-size: 0.95rem;
-}
-
-.typeOption small {
-  display: block;
+.intro {
+  margin: 0 0 1.25rem;
   color: var(--color-text-muted);
-  line-height: 1.4;
-}
-
-.typeOption:has(input:checked) small {
-  color: rgba(255, 255, 255, 0.86);
-}
-
-.error {
-  margin: 0;
-  color: var(--danger);
+  line-height: 1.5;
+  font-size: 0.95rem;
 }
